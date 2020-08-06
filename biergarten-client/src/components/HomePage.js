@@ -1,11 +1,11 @@
 import React from 'react'
 
-const BeerCards = () =>{
+const HomePage = () => {
     return(
         <div>
-
+            Some Image Here
         </div>
     )
 }
 
-export default BeerCards
+export default HomePage
