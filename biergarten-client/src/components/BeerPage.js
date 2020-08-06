@@ -10,21 +10,20 @@ const BeerPage = (props) => {
 
     return (
         <div>
-          Beer Page 
           {beerToDisplay ? 
-          (<div>
-              <img src={beerToDisplay.img_url} alt={beerToDisplay.name} />
-              {beerToDisplay.name}
-              {beerToDisplay.brewery}
-              {beerToDisplay.likes}
-              {beerToDisplay.abv}
-              {beerToDisplay.style}
-              {beerToDisplay.recommended_drinking}
-              {beerToDisplay.tasting_notes}
-          </div>)
-          : (
-              <div>Loading</div>
-          )
+            (<div>
+                <img className='show-image' src={beerToDisplay.img_url} alt={beerToDisplay.name} />
+                {beerToDisplay.name}
+                {beerToDisplay.brewery}
+                {beerToDisplay.likes}
+                {beerToDisplay.abv}
+                {beerToDisplay.style}
+                {beerToDisplay.recommended_drinking}
+                {beerToDisplay.tasting_notes}
+            </div>)
+            : (
+                <div>Loading</div>
+            )
           } 
         </div>
     )
