@@ -11,6 +11,7 @@ const NavBar = () => {
                   <li><a href="/beers">All Beers</a></li>
                   <li><a href="/profile">Profile</a></li>
                   <li><a href="/login">Login/Signup</a></li>
+                  <li><a href="/breweries">Breweries Near Me</a></li>
                 </ul>
             </nav>
         </div>
