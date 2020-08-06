@@ -11,3 +11,21 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.beer-card{
+  margin-right: 10em;
+  border: solid;
+  width: 20em;
+  height: 25em;
+}
+
+.beer-contain{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.card-image{
+  width: 5em;
+  margin-top: .25em;
+}

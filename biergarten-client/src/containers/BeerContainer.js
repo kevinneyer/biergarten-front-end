@@ -1,6 +1,7 @@
 import React from 'react'
 import BeerCards from '../components/BeerCards'
 import BeerPage from '../components/BeerPage'
+import {BrowserRouter as Router, Route} from 'react-router-dom'
 
 const beerAPI = 'http://localhost:3001/api/v1/beers'
 
@@ -21,8 +22,10 @@ class BeerContainer extends React.Component{
     render(){
         return(
             <div>
-              <BeerCards />
-              <BeerPage />
+              <Router>
+                <Route exact path="/beers" render={(routerProps) => <BeerCards beers={this.state.beers} {...routerProps} />} />
+                <BeerPage />
+              </Router>
             </div>
         )
     }
