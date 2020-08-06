@@ -24,7 +24,7 @@ class BeerContainer extends React.Component{
             <div>
               <Router>
                 <Route exact path="/beers" render={(routerProps) => <BeerCards beers={this.state.beers} {...routerProps} />} />
-                <BeerPage />
+                <Route exact path="/beers/:id" render={(routerProps) => <BeerPage beers={this.state.beers} {...routerProps} />} />
               </Router>
             </div>
         )
