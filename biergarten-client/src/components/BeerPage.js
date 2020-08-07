@@ -23,7 +23,6 @@ const BeerPage = (props) => {
     }, [])
 
     const likeHandler = () => {
-      console.log('hi')
       fetch(`http://localhost:3001/api/v1/beers/${beerId}`, {
         method: 'PATCH',
         headers: {
@@ -38,14 +37,14 @@ const BeerPage = (props) => {
        })
     }
 
-    console.log(showBeer)
     return (
         <div>
           <div className='review-div'>
-            <Review />
+            <Review 
+            beer={showBeer} 
+            id={beerId}/>
           </div>
-          {showBeer ? 
-            (<div className='beer-page'>
+             <div className='beer-page'>
                 <h1>{showBeer.name}</h1>
                 <h3>by {showBeer.brewery}</h3>
                 <img className='show-image' src={showBeer.img_url} alt={showBeer.name} />
@@ -54,11 +53,7 @@ const BeerPage = (props) => {
                 <p>Style: {showBeer.style}</p>
                 <p>Tasting Notes: {showBeer.tasting_notes}</p>
                 <p>Recommended For: {showBeer.recommended_drinking}</p>
-            </div>)
-            : (
-                <div>Loading</div>
-            )
-          } 
+            </div> 
         </div>
     )
 }

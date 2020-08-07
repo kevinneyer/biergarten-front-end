@@ -1,15 +1,24 @@
 import React from 'react'
 import ReviewForm from './ReviewForm'
+import { useState } from 'react'
 
-const Review = () => {
+
+const Review = (props) => {
+  
+  const [reviewContent, setReviewContent] = useState('')
+  
   return(
+    <>
     <div>
-      Review
-      <div className='review-content'>
-        content
-      </div>
-      <ReviewForm/>
+      Reviews
+      {/* {this.props.beer.reviews.map(rev => rev.content)} */}
+      {reviewContent}
     </div>
+    <div>
+      <ReviewForm 
+      beer={props.beer}/>
+    </div>
+    </>
   )
 }
 
