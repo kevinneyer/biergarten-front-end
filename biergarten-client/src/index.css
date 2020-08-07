@@ -29,3 +29,22 @@ code {
   width: 5em;
   margin-top: .25em;
 }
+
+.show-image{
+  width: 15em;
+}
+
+.beer-page{
+  border: solid;
+  margin-right: 50%;
+}
+
+.review-div{
+  margin-left: 50%;
+  margin-top: auto;
+}
+
+.review-content{
+border: dotted;
+
+}

@@ -1,4 +1,5 @@
 import React from 'react'
+import Review from './Review'
 import { useState } from 'react'
 
 const BeerPage = (props) => {
@@ -10,17 +11,19 @@ const BeerPage = (props) => {
     console.log(beerToDisplay)
     return (
         <div>
+          <div className='review-div'>
+            <Review />
+          </div>
           {beerToDisplay ? 
-            (<div>
+            (<div className='beer-page'>
+                <h1>{beerToDisplay.name}</h1>
+                <h3>by {beerToDisplay.brewery}</h3>
                 <img className='show-image' src={beerToDisplay.img_url} alt={beerToDisplay.name} />
-                {beerToDisplay.name}
-                {beerToDisplay.brewery}
-                {beerToDisplay.likes}
-                {beerToDisplay.abv}
-                {beerToDisplay.style}
-                {beerToDisplay.recommended_drinking}
-                {beerToDisplay.tasting_notes}
-                Reviews: {beerToDisplay.reviews.map(review => <li> {review.content} </li>)}
+                <p>Likes {beerToDisplay.likes}</p>
+                <p>ABV: {beerToDisplay.abv}</p>
+                <p>Style: {beerToDisplay.style}</p>
+                <p>Tasting Notes: {beerToDisplay.tasting_notes}</p>
+                <p>Recommended For: {beerToDisplay.recommended_drinking}</p>
             </div>)
             : (
                 <div>Loading</div>
