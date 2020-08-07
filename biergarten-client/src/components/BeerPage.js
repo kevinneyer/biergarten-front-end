@@ -17,10 +17,26 @@ const BeerPage = (props) => {
         setShowBeer(data)
       }) 
     }   
-    
+
     useEffect (() => {
        fetchBeer()
     }, [])
+
+    const likeHandler = () => {
+      console.log('hi')
+      fetch(`http://localhost:3001/api/v1/beers/${beerId}`, {
+        method: 'PATCH',
+        headers: {
+          'content-type': 'application/json',
+          accept: 'application/json'
+        },
+        body: JSON.stringify({likes: showBeer.likes += 1})
+       })
+       .then(res => res.json())
+       .then(data => {
+         setShowBeer(data)
+       })
+    }
 
     console.log(showBeer)
     return (
@@ -33,7 +49,7 @@ const BeerPage = (props) => {
                 <h1>{showBeer.name}</h1>
                 <h3>by {showBeer.brewery}</h3>
                 <img className='show-image' src={showBeer.img_url} alt={showBeer.name} />
-                <p>Likes {showBeer.likes} <button>like</button></p>
+                <p>Likes {showBeer.likes} <button onClick={() => likeHandler()}>like</button></p>
                 <p>ABV: {showBeer.abv}%</p>
                 <p>Style: {showBeer.style}</p>
                 <p>Tasting Notes: {showBeer.tasting_notes}</p>
