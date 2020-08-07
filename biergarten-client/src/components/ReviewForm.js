@@ -10,13 +10,17 @@ const ReviewForm = (props) => {
     }
 
     const submitHandler = (e, content) => {
-        console.log(content)
+        // console.log(content)
         e.preventDefault();
         setReview('')
+        props.handleContent(content)
     }
 
     return(
         <div>
+            <div>
+                Rating 1-5 here
+            </div>
           <label>Leave a review of {props.beer.name}</label>
           <form onSubmit={(e) => submitHandler(e, review)} className='review-form'>
             <textarea type='text' onChange ={changeHandler} value={review} placeholder='leave a review'></textarea><br></br>
