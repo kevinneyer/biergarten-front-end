@@ -11,9 +11,9 @@ const NavBar = (props) => {
                 <ul>
                   <li><a href="/beers">All Beers</a></li>
                   <li><a href="/profile">Profile</a></li>
-                  <li><a href="/login">Login/Signup</a></li>
+                  {props.currentUser ? <li>Welcome {props.currentUser.username}</li> : <li><a href="/login">Login/Signup</a></li>}
                   <li><a href="/breweries">Breweries Near Me</a></li>
-                  <li>{props.currentUser ? props.currentUser.username : null }</li>
+                  {props.currentUser ? <button onClick={props.logout}>logout</button> : null }
                 </ul>
             </nav>
         </div>

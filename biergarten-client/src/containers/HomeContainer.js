@@ -17,16 +17,21 @@ const HomeContainer = () => {
     const setUser = (user) => {
       setCurrentUser(user)
     }
+
+    const logout = () => {
+      setCurrentUser(null)
+    }
+
     console.log(currentUser) 
     return(
       <div>
-         <NavBar  currentUser={currentUser} />
+         <NavBar  currentUser={currentUser} logout={logout}/>
          <BeerContainer />
           <Router>
             <Route exact path="/" component={HomePage} />
             <Route exact path="/profile" render={(routerProps) => <Profile currentUser={currentUser} {...routerProps} />} />
             <Route exact path="/login" render={(routerProps) => <Login setUser={setUser} {...routerProps} />} />
-            <Route exact path="/signup" render={(routerProps) => <Signup {...routerProps} />} />
+            <Route exact path="/signup" render={(routerProps) => <Signup setUser={setUser} {...routerProps} />} />
             <Route exact path="/breweries" render={(routerProps) => <MapContainer {...routerProps} />} />
           </Router>
       </div>

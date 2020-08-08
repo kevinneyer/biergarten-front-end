@@ -34,6 +34,8 @@ const Login = (props) => {
           }
           else 
             (props.setUser(data))
+            setPassword('')
+            setUsername('')
       })
     }
 
