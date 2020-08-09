@@ -3,8 +3,8 @@ import { useState } from 'react'
 
 const Login = (props) => {
 
-    const [ username, setUsername] = useState('')
-    const [ password, setPassword] = useState('')
+    const [ username, setUsername ] = useState('')
+    const [ password, setPassword ] = useState('')
 
     const handleUsernameChange = (e) => {
       setUsername(e.target.value)
@@ -34,12 +34,12 @@ const Login = (props) => {
           }
           else 
             (props.setUser(data))
-            setPassword('')
-            setUsername('')
+            // setPassword('')
+            // setUsername('')
+            props.history.push('/profile')
       })
     }
 
-    console.log(username, password)
     return(
         <div>
             <h1>Please Login!</h1>

@@ -47,18 +47,19 @@ const Signup = (props) => {
       })
       .then(res => res.json())
       .then(data => {
-        if(data.errors){
-          alert(data.errors)
-        }
-        else
-          props.setUser(data)
+        console.log(data)
+        // if(data.errors){
+        //   alert(data.errors)
+        // }
+        // else
+        //   props.setUser(data)
       })
     }
     else
       alert('Passwords do not match!')
 
   }
-
+  console.log(password, confirmPassword)
   return(
     <div>
       <h3>Signup!</h3>
