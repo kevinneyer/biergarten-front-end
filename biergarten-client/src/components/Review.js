@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react'
 
 const Review = (props) => {
   
+  const [reviews, setReviews] = useState(props.beer.reviews)
   const [reviewContent, setReviewContent] = useState('')
 
   const handleContent = (content) => {
@@ -26,11 +27,11 @@ const Review = (props) => {
   })  
     .then(res => res.json())
     .then( data => {
-      setReviewContent(props.beer.reviews.push(data))
-   
+      console.log(data)
+      setReviewContent(data)
     })
   }
- 
+
   return(
     <>
     <div>
@@ -38,9 +39,9 @@ const Review = (props) => {
       <br></br>
       <ul>
       { props.beer.reviews ? props.beer.reviews.map((review, key) => <li key={key}>{review.content} by u/ {review.user}</li>) : null}
+      {reviewContent ? <li>{reviewContent.content} by u/ {reviewContent.user.user_name}</li> : null }
       </ul>
       
-      {reviewContent}
     </div>
     <div>
       <ReviewForm 
