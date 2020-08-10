@@ -20,7 +20,7 @@ const BeerPage = (props) => {
     }   
 
     useEffect (() => {
-       fetchBeer()
+      fetchBeer()
     }, [])
 
     const likeHandler = () => {
@@ -36,6 +36,27 @@ const BeerPage = (props) => {
        .then(data => {
          setShowBeer(data)
        })
+    }
+
+    const favoriteHandler = () => {
+      fetch('http://localhost:3001/api/v1/favorites', {
+        method: "POST",
+        headers: {
+          'content-type': 'application/json',
+          accept: 'application/json',
+          "Authorization": localStorage.token
+        },
+        body: JSON.stringify({
+          beer: {
+            beer_id: showBeer.id,
+            beer_name: showBeer.name
+          }
+        })
+      })
+      .then(res => res.json())
+      .then(data => {
+        alert(`${data.user.user_name}. You \'ve successfully added ${data.beer.beer_name} to your favorites`)
+      })
     }
    
     return (
@@ -56,6 +77,7 @@ const BeerPage = (props) => {
                     icon='heart'
                     label={{ basic: true, color: 'red', pointing: 'left', content: showBeer.likes }}
                  />
+                 <Button onClick={favoriteHandler} content='Add as a Favorite!' primary />
                 <p>ABV: {showBeer.abv}%</p>
                 <p>Style: {showBeer.style}</p>
                 <p>Tasting Notes: {showBeer.tasting_notes}</p>
