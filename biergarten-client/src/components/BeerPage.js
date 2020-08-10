@@ -41,8 +41,7 @@ const BeerPage = (props) => {
         <div>
           <div className='review-div'>
             <Review 
-            beer={showBeer} 
-            id={beerId}/>
+            beer={showBeer} />
           </div>
              <div className='beer-page'>
                 <h1>{showBeer.name}</h1>

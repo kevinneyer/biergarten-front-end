@@ -14,13 +14,13 @@ const Review = (props) => {
     method: 'POST',
     headers: {
       'content-type': 'application/json',
-      accept: 'application/json'
+      accept: 'application/json',
+      "Authorization": localStorage.token
     },
       body: JSON.stringify({ 
         content: content,
-        beer_id: props.id,
-        user_id: 1 })
-    })
+        beer_id: props.id})
+    })  
     .then(res => res.json())
     .then( data => {
       // setReviewContent(data)
@@ -33,7 +33,7 @@ const Review = (props) => {
     <div>
       Reviews
       <br></br>
-      {/* {this.props.beer.reviews.map(rev => rev.content)} */}
+      {props.beer === true ? props.beer.reviews.map(rev => rev.content) : 'horses' }
       {reviewContent}
     </div>
     <div>

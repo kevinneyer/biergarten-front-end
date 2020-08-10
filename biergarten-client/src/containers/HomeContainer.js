@@ -7,19 +7,41 @@ import Login from '../components/Login'
 import Signup from '../components/Signup'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 import MapContainer from './MapContainer'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 
 const HomeContainer = () => {
 
     const [currentUser, setCurrentUser] = useState(null)
+    
+    useEffect(() => {
+      const token = localStorage.token
 
-    const setUser = (user) => {
-      setCurrentUser(user)
+      if(token){
+        fetch('http://localhost:3001/api/v1/auto_login', {
+          headers: {
+             "Authorization": token
+          }
+        })
+        .then(res => res.json())
+        .then(data => {
+          if (data.errors){
+            alert(data.errors)
+          } 
+          else
+          setCurrentUser(data) 
+        })
+      } 
+    }, [])
+
+    const setUser = (response) => {
+      setCurrentUser(response.user) 
+      localStorage.token = response.token 
     }
 
     const logout = () => {
-      setCurrentUser(null)
+      setCurrentUser(null) 
+      localStorage.removeItem('token')
     }
 
     console.log(currentUser) 
