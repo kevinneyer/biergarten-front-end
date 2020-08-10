@@ -1,6 +1,7 @@
 import React from 'react'
 import Review from './Review'
 import { useState, useEffect } from 'react'
+import { Button } from 'semantic-ui-react'
 
 const BeerPage = (props) => {
 
@@ -36,7 +37,7 @@ const BeerPage = (props) => {
          setShowBeer(data)
        })
     }
-
+   
     return (
         <div>
           <div className='review-div'>
@@ -47,7 +48,14 @@ const BeerPage = (props) => {
                 <h1>{showBeer.name}</h1>
                 <h3>by {showBeer.brewery}</h3>
                 <img className='show-image' src={showBeer.img_url} alt={showBeer.name} />
-                <p>Likes {showBeer.likes} <button onClick={() => likeHandler()}>like</button></p>
+                {/* <p>Likes {showBeer.likes} <button onClick={() => likeHandler()}>like</button></p> */}
+                <Button
+                    onClick={() => likeHandler()}
+                    color='red'
+                    content='Like'
+                    icon='heart'
+                    label={{ basic: true, color: 'red', pointing: 'left', content: showBeer.likes }}
+                 />
                 <p>ABV: {showBeer.abv}%</p>
                 <p>Style: {showBeer.style}</p>
                 <p>Tasting Notes: {showBeer.tasting_notes}</p>

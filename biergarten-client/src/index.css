@@ -15,8 +15,8 @@ code {
 .beer-card{
   margin-right: 10em;
   border: solid;
-  width: 20em;
-  height: 25em;
+  width: 25em;
+  height: 30em;
 }
 
 .beer-contain{
@@ -26,7 +26,7 @@ code {
 }
 
 .card-image{
-  width: 5em;
+  width: 7em;
   margin-top: .25em;
 }
 

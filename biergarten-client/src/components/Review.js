@@ -1,39 +1,45 @@
 import React from 'react'
 import ReviewForm from './ReviewForm'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 
 const Review = (props) => {
-  console.log(props)
+  
   const [reviewContent, setReviewContent] = useState('')
 
   const handleContent = (content) => {
-    console.log(props.id)
     // let currentBeer = props.beer
     fetch('http://localhost:3001/api/v1/reviews', {
     method: 'POST',
     headers: {
       'content-type': 'application/json',
-      accept: 'application/json',
+      accepts: 'application/json',
       "Authorization": localStorage.token
     },
       body: JSON.stringify({ 
         content: content,
-        beer_id: props.id})
-    })  
+        beer: {
+          beer_id: props.beer.id,
+          beer_name: props.beer.name
+        }
+    })
+  })  
     .then(res => res.json())
     .then( data => {
-      // setReviewContent(data)
-      console.log(data)
+      setReviewContent(props.beer.reviews.push(data))
+   
     })
   }
-  
+ 
   return(
     <>
     <div>
-      Reviews
+      Reviews:
       <br></br>
-      {props.beer === true ? props.beer.reviews.map(rev => rev.content) : 'horses' }
+      <ul>
+      { props.beer.reviews ? props.beer.reviews.map((review, key) => <li key={key}>{review.content} by u/ {review.user}</li>) : null}
+      </ul>
+      
       {reviewContent}
     </div>
     <div>

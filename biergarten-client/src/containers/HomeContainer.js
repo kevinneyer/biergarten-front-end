@@ -48,7 +48,7 @@ const HomeContainer = () => {
     return(
       <div>
          <NavBar  currentUser={currentUser} logout={logout}/>
-         <BeerContainer />
+         <BeerContainer currentUser={currentUser} />
           <Router>
             <Route exact path="/" component={HomePage} />
             <Route exact path="/profile" render={(routerProps) => <Profile currentUser={currentUser} {...routerProps} />} />
