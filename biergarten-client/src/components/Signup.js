@@ -48,11 +48,12 @@ const Signup = (props) => {
       .then(res => res.json())
       .then(data => {
         console.log(data)
-        // if(data.errors){
-        //   alert(data.errors)
-        // }
-        // else
-        //   props.setUser(data)
+        if(data.errors){
+          alert(data.errors)
+        }
+        else
+          props.setUser(data)
+          props.history.push('/beers')
       })
     }
     else
@@ -62,6 +63,7 @@ const Signup = (props) => {
   console.log(password, confirmPassword)
   return(
     <div>
+      <div className='signup-form'>
       <h3>Signup!</h3>
       <form onSubmit={handleSignup}>
         <input onChange={handleUsername} value={username} type="text" placeholder="username"/><br></br>
@@ -71,6 +73,7 @@ const Signup = (props) => {
         <input onChange={handleZipcode} value={zipcode} type="text" placeholder="zipcode" /><br></br>
         <button>Signup</button>
       </form>
+      </div>
     </div>
   )
 }
