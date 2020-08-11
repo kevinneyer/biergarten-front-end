@@ -6,7 +6,7 @@ import { Button } from 'semantic-ui-react'
 
 const Review = (props) => {
   
-  const [reviewContent, setReviewContent] = useState('')
+  //const [reviewContent, setReviewContent] = useState('')
   const [reviews, setReviews] = useState([])
 
   useEffect(() => {
@@ -27,7 +27,7 @@ const Review = (props) => {
           beer_id: props.beer.id,
           beer_name: props.beer.name
         },
-        // rating: rating  need to tackle next
+        rating: rating
     })
   })  
     .then(res => res.json())

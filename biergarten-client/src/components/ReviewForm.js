@@ -23,7 +23,7 @@ const ReviewForm = (props) => {
   }
   console.log(rating)
   return(
-      <div>
+      <div> 
         <div>
               Rate this beer! 
               <br/>

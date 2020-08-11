@@ -1,6 +1,16 @@
 import React from 'react'
 
 const BeerCards = (props) =>{
+    console.log(props)
+
+    const ratings = (beerArray) => {
+      let average = beerArray.map( beer => beer.rating)
+      let sum = average.reduce(function(a, b){
+        return a + b;
+      }, 0);
+     return sum / beerArray.length
+    }
+    
     return(
         <>
         <input type="text" placeholder="Search Here" />
@@ -31,6 +41,7 @@ const BeerCards = (props) =>{
                <p>Style: {beer.style} ABV: {beer.abv}% </p>
                <p>Total Likes: {beer.likes} </p>
                <p>Total Reviews: {beer.reviews.length} </p>
+               <p>Average Rating :{ratings(beer.reviews)}</p>
                <button onClick={() => props.history.push(`${props.match.path}/${beer.id}`)}>See More Info</button>
               </div>
           )
