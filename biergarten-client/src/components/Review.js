@@ -27,7 +27,7 @@ const Review = (props) => {
           beer_id: props.beer.id,
           beer_name: props.beer.name
         },
-        // rating: rating  need to tackle next
+        rating: rating
     })
   })  
     .then(res => res.json())
