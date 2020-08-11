@@ -36,7 +36,7 @@ const Login = (props) => {
             (props.setUser(data))
             // setPassword('')
             // setUsername('')
-            props.history.push('/profile')
+            props.history.push('/beers')
       })
     }
 
