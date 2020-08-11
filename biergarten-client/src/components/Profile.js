@@ -15,8 +15,7 @@ class Profile extends React.Component{
     // }
 
     // componentDidMount(){
-    //   this.props.currentUser ? this.fetchUser() : null
-        
+    //     this.fetchUser() 
     // }
 
     removeHandler = (id) => {
@@ -27,14 +26,36 @@ class Profile extends React.Component{
               "Authorization": localStorage.token
           }
       })
+      .then( () => {
+          this.props.currentUser.favorites.filter(fave => fave.favorite_id !== id)
+      })
     }
 
     render(){
-        // console.log(this.state)
+    console.log(this.props.currentUser)
     return(
-        <div>
-            {this.props.currentUser ? this.props.currentUser.username + '\'s ' + 'Profile Page' : 'Profile Page'}
-            <div>
+        <>
+        <h1 className='profile-header'>{this.props.currentUser ? this.props.currentUser.username + '\'s ' + 'Profile Page' : 'Profile Page'}</h1>
+        <div className='profile-card' >
+          <div class="ui card">
+            <div class="image">
+            {this.props.currentUser ?  <img src="https://semantic-ui.com/images/avatar2/large/kristy.png"/> : null }
+            </div>
+            <div class="content">
+            {this.props.currentUser ? <a class="header">{this.props.currentUser.username}</a> : null }
+            </div>
+          </div>
+          <div>
+            {this.props.currentUser ? this.props.currentUser.reviews.map((review, key) => 
+            <li>{review.beer} - {review.content}</li>)
+            :
+            null
+            }
+
+        </div>
+        </div>
+
+            <div className='favorites'>
                 <h3>Favorites: </h3>
                 {this.props.currentUser ? this.props.currentUser.favorites.map((favorite, key) => 
                 // <li>
@@ -50,7 +71,8 @@ class Profile extends React.Component{
                 )
                 : null }
             </div>
-        </div>
+      
+        </>
     )
   }
 }
