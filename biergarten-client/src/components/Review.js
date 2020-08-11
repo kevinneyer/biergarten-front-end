@@ -15,7 +15,7 @@ const Review = (props) => {
     setReviews(props.beer.reviews)
   }, [props.beer.reviews])
 
-  const handleContent = (content) => {
+  const handleContent = (content, rating) => {
     fetch(reviewAPI, {
     method: 'POST',
     headers: {
@@ -28,7 +28,8 @@ const Review = (props) => {
         beer: {
           beer_id: props.beer.id,
           beer_name: props.beer.name
-        }
+        },
+        rating: rating
     })
   })  
     .then(res => res.json())
