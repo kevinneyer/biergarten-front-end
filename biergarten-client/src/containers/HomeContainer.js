@@ -12,52 +12,51 @@ import { useState, useEffect } from 'react'
 
 const HomeContainer = () => {
 
-    const [currentUser, setCurrentUser] = useState(null)
-    
-    useEffect(() => {
-      const token = localStorage.token
+  const [currentUser, setCurrentUser] = useState(null)
+  
+  useEffect(() => {
+    const token = localStorage.token
 
-      if(token){
-        fetch('http://localhost:3001/api/v1/auto_login', {
-          headers: {
-             "Authorization": token
-          }
-        })
-        .then(res => res.json())
-        .then(data => {
-          if (data.errors){
-            alert(data.errors)
-          } 
-          else
-          setCurrentUser(data) 
-        })
-      } 
-    }, [])
+    if(token){
+      fetch('http://localhost:3001/api/v1/auto_login', {
+        headers: {
+            "Authorization": token
+        }
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.errors){
+          alert(data.errors)
+        } 
+        else
+        setCurrentUser(data) 
+      })
+    } 
+  }, [])
 
-    const setUser = (response) => {
-      setCurrentUser(response.user) 
-      localStorage.token = response.token 
-    }
+  const setUser = (response) => {
+    setCurrentUser(response.user) 
+    localStorage.token = response.token 
+  }
 
-    const logout = () => {
-      setCurrentUser(null) 
-      localStorage.removeItem('token')
-    }
+  const logout = () => {
+    setCurrentUser(null) 
+    localStorage.removeItem('token')
+  }
 
-    console.log(currentUser) 
-    return(
-      <div>
-         <NavBar  currentUser={currentUser} logout={logout}/>
-         <BeerContainer currentUser={currentUser} />
-          <Router>
-            <Route exact path="/" component={HomePage} />
-            <Route exact path="/profile" render={(routerProps) => <Profile currentUser={currentUser} {...routerProps} />} />
-            <Route exact path="/login" render={(routerProps) => <Login setUser={setUser} {...routerProps} />} />
-            <Route exact path="/signup" render={(routerProps) => <Signup setUser={setUser} {...routerProps} />} />
-            <Route exact path="/breweries" render={(routerProps) => <MapContainer {...routerProps} />} />
-          </Router>
-      </div>
-    )
+  return(
+    <div>
+        <NavBar  currentUser={currentUser} logout={logout}/>
+        <BeerContainer currentUser={currentUser} />
+        <Router>
+          <Route exact path="/" component={HomePage} />
+          <Route exact path="/profile" render={(routerProps) => <Profile currentUser={currentUser} {...routerProps} />} />
+          <Route exact path="/login" render={(routerProps) => <Login setUser={setUser} {...routerProps} />} />
+          <Route exact path="/signup" render={(routerProps) => <Signup setUser={setUser} {...routerProps} />} />
+          <Route exact path="/breweries" render={(routerProps) => <MapContainer {...routerProps} />} />
+        </Router>
+    </div>
+  )
 }
 
 export default HomeContainer

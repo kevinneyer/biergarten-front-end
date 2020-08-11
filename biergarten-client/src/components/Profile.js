@@ -27,7 +27,6 @@ class Profile extends React.Component{
     }
 
     render(){
-    console.log(this.state.form)
     return(
         <>
         <h1 className='profile-header'>{this.props.currentUser ? this.props.currentUser.username + '\'s ' + 'Profile Page' : 'Profile Page'}</h1>

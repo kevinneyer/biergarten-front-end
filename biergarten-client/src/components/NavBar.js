@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Link } from 'react-router-dom'
 
 
 const NavBar = (props) => {
-    console.log(props.currentUser)
     return(
         <Router>
         <div>

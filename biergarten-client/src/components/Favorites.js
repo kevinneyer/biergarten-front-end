@@ -33,7 +33,6 @@ class Favorites extends React.Component{
       }
     
     render(){
-        console.log(this.state)
         return(
             <div>
                 <div className='favorites'>

@@ -2,33 +2,29 @@ import React from 'react'
 import BeerCards from '../components/BeerCards'
 import BeerPage from '../components/BeerPage'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
+import { useState, useEffect } from 'react'
 
-const beerAPI = 'http://localhost:3001/api/v1/beers'
+const BeerContainer = () => {
 
-class BeerContainer extends React.Component{
+    const [beers, setBeers] = useState([])
 
-    state = {
-        beers: []
-    }
-
-    componentDidMount(){
-      fetch(beerAPI)
+    useEffect(() => {
+      fetch('http://localhost:3001/api/v1/beers')
       .then(res => res.json())
       .then(beers => {
-          this.setState({ beers })
+          setBeers( beers )
       })
-    }
+    }, [])
 
-    render(){
-        return(
-            <div>
-              <Router>
-                <Route exact path="/beers" render={(routerProps) => <BeerCards beers={this.state.beers} {...routerProps} />} />
-                <Route exact path="/beers/:id" render={(routerProps) => <BeerPage beers={this.state.beers} {...routerProps} />} />
-              </Router>
-            </div>
-        )
-    }
+    return(
+        <div>
+          <Router>
+            <Route exact path="/beers" render={(routerProps) => <BeerCards beers={beers} {...routerProps} />} />
+            <Route exact path="/beers/:id" render={(routerProps) => <BeerPage beers={beers} {...routerProps} />} />
+          </Router>
+        </div>
+    )
+    
 }
 
 export default BeerContainer
