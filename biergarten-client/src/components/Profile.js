@@ -2,19 +2,32 @@ import React from 'react'
 
 class Profile extends React.Component{
 
-    // state = {
-    //     favorites: []
+    state = {
+        favorites: []
+    }
+
+    // fetchUser(){
+    //     fetch(`http://localhost:3001/api/v1/users/${this.props.currentUser.id}`)
+    //     .then(res => res.json())
+    //     .then(data =>{
+    //         console.log(data)
+    //     })
     // }
 
     // componentDidMount(){
-    //     fetch('http://localhost:3001/api/v1/favorites')
-    //     .then(res => res.json())
-    //     .then(favorites => {
-    //         console.log(favorites)
-    //        let faves = favorites.filter(favorite => favorite.user.user_id === this.props.currentUser.id) 
-    //        this.setState({ favorites: faves})
-    //     })
+    //   this.props.currentUser ? this.fetchUser() : null
+        
     // }
+
+    removeHandler = (id) => {
+      fetch(`http://localhost:3001/api/v1/favorites/${id}`, {
+          method: 'DELETE',
+          headers: {
+              'content-type': 'application/json',
+              "Authorization": localStorage.token
+          }
+      })
+    }
 
     render(){
         // console.log(this.state)
@@ -31,7 +44,8 @@ class Profile extends React.Component{
                 <img className='card-image' src={favorite.image} alt={favorite.beer}/>
                 <h3>Name: {favorite.beer}</h3>
                 <h3>Brewer: {favorite.brewery}</h3> 
-                <button onClick={() => this.props.history.push(`beers/${favorite.beer_id}`)}>See More Info</button>
+                <button><a href={`/beers/${favorite.beer_id}`}>See More Info</a></button>
+                <button onClick={() => this.removeHandler(favorite.favorite_id)}>Remove from Favorites</button>
                 </div>
                 )
                 : null }
