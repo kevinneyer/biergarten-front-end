@@ -73,3 +73,7 @@ border: dotted;
 .edit-form{
   display: block;
 }
+
+.signup-form{
+  text-align: center;
+}
