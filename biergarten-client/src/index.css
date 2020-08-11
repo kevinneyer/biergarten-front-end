@@ -69,3 +69,7 @@ border: dotted;
 .profile-header{
   text-align: center;
 }
+
+.edit-form{
+  display: block;
+}
