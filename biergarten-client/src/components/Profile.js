@@ -1,10 +1,10 @@
 import React from 'react'
 import EditProfile from './EditProfile'
+import Favorites from './Favorites'
 
 class Profile extends React.Component{
 
     state = {
-        favorites: [],
         form: false
     }
 
@@ -19,19 +19,6 @@ class Profile extends React.Component{
     // componentDidMount(){
     //     this.fetchUser() 
     // }
-
-    removeHandler = (id) => {
-      fetch(`http://localhost:3001/api/v1/favorites/${id}`, {
-          method: 'DELETE',
-          headers: {
-              'content-type': 'application/json',
-              "Authorization": localStorage.token
-          }
-      })
-      .then( () => {
-          this.props.currentUser.favorites.filter(fave => fave.favorite_id !== id)
-      })
-    }
 
     formHandler = () => {
         this.setState({
@@ -66,22 +53,7 @@ class Profile extends React.Component{
          </div>
         </div>
 
-            <div className='favorites'>
-                <h3>Favorites: </h3>
-                {this.props.currentUser ? this.props.currentUser.favorites.map((favorite, key) => 
-                // <li>
-                //   <a href={`/beers/${favorite.beer_id}`}>{favorite.beer}</a>
-                // </li>) 
-                <div key={key} className='beer-card'>
-                <img className='card-image' src={favorite.image} alt={favorite.beer}/>
-                <h3>Name: {favorite.beer}</h3>
-                <h3>Brewer: {favorite.brewery}</h3> 
-                <button><a href={`/beers/${favorite.beer_id}`}>See More Info</a></button>
-                <button onClick={() => this.removeHandler(favorite.favorite_id)}>Remove from Favorites</button>
-                </div>
-                )
-                : null }
-            </div>
+         {this.props.currentUser ? <Favorites currentUser={this.props.currentUser} /> : null}
       
         </>
     )
