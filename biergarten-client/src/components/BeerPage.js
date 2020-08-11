@@ -10,7 +10,6 @@ const BeerPage = (props) => {
 
     const [showBeer, setShowBeer] = useState([])
 
-  
     const fetchBeer = () => {
        fetch(`http://localhost:3001/api/v1/beers/${beerId}`)
       .then(res => res.json())
@@ -21,7 +20,7 @@ const BeerPage = (props) => {
 
     useEffect (() => {
       fetchBeer()
-    }, [])
+    }, [fetchBeer])
 
     const likeHandler = () => {
       fetch(`http://localhost:3001/api/v1/beers/${beerId}`, {

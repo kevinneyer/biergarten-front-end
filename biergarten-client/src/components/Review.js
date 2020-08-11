@@ -29,29 +29,29 @@ const Review = (props) => {
           beer_id: props.beer.id,
           beer_name: props.beer.name
         },
-        rating: rating
+        // rating: rating  need to tackle next
     })
   })  
     .then(res => res.json())
     .then( data => {
-      setReviewContent(data)
+      // setReviewContent(data)
       // console.log(data)
-      // setReviews([...reviews, data.content])
+      setReviews([...reviews, data.content])
     })
   }
 
   const removeHandler = (id) =>{
     console.log(id)
-    // fetch(`http://localhost:3001/api/v1/reviews/${id}`, {
-    //   method: 'DELETE',
-    //   headers:{
-    //     'content-type': 'application/json'
-    //   }
-    // })
-    // .then(() => {
-    //   let newReviews = reviews.filter(review => review.id !== id)
-    //    setReviews(newReviews)
-    // })
+    fetch(`http://localhost:3001/api/v1/reviews/${id}`, {
+      method: 'DELETE',
+      headers:{
+        'content-type': 'application/json'
+      }
+    })
+    .then(() => {
+      let newReviews = reviews.filter(review => review.id !== id)
+       setReviews(newReviews)
+    })
   }
   console.log(reviews)
   return(
@@ -60,9 +60,9 @@ const Review = (props) => {
       Reviews:
       <br></br>
       <ul>
-      {/* {reviews ? reviews.map((review, key) => <li>{review.content} by user {review.user}<button onClick={() => removeHandler(review.review_id)}>x</button></li>) : null } */}
-      { props.beer.reviews ? props.beer.reviews.map((review, key) => <li key={key}>{review.content} by u/ {review.user}<button onClick={() => removeHandler(review.review_id)}>x</button></li>) : null}
-      {reviewContent ? <li>{reviewContent.content} by u/ {reviewContent.user.user_name}<button>x</button></li> : null }
+      {reviews ? reviews.map((review, key) => <li>{review.content} by user {review.user}<button onClick={() => removeHandler(review.review_id)}>x</button></li>) : null }
+      {/* { props.beer.reviews ? props.beer.reviews.map((review, key) => <li key={key}>{review.content} by u/ {review.user}<button onClick={() => removeHandler(review.review_id)}>x</button></li>) : null}
+      {reviewContent ? <li>{reviewContent.content} by u/ {reviewContent.user.user_name}<button>x</button></li> : null } */}
       </ul>
   
     </div>
