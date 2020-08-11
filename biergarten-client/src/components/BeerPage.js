@@ -63,7 +63,7 @@ const BeerPage = (props) => {
       alert(`${data.user.user_name}. You \'ve successfully added ${data.beer.beer_name} to your favorites`)
     })
   }
-  
+
   return (
       <div>
         <div className='review-div'>
