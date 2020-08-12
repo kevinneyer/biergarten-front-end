@@ -1,8 +1,7 @@
 import React from 'react'
-
+import Filter from './Filter'
 const BeerCards = (props) =>{
-    console.log(props)
-
+    
     const ratings = (beerArray) => {
       let average = beerArray.map( beer => beer.rating)
       let sum = average.reduce(function(a, b){
@@ -12,25 +11,9 @@ const BeerCards = (props) =>{
     }
     
     return(
-        <>
-        <input type="text" placeholder="Search Here" />
-        <label for="filter">Filter Beers</label>
-
-        <select name="filter" id="filter">
-        <option value="lager">Lager</option>
-        <option value="ipa">IPA</option>
-        <option value="pilsner">Ale</option>
-        <option value="pilsner">Pilsner</option>
-        </select>
-        
-        <label for="sort">Sort</label>
-
-        <select name="sort" id="sort">
-        <option value="abv">ABV</option>
-        <option value="reviews">Reviews</option>
-        <option value="likes">Likes</option>
+      <>
+        <Filter search={props.search} searchHandler={props.searchHandler} filterChange={props.filterChange} sortHandler={props.sortHandler} />
        
-        </select>
         <div className='beer-contain'>
         {props.beers ? 
           props.beers.map( (beer, key) =>
@@ -49,7 +32,7 @@ const BeerCards = (props) =>{
            <div>Loading</div>
         }
         </div>
-        </>
+      </>
     )
 }
 
