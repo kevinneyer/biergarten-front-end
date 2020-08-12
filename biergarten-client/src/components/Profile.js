@@ -1,6 +1,7 @@
 import React from 'react'
 import EditProfile from './EditProfile'
 import Favorites from './Favorites'
+import { Comment, Header } from 'semantic-ui-react'
 
 class Profile extends React.Component{
 
@@ -40,11 +41,25 @@ class Profile extends React.Component{
             </div>
           </div>
           <div>
+          <Comment.Group>
+          <Header as='h3' dividing>
+           My Reviews
+           </Header>
             {this.props.currentUser ? this.props.currentUser.reviews.map((review, key) => 
-            <li>{review.beer} - {review.content}</li>)
+                      <Comment>
+                      <Comment.Avatar src={review.beer.image} />
+                      <Comment.Content>
+                        <Comment.Author as='a'>{review.beer}</Comment.Author>
+                        <Comment.Text>{review.content}</Comment.Text>
+                        </Comment.Content>
+                      </Comment>)
+                        :
+                        null}
+            </Comment.Group>
+            {/* <li>{review.beer} - {review.content}</li>)
             :
             null
-            }
+            } */}
         <button onClick={this.formHandler}>Edit Information</button>
         </div>
          <div>

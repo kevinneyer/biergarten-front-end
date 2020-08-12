@@ -1,7 +1,8 @@
 import React from 'react'
 import ReviewForm from './ReviewForm'
 import { useState, useEffect } from 'react'
-import { Button } from 'semantic-ui-react'
+import { Comment, Header } from 'semantic-ui-react'
+
 
 
 const Review = (props) => {
@@ -55,16 +56,29 @@ const Review = (props) => {
   return(
     <>
     <div>
-      Reviews:
-      <br></br>
-      <ul>
+    <Comment.Group>
+    <Header as='h3' dividing>
+      Comments
+    </Header>
+      {/* <ul> */}
       {reviews ? reviews.map((review, key) => 
-      
-      <li>{review.content} by user {review.user}<button onClick={() => removeHandler(review.review_id)}>x</button></li>) : null }
+          <Comment>
+          <Comment.Avatar src='https://react.semantic-ui.com/images/avatar/small/matt.jpg' />
+          <Comment.Content>
+            <Comment.Author as='a'>{review.user}</Comment.Author>
+            <Comment.Text>{review.content}</Comment.Text>
+            <Comment.Actions>
+              <Comment.Action onClick={() => removeHandler(review.review_id)}>Delete</Comment.Action>
+            </Comment.Actions>
+          </Comment.Content>
+        </Comment>)
+        :
+        null}
+      {/* <li>{review.content} by user {review.user}<button onClick={() => removeHandler(review.review_id)}>x</button></li>) : null } */}
       {/* { props.beer.reviews ? props.beer.reviews.map((review, key) => <li key={key}>{review.content} by u/ {review.user}<button onClick={() => removeHandler(review.review_id)}>x</button></li>) : null}
       {reviewContent ? <li>{reviewContent.content} by u/ {reviewContent.user.user_name}<button>x</button></li> : null } */}
-      </ul>
-  
+      {/* </ul> */}
+      </Comment.Group>
     </div>
     <div>
       <ReviewForm 

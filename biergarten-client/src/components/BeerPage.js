@@ -17,6 +17,10 @@ const BeerPage = (props) => {
   //   }) 
   // } 
 
+  // useEffect(() => {
+  //   fetchBeer()
+  // }, [fetchBeer])
+
   useEffect (() => {
     const fetchBeer = () => {
       fetch(`http://localhost:3001/api/v1/beers/${beerId}`)

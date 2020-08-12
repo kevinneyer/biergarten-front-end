@@ -13,7 +13,7 @@ const BeerCards = (props) =>{
     return(
       <>
         <Filter search={props.search} searchHandler={props.searchHandler} filterChange={props.filterChange} sortHandler={props.sortHandler} />
-       
+       <div className='index'>
         <div className='beer-contain'>
         {props.beers ? 
           props.beers.map( (beer, key) =>
@@ -31,6 +31,7 @@ const BeerCards = (props) =>{
            :
            <div>Loading</div>
         }
+        </div>
         </div>
       </>
     )

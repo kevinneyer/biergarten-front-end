@@ -16,7 +16,8 @@ code {
   margin-right: 10em;
   border: solid;
   width: 25em;
-  height: 30em;
+  height: 38em;
+  margin-top: 1em;
 }
 
 .beer-contain{
@@ -37,6 +38,7 @@ code {
 .beer-page{
   border: solid;
   margin-right: 50%;
+
 }
 
 .review-div{
@@ -76,4 +78,9 @@ border: dotted;
 
 .signup-form{
   text-align: center;
+}
+
+.index{
+  margin-left: 12%;
+  margin-right: auto;
 }
