@@ -1,5 +1,5 @@
 import React from 'react'
-
+import Filter from './Filter'
 const BeerCards = (props) =>{
     
     const ratings = (beerArray) => {
@@ -12,6 +12,8 @@ const BeerCards = (props) =>{
     
     return(
       <>
+        <Filter search={props.search} searchHandler={props.searchHandler} filterChange={props.filterChange} sortHandler={props.sortHandler} />
+       
         <div className='beer-contain'>
         {props.beers ? 
           props.beers.map( (beer, key) =>
