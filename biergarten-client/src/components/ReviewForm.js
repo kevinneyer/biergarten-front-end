@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import { Rating } from 'semantic-ui-react'
+import { Button, Comment, Form, Header } from 'semantic-ui-react'
 
 const ReviewForm = (props) => {
 
@@ -41,12 +42,17 @@ const ReviewForm = (props) => {
         </div>
       </div>
         <label>Leave a review of {props.beer.name}</label>
-        <form onSubmit={(e) => submitHandler(e, review, rating)} className='review-form'>
+        <Form reply onSubmit={(e) => submitHandler(e, review, rating)} className='review-form'>
+        <Form.TextArea type='text' onChange={changeHandler} value={review} placeholder='leave a review'/>
+        <Button content='Submit Review' labelPosition='left' icon='edit' primary />
+        </Form>
+        {/* <form onSubmit={(e) => submitHandler(e, review, rating)} className='review-form'>
           <textarea type='text' onChange ={changeHandler} value={review} placeholder='leave a review'></textarea><br></br>
           <button>Submit Review</button>
-        </form>
+        </form> */}
       </div>
   )
 }
 
 export default ReviewForm
+
