@@ -53,7 +53,24 @@ const BeerContainer = () => {
       filteredBeers.sort((a,b) => (a.likes < b.likes ? 1 : -1) )
     }
     
-
+    if(filter === "lager"){
+     filteredBeers = filteredBeers.filter(beer => beer.style.includes('Lager'))
+    }
+    else if(filter === "ipa"){
+      filteredBeers = filteredBeers.filter(beer => beer.style.includes('IPA'))
+    }
+    else if(filter === "ale"){
+      filteredBeers = filteredBeers.filter(beer => beer.style.includes('Ale'))
+    }
+    else if(filter === "pilsner"){
+      filteredBeers = filteredBeers.filter(beer => beer.style.includes('Pilsner'))
+    }
+    else if(filter === "stout"){
+      filteredBeers = filteredBeers.filter(beer => beer.style.includes('Stout'))
+    }
+    else if(filter === "sour"){
+      filteredBeers = filteredBeers.filter(beer => beer.style.includes('Sour'))
+    }
   
     // else if(sort === 'rating-asc'){
     //   beers.sort((a,b) => (a.average > b.likes ? 1 : -1) )
@@ -72,8 +89,10 @@ const BeerContainer = () => {
             <option value="none">None</option>
             <option value="lager">Lager</option>
             <option value="ipa">IPA</option>
-            <option value="pilsner">Ale</option>
+            <option value="ale">Ale</option>
             <option value="pilsner">Pilsner</option>
+            <option value="stout">Stout</option>
+            <option value="sour">Sour</option>
           </select>
         
         <label for="sort">Sort</label>
