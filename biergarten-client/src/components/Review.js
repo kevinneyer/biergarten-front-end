@@ -4,8 +4,6 @@ import { useState, useEffect } from 'react'
 
 import { Button, Comment, Form, Header } from 'semantic-ui-react'
 
-
-
 const Review = (props) => {
   
   //const [reviewContent, setReviewContent] = useState('')
@@ -53,7 +51,7 @@ const Review = (props) => {
        setReviews(newReviews)
     })
   }
-  
+  console.log(props)
   return(
     <>
     <Comment.Group>

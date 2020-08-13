@@ -1,29 +1,62 @@
 import React from 'react'
-import {Map, GoogleApiWrapper} from 'google-maps-react'
-// import Map from '../components/Map'
-
+import {Map, GoogleApiWrapper, Marker, InfoWindow} from 'google-maps-react'
 
 class MapContainer extends React.Component {
 
-  render() {
-    
-  const style = {
-    width: '60%',
-    height: '50%'
+  state = {
+    breweries: [],
+    userLocation: {
+      lat: '',
+      lng: ''
+    },
+    loading: true
   }
 
-  const containerStyle = {
-    position: 'relative',
-    width: '60%',
-    height: '50%'
+  componentDidMount() {
+    this.getLocation()
   }
-  
-  return (
-    <div >
-      <Map style={containerStyle} google={this.props.google} zoom={14}/>
-    </div>
-  )
- }
+
+  getLocation = () => {
+    navigator.geolocation.getCurrentPosition( (position) => {
+      const {latitude, longitude} = position.coords
+      
+      this.setState({
+        userLocation: {lat: latitude, lng: longitude},
+        loading: false
+      })
+    })
+  }
+
+  render() {
+
+    const style = {
+      width: '60%',
+      height: '60%'
+    }
+
+    const { loading, userLocation } = this.state
+    const { google } = this.props
+
+    if (loading) {
+      return null;
+    }
+    console.log(this.state.infoWindow)
+    return (
+      <>
+      <Map 
+      style={style} 
+      google={google}
+      zoom={14}
+      initialCenter={userLocation}
+      >
+
+      <Marker
+      name={'Your location'}
+      position={{ lat: userLocation.lat, lng: userLocation.lng} } />
+      </Map>
+      </>
+    )
+  }
 }
 
 export default GoogleApiWrapper({
