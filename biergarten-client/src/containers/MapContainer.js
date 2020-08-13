@@ -1,8 +1,5 @@
 import React from 'react'
 import {Map, GoogleApiWrapper, Marker, InfoWindow} from 'google-maps-react'
-// import Map from '../components/Map'
-import CurrentPin from '../components/CurrentPin'
-import {Icon} from 'semantic-ui-react'
 
 class MapContainer extends React.Component {
 
@@ -12,8 +9,7 @@ class MapContainer extends React.Component {
       lat: '',
       lng: ''
     },
-    loading: true,
-    infoWindow: false,
+    loading: true
   }
 
   componentDidMount() {
@@ -31,8 +27,6 @@ class MapContainer extends React.Component {
     })
   }
 
-
-
   render() {
 
     const style = {
@@ -48,6 +42,7 @@ class MapContainer extends React.Component {
     }
     console.log(this.state.infoWindow)
     return (
+      <>
       <Map 
       style={style} 
       google={google}
@@ -59,6 +54,7 @@ class MapContainer extends React.Component {
       name={'Your location'}
       position={{ lat: userLocation.lat, lng: userLocation.lng} } />
       </Map>
+      </>
     )
   }
 }
