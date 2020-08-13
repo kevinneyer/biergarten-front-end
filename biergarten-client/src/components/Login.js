@@ -44,7 +44,7 @@ const Login = (props) => {
 
     return(
         <div>
-            <Segment placeholder>
+<Segment placeholder>
 <Grid columns={2} relaxed='very' stackable>
   <Grid.Column>
     <Form onSubmit={handleLogin}>
@@ -67,7 +67,7 @@ const Login = (props) => {
       <Button content='Login' primary />
     </Form>
   </Grid.Column>
-
+  
   <Grid.Column verticalAlign='middle'>
     <Button onClick={() => props.history.push('/signup')} content='Sign up' icon='signup' size='big' />
   </Grid.Column>

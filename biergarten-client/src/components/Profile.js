@@ -1,7 +1,9 @@
 import React from 'react'
 import EditProfile from './EditProfile'
 import Favorites from './Favorites'
-import { Button, Comment, Form, Header } from 'semantic-ui-react'
+// import { Button, Comment, Form, Header } from 'semantic-ui-react'
+import { Divider, Grid, Comment, Header, Segment } from 'semantic-ui-react'
+
 
 class Profile extends React.Component{
 
@@ -30,6 +32,9 @@ class Profile extends React.Component{
     render(){
     return(
         <>
+    <Segment>
+    <Grid columns={2} relaxed='very'>
+      <Grid.Column>
         <h1 className='profile-header'>{this.props.currentUser ? this.props.currentUser.username + '\'s ' + 'Profile Page' : 'Profile Page'}</h1>
         <div className='profile-card' >
           <div class="ui card">
@@ -67,9 +72,14 @@ class Profile extends React.Component{
              {this.state.form ? <EditProfile currentUser={this.props.currentUser} /> : null}
          </div>
         </div>
-
+        </Grid.Column>
+        <Grid.Column>
          {this.props.currentUser ? <Favorites currentUser={this.props.currentUser} /> : null}
-      
+         </Grid.Column>
+    </Grid>
+
+    <Divider vertical></Divider>
+  </Segment>
         </>
     )
   }
