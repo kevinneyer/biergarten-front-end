@@ -1,5 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
+import { Button, Divider, Form, Grid, Segment } from 'semantic-ui-react'
+
 
 const Login = (props) => {
 
@@ -42,7 +44,38 @@ const Login = (props) => {
 
     return(
         <div>
-            <h1>Please Login!</h1>
+            <Segment placeholder>
+<Grid columns={2} relaxed='very' stackable>
+  <Grid.Column>
+    <Form onSubmit={handleLogin}>
+      <Form.Input
+        icon='user'
+        iconPosition='left'
+        label='Username'
+        placeholder='Username'
+        onChange={handleUsernameChange} 
+        value={username}
+      />
+      <Form.Input
+        icon='lock'
+        iconPosition='left'
+        label='Password'
+        type='password'onChange={handlePasswordChange} 
+        value={password} 
+      />
+
+      <Button content='Login' primary />
+    </Form>
+  </Grid.Column>
+
+  <Grid.Column verticalAlign='middle'>
+    <Button onClick={() => props.history.push('/signup')} content='Sign up' icon='signup' size='big' />
+  </Grid.Column>
+</Grid>
+
+<Divider vertical>Or</Divider>
+</Segment>
+            {/* <h1>Please Login!</h1>
             <div>
                 <form onSubmit={handleLogin}> 
                     <input onChange={handleUsernameChange} value={username} type="text" placeholder="username"/><br></br>
@@ -51,9 +84,10 @@ const Login = (props) => {
                 </form>
             </div>
             <h3>Not a Member?</h3>
-            <button onClick={() => props.history.push('/signup')}>Signup!</button>
+            <button onClick={() => props.history.push('/signup')}>Signup!</button> */}
         </div>
     )
 }
 
 export default Login
+
