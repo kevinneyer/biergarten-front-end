@@ -8,6 +8,7 @@ const BeerPage = (props) => {
   let beerId = props.match.params.id 
 
   const [showBeer, setShowBeer] = useState([])
+  const [status, setStatus ] = useState(false)
 
   // const fetchBeer = () => {
   //   fetch(`http://localhost:3001/api/v1/beers/${beerId}`)
@@ -18,8 +19,8 @@ const BeerPage = (props) => {
   // } 
 
   // useEffect(() => {
-  //   fetchBeer()
-  // }, [fetchBeer])
+  //   fetchBeer() 
+  // }, [fetchBeer]) 
 
   useEffect (() => {
     const fetchBeer = () => {
