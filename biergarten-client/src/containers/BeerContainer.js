@@ -4,7 +4,7 @@ import BeerPage from '../components/BeerPage'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 import { useState, useEffect } from 'react'
 
-const BeerContainer = () => {
+const BeerContainer = (props) => {
 
     const [beers, setBeers] = useState([])
     const [filter, setFilter] = useState('')
@@ -83,7 +83,7 @@ const BeerContainer = () => {
       <>
         <Router>
           <Route exact path="/beers" render={(routerProps) => <BeerCards beers={filteredBeers} search={search} searchHandler={searchHandler} filterChange={filterChange} sortHandler={sortHandler} {...routerProps} />} />
-          <Route exact path="/beers/:id" render={(routerProps) => <BeerPage beers={filteredBeers} {...routerProps} />} />
+          <Route exact path="/beers/:id" render={(routerProps) => <BeerPage beers={filteredBeers} currentUser={props.currentUser} {...routerProps} />} />
         </Router>
       </>
     )

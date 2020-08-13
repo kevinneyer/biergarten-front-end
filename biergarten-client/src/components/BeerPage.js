@@ -72,7 +72,7 @@ const BeerPage = (props) => {
   return (
       <div>
         <div className='review-div'>
-          {showBeer ? <Review beer={showBeer} /> : null }
+          {showBeer ? <Review beer={showBeer} currentUser={props.currentUser} /> : null }
         </div>
             <div className='beer-page'>
               <h1>{showBeer.name}</h1>
