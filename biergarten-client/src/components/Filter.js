@@ -5,7 +5,7 @@ const Filter = (props) =>{
       <div>
         <label>Search by Recommended Drinking</label>
         <input onChange={props.searchHandler} value={props.search} type="text" placeholder="Search" />
-
+        
         <label for="filter">Filter Beers</label>
           <select onChange={props.filterChange} name="filter" id="filter">
             <option value="none">None</option>

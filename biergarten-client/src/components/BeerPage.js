@@ -1,7 +1,8 @@
 import React from 'react'
 import Review from './Review'
 import { useState, useEffect } from 'react'
-import { Button } from 'semantic-ui-react'
+import {Button, Divider, Grid, Image, Segment } from 'semantic-ui-react'
+
 
 const BeerPage = (props) => {
 
@@ -71,10 +72,10 @@ const BeerPage = (props) => {
 
   return (
       <div>
-        <div className='review-div'>
-          {showBeer ? <Review beer={showBeer} currentUser={props.currentUser} /> : null }
-        </div>
-            <div className='beer-page'>
+    <Segment>
+    <Grid columns={2} relaxed='very'>
+    <Grid.Column>
+            <div className=''>
               <h1>{showBeer.name}</h1>
               <h3>by {showBeer.brewery}</h3>
               <img className='show-image' src={showBeer.img_url} alt={showBeer.name} />
@@ -92,6 +93,16 @@ const BeerPage = (props) => {
               <p>Tasting Notes: {showBeer.tasting_notes}</p>
               <p>Recommended For: {showBeer.recommended_drinking}</p>
           </div> 
+          </Grid.Column>
+      <Grid.Column>
+        <div className='review-div'>
+          {showBeer ? <Review beer={showBeer} currentUser={props.currentUser} /> : null }
+        </div>
+        </Grid.Column>
+        </Grid>
+        
+    <Divider vertical/>
+  </Segment>
       </div>
   )
 }
