@@ -1,7 +1,7 @@
 import React from 'react'
 import Review from './Review'
 import { useState, useEffect } from 'react'
-import {Button, Divider, Grid, Image, Segment } from 'semantic-ui-react'
+import {Button, Divider, Grid, Segment } from 'semantic-ui-react'
 
 
 const BeerPage = (props) => {
@@ -69,7 +69,7 @@ const BeerPage = (props) => {
       alert(`${data.user.user_name}. You \'ve successfully added ${data.beer.beer_name} to your favorites`)
     })
   }
-
+  console.log(showBeer)
   return (
       <div>
     <Segment>

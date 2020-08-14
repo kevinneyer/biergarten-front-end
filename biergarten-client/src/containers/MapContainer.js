@@ -1,5 +1,7 @@
 import React from 'react'
 import {Map, GoogleApiWrapper, Marker, InfoWindow} from 'google-maps-react'
+import { Loader, Dimmer, Segment, Image } from 'semantic-ui-react'
+
 
 class MapContainer extends React.Component {
 
@@ -51,7 +53,14 @@ class MapContainer extends React.Component {
     const { google } = this.props
 
     if (loading) {
-      return null;
+      return (    <Segment>
+        <Dimmer active>
+          <Loader size='big'>Loading</Loader>
+        </Dimmer>
+        <Image src='https://react.semantic-ui.com/images/wireframe/short-paragraph.png' />
+      <Image src='https://react.semantic-ui.com/images/wireframe/short-paragraph.png' />
+      <Image src='https://react.semantic-ui.com/images/wireframe/short-paragraph.png' />
+      </Segment>)
     }
 
     return (

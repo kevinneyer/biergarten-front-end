@@ -1,5 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
+import { Button, Divider, Form, Grid, Segment } from 'semantic-ui-react'
+
 
 const Signup = (props) => {
 
@@ -65,14 +67,65 @@ const Signup = (props) => {
     <div>
       <div className='signup-form'>
       <h3>Signup!</h3>
-      <form onSubmit={handleSignup}>
+      <Form onSubmit={handleSignup}>
+        <Form.Input
+         className='signup-input'
+          icon='user'
+          iconPosition='left'
+          label='Username'
+          placeholder='Username'
+          onChange={handleUsername} 
+          value={username}
+        />
+        <Form.Input
+        className='signup-input'
+          icon='mail'
+          iconPosition='left'
+          label='email'
+          placeholder='email'
+          onChange={handleEmail} 
+          value={email}
+        />
+        <Form.Input
+        className='signup-input'
+          icon='lock'
+          iconPosition='left'
+          label='Password'
+          placeholder='password'
+          type='password'
+          onChange={handlePassword} 
+          value={password}
+        />
+        <Form.Input
+        className='signup-input'
+          icon='lock'
+          iconPosition='left'
+          label='Password'
+          placeholder='password'
+          type='password'
+          onChange={handleConfirmPassword} 
+          value={confirmPassword}
+        />
+        <Form.Input
+        className='signup-input'
+          icon='home'
+          iconPosition='left'
+          label='Zipcode'
+          placeholder='zipcode'
+          onChange={handleZipcode} 
+          value={zipcode} 
+        />
+
+        <Button content='Login' primary />
+        </Form>
+      {/* <form onSubmit={handleSignup}>
         <input onChange={handleUsername} value={username} type="text" placeholder="username"/><br></br>
         <input onChange={handleEmail} value={email} type="text" placeholder="email"/><br></br>
         <input onChange={handlePassword} value={password} type="password" placeholder="password"/><br></br>
         <input onChange={handleConfirmPassword} value={confirmPassword} type="password" placeholder= "confirm password"/><br></br>
         <input onChange={handleZipcode} value={zipcode} type="text" placeholder="zipcode" /><br></br>
         <button>Signup</button>
-      </form>
+      </form> */}
       </div>
     </div>
   )
