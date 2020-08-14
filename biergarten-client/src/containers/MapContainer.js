@@ -1,7 +1,7 @@
 import React from 'react'
 import {Map, GoogleApiWrapper, Marker, InfoWindow} from 'google-maps-react'
 import { Loader, Dimmer, Segment, Image } from 'semantic-ui-react'
-
+// import { geocodeByPlaceId } from 'react-google-places-autocomplete';
 
 class MapContainer extends React.Component {
 
@@ -46,14 +46,20 @@ class MapContainer extends React.Component {
     });
   }
 
+  // getGeocode = (placeID) => { 
+  //   geocodeByPlaceId(placeID)
+  //   .then(results => console.log(results))
+  //   .catch(error => console.error(error));
+  // }
+
   fetchPlaces = (mapProps, map) => {
     const {google} = mapProps;
     const service = new google.maps.places.PlacesService(map);
     service.textSearch(
       {location: this.state.userLocation, radius: 500, query: 'breweries'},
-      function(results, status) {
+      (results, status) => {
         if (status === google.maps.places.PlacesServiceStatus.OK){
-         results.map(result => this.getLatLong(result))
+          this.setState({ breweries: results})
         }
       }
     )
@@ -81,7 +87,7 @@ class MapContainer extends React.Component {
       </Segment>
       )
     }
-
+     console.log(this.state)
     return (
       <>
       <Map 
@@ -90,12 +96,13 @@ class MapContainer extends React.Component {
       zoom={14}
       initialCenter={userLocation}
       onReady={this.fetchPlaces}
+      
       >
-
       <Marker
       name={'Your location'}
       position={{ lat: userLocation.lat, lng: userLocation.lng} } />
       </Map>
+
       </>
     )
   }
