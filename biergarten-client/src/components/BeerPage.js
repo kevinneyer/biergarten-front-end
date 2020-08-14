@@ -1,7 +1,7 @@
 import React from 'react'
 import Review from './Review'
 import { useState, useEffect } from 'react'
-import {Button, Divider, Grid, Segment } from 'semantic-ui-react'
+import {Button, Divider, Grid, Segment, Modal, Image } from 'semantic-ui-react'
 
 
 const BeerPage = (props) => {
@@ -9,7 +9,7 @@ const BeerPage = (props) => {
   let beerId = props.match.params.id 
 
   const [showBeer, setShowBeer] = useState([])
-  const [status, setStatus ] = useState(false)
+  const [open, setOpen] = useState(false)
 
   // const fetchBeer = () => {
   //   fetch(`http://localhost:3001/api/v1/beers/${beerId}`)
@@ -67,6 +67,7 @@ const BeerPage = (props) => {
     .then(res => res.json())
     .then(data => {
       alert(`${data.user.user_name}. You \'ve successfully added ${data.beer.beer_name} to your favorites`)
+      setOpen(false)
     })
   }
   console.log(showBeer)
@@ -87,7 +88,38 @@ const BeerPage = (props) => {
                   icon='heart'
                   label={{ basic: true, color: 'red', pointing: 'left', content: showBeer.likes }}
                 />
-                <Button onClick={favoriteHandler} content='Add as a Favorite!' primary />
+                    <Modal
+                      onClose={() => setOpen(false)}
+                      onOpen={() => setOpen(true)}
+                      open={open}
+                      trigger={<Button color='blue'>Add as a Favorite!</Button>}
+                    >
+                            <Modal.Header>Select as favorite?</Modal.Header>
+      <Modal.Content image>
+        <Image size='medium' src={showBeer.img_url} wrapped />
+        <Modal.Description>
+          <p>
+            You've selected to favorite {showBeer.name}
+          </p>
+          <p>Do you want to favorite?</p>
+        </Modal.Description>
+      </Modal.Content>
+      <Modal.Actions>
+        <Button color='black' onClick={() => setOpen(false)}>
+          Nope
+        </Button>
+        <Button
+          content="Yep!"
+          labelPosition='right'
+          icon='checkmark'
+          // onClick={favoriteHandler}
+          onClick={favoriteHandler}
+         
+          positive
+        />
+      </Modal.Actions>
+                {/* <Button onClick={favoriteHandler} content='Add as a Favorite!' primary /> */}
+      </Modal>
               <p>ABV: {showBeer.abv}%</p>
               <p>Style: {showBeer.style}</p>
               <p>Tasting Notes: {showBeer.tasting_notes}</p>
