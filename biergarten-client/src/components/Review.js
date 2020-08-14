@@ -2,7 +2,7 @@ import React from 'react'
 import ReviewForm from './ReviewForm'
 import { useState, useEffect } from 'react'
 
-import { Button, Comment, Form, Header } from 'semantic-ui-react'
+import { Comment, Header } from 'semantic-ui-react'
 
 const Review = (props) => {
   

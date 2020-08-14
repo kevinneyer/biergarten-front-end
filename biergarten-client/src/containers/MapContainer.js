@@ -29,6 +29,23 @@ class MapContainer extends React.Component {
     })
   }
 
+  getLatLong = (result, mapProps, map) => {
+    const {google} = mapProps;
+    let geocoder = new google.maps.Geocoder(map);
+    let address = result.formatted_address
+  
+    geocoder.geocode({
+      'address': address
+    }, function(results, status) {
+  
+      if (status === google.maps.GeocoderStatus.OK) {
+        let latitude = results[0].getPlace().geometry.location.lat();
+        let longitude = results[0].getPlace().geometry.location.lng();
+        return <Marker name={result.name} position={{ lat: latitude, lng: longitude} }/>
+      }
+    });
+  }
+
   fetchPlaces = (mapProps, map) => {
     const {google} = mapProps;
     const service = new google.maps.places.PlacesService(map);
@@ -36,7 +53,7 @@ class MapContainer extends React.Component {
       {location: this.state.userLocation, radius: 500, query: 'breweries'},
       function(results, status) {
         if (status === google.maps.places.PlacesServiceStatus.OK){
-         console.log(results)
+         results.map(result => this.getLatLong(result))
         }
       }
     )
@@ -53,14 +70,16 @@ class MapContainer extends React.Component {
     const { google } = this.props
 
     if (loading) {
-      return (    <Segment>
+      return (    
+      <Segment>
         <Dimmer active>
           <Loader size='big'>Loading</Loader>
         </Dimmer>
         <Image src='https://react.semantic-ui.com/images/wireframe/short-paragraph.png' />
-      <Image src='https://react.semantic-ui.com/images/wireframe/short-paragraph.png' />
-      <Image src='https://react.semantic-ui.com/images/wireframe/short-paragraph.png' />
-      </Segment>)
+        <Image src='https://react.semantic-ui.com/images/wireframe/short-paragraph.png' />
+        <Image src='https://react.semantic-ui.com/images/wireframe/short-paragraph.png' />
+      </Segment>
+      )
     }
 
     return (
