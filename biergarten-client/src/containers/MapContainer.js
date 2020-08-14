@@ -1,7 +1,7 @@
 import React from 'react'
-import {Map, GoogleApiWrapper, Marker, InfoWindow} from 'google-maps-react'
+import {Map, GoogleApiWrapper, Marker, Listing, InfoWindow} from 'google-maps-react'
 import { Loader, Dimmer, Segment, Image } from 'semantic-ui-react'
-// import { geocodeByPlaceId } from 'react-google-places-autocomplete';
+import { geocodeByPlaceId } from 'react-google-places-autocomplete';
 
 class MapContainer extends React.Component {
 
@@ -29,22 +29,23 @@ class MapContainer extends React.Component {
     })
   }
 
-  getLatLong = (result, mapProps, map) => {
-    const {google} = mapProps;
-    let geocoder = new google.maps.Geocoder(map);
-    let address = result.formatted_address
+  // getLatLong = (result, mapProps, map) => {
+  //   const {google} = mapProps;
+  //   let geocoder = new google.maps.Geocoder(map);
+  //   let address = result.formatted_address
+  //   const beerArray = []
+    
+  //   geocoder.geocode({
+  //     'address': address
+  //   }, function(results, status) {
   
-    geocoder.geocode({
-      'address': address
-    }, function(results, status) {
-  
-      if (status === google.maps.GeocoderStatus.OK) {
-        let latitude = results[0].getPlace().geometry.location.lat();
-        let longitude = results[0].getPlace().geometry.location.lng();
-        return <Marker name={result.name} position={{ lat: latitude, lng: longitude} }/>
-      }
-    });
-  }
+  //     if (status === google.maps.GeocoderStatus.OK) {
+  //       let latitude = results.getPlace().geometry.location.lat();
+  //       let longitude = results.getPlace().geometry.location.lng();
+  //       return <Marker name={result.name} position={{ lat: latitude, lng: longitude} }/>
+  //     }
+  //   });
+  // }
 
   // getGeocode = (placeID) => { 
   //   geocodeByPlaceId(placeID)
