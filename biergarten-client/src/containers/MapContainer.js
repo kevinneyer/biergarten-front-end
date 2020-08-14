@@ -27,6 +27,19 @@ class MapContainer extends React.Component {
     })
   }
 
+  fetchPlaces = (mapProps, map) => {
+    const {google} = mapProps;
+    const service = new google.maps.places.PlacesService(map);
+    service.textSearch(
+      {location: this.state.userLocation, radius: 500, query: 'breweries'},
+      function(results, status) {
+        if (status === google.maps.places.PlacesServiceStatus.OK){
+         console.log(results)
+        }
+      }
+    )
+  }
+
   render() {
 
     const style = {
@@ -40,7 +53,7 @@ class MapContainer extends React.Component {
     if (loading) {
       return null;
     }
-    console.log(this.state.infoWindow)
+
     return (
       <>
       <Map 
@@ -48,6 +61,7 @@ class MapContainer extends React.Component {
       google={google}
       zoom={14}
       initialCenter={userLocation}
+      onReady={this.fetchPlaces}
       >
 
       <Marker
