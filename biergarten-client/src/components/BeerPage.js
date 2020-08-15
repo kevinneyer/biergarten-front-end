@@ -70,7 +70,7 @@ const BeerPage = (props) => {
       setOpen(false)
     })
   }
-  console.log(showBeer)
+
   return (
       <div>
     <Segment>

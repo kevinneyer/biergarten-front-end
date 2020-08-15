@@ -51,7 +51,7 @@ const Review = (props) => {
        setReviews(newReviews)
     })
   }
-  console.log(props)
+  
   return(
     <>
     <Comment.Group>
@@ -68,7 +68,7 @@ const Review = (props) => {
       <Comment>
       <Comment.Avatar src='https://react.semantic-ui.com/images/avatar/small/joe.jpg' />
       <Comment.Content>
-        <Comment.Author>{review.user}</Comment.Author>
+        <Comment.Author><a href={`/users/${review.user_id}`}>{review.user}</a></Comment.Author>
         <Comment.Text>{review.content}</Comment.Text>
         <Comment.Actions>
           <Comment.Action onClick={() => removeHandler(review.review_id)}>Delete Review</Comment.Action>

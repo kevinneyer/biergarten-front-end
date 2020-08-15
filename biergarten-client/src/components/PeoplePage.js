@@ -66,7 +66,7 @@ const PeoplePage = (props) => {
           <>
           <p>Following {showPerson.followeds.length} Users:</p>
           <p>{showPerson.followeds.map(followed => 
-            <li>{followed.username} <button onClick={() => this.props.history.push(`users/${followed.id}`)}>View Profile</button></li>)} </p>
+            <li>{followed.username} <button onClick={() => props.history.push(`users/${followed.id}`)}>View Profile</button></li>)} </p>
             </>
             : 
             null
@@ -76,7 +76,7 @@ const PeoplePage = (props) => {
           <>
           <p> {showPerson.followers.length} Followers: </p>
           <p>{showPerson.followers.map(follower => 
-            <li>{follower.username} <button onClick={() => this.props.history.push(`users/${follower.id}`)}>View Profile</button></li>)} </p>
+            <li>{follower.username} <button onClick={() => props.history.push(`users/${follower.id}`)}>View Profile</button></li>)} </p>
           </>
           :
           null
