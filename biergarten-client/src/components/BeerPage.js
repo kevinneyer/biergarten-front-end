@@ -7,7 +7,7 @@ import {Button, Divider, Grid, Segment, Modal, Image } from 'semantic-ui-react'
 const BeerPage = (props) => {
 
   let beerId = props.match.params.id 
-
+  
   const [showBeer, setShowBeer] = useState([])
   const [open, setOpen] = useState(false)
 
@@ -70,7 +70,7 @@ const BeerPage = (props) => {
       setOpen(false)
     })
   }
-  console.log(showBeer)
+
   return (
       <div>
     <Segment>
