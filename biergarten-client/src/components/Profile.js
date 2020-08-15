@@ -75,7 +75,7 @@ class Profile extends React.Component{
           <p>{this.props.currentUser.followeds.map(followed => 
             <li>{followed.username} <button onClick={() => this.props.history.push(`users/${followed.id}`)}>View Profile</button></li>)} </p>
           <p> {this.props.currentUser.followers.length} Followers: </p>
-          <p>{this.props.currentUser.followeds.map(follower => 
+          <p>{this.props.currentUser.followers.map(follower => 
             <li>{follower.username} <button onClick={() => this.props.history.push(`users/${follower.id}`)}>View Profile</button></li>)} </p>
           </>
           :

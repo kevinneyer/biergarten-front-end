@@ -1,15 +1,15 @@
 import React from 'react'
 import Favorites from './Favorites'
-import { Divider, Grid, Comment, Header, Segment } from 'semantic-ui-react'
+import { Divider, Grid, Comment, Header, Segment, Button } from 'semantic-ui-react'
 import { useState, useEffect } from 'react'
 
 
 const PeoplePage = (props) => {
   
   let peopleId = props.match.params.id 
-  
 
   const [showPerson, setShowPerson] = useState([])
+  const [followers, setFollowers] = useState([])
 
   useEffect (() => {
     const fetchPerson = () => {
@@ -21,6 +21,22 @@ const PeoplePage = (props) => {
     } 
     fetchPerson()
   }, [])
+
+  const followHandler = (id) => {
+    fetch('http://localhost:3001/api/v1/relationships', {
+      method: 'POST',
+      headers:{
+        'content-type': 'application/json',
+        accept: 'application/json',
+        "Authorization": localStorage.token
+      },
+      body: JSON.stringify({ followed_id: id})
+    })
+    .then(res => res.json())
+    .then(data => {
+      setFollowers([...followers, data])
+    })
+  }
 
   console.log(showPerson)
     return(
@@ -35,7 +51,7 @@ const PeoplePage = (props) => {
              <img src="https://semantic-ui.com/images/avatar2/large/kristy.png"/>
             </div>
             <div class="content">
-            <a class="header">{showPerson.username}</a>
+            <span><a class="header">{showPerson.username} <Button onClick={() => followHandler(showPerson.id)} color='blue'>Follow</Button></a></span>
             </div>
           </div>
           <div>
