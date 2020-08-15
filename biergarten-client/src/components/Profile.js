@@ -4,7 +4,6 @@ import Favorites from './Favorites'
 // import { Button, Comment, Form, Header } from 'semantic-ui-react'
 import { Divider, Grid, Comment, Header, Segment } from 'semantic-ui-react'
 
-
 class Profile extends React.Component{
 
     state = {
@@ -30,6 +29,7 @@ class Profile extends React.Component{
     }
 
     render(){
+      console.log(this.props.currentUser)
     return(
         <>
     <Segment>
@@ -67,6 +67,20 @@ class Profile extends React.Component{
             } */}
             </Comment.Group>
         <button onClick={this.formHandler}>Edit Information</button>
+        </div><br/>
+        <div>
+          {this.props.currentUser ? 
+          <>
+          <p>Following {this.props.currentUser.followeds.length} Users:</p>
+          <p>{this.props.currentUser.followeds.map(followed => 
+            <li>{followed.username} <button onClick={() => this.props.history.push(`users/${followed.id}`)}>View Profile</button></li>)} </p>
+          <p> {this.props.currentUser.followers.length} Followers: </p>
+          <p>{this.props.currentUser.followeds.map(follower => 
+            <li>{follower.username} <button onClick={() => this.props.history.push(`users/${follower.id}`)}>View Profile</button></li>)} </p>
+          </>
+          :
+          null
+        }
         </div>
          <div>
              {this.state.form ? <EditProfile currentUser={this.props.currentUser} /> : null}
