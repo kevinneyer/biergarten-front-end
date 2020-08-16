@@ -11,6 +11,8 @@ const BeerPage = (props) => {
   const [showBeer, setShowBeer] = useState([])
   const [open, setOpen] = useState(false)
 
+  // USE THIS WHEN TIME TO RUN
+  
   // const fetchBeer = () => {
   //   fetch(`http://localhost:3001/api/v1/beers/${beerId}`)
   //   .then(res => res.json())
@@ -66,7 +68,7 @@ const BeerPage = (props) => {
     })
     .then(res => res.json())
     .then(data => {
-      alert(`${data.user.user_name}. You \'ve successfully added ${data.beer.beer_name} to your favorites`)
+      alert(`${data.user.user_name}. You\'ve successfully added ${data.beer.beer_name} to your favorites`)
       setOpen(false)
     })
   }
