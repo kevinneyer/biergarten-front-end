@@ -66,7 +66,7 @@ const BeerPage = (props) => {
     })
     .then(res => res.json())
     .then(data => {
-      alert(`${data.user.user_name}. You \'ve successfully added ${data.beer.beer_name} to your favorites`)
+      alert(`${data.user.user_name}. You\'ve successfully added ${data.beer.beer_name} to your favorites`)
       setOpen(false)
     })
   }

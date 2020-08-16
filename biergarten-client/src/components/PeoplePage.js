@@ -2,7 +2,7 @@ import React from 'react'
 import PeopleFavorites from './PeopleFavorites'
 import { Divider, Grid, Comment, Header, Segment, Button } from 'semantic-ui-react'
 import { useState, useEffect } from 'react'
-
+import Relationships from './Relationship'
 
 const PeoplePage = (props) => {
   
@@ -74,48 +74,7 @@ const PeoplePage = (props) => {
           </div>
           <div>
             
-            <>
-            {/* { showPerson.followeds ?  <p>{showPerson.followeds.length}Following</p> : null }
-            { showPerson.followers ?  <p>{showPerson.followers.length}Followers</p> : null } */}
-        
-            {showPerson.followeds ? 
-            <>
-            <p>Following {showPerson.followeds.length} Users:</p>
-            <p>{showPerson.followeds.map(followed => 
-              // <li>{followed.username} <button onClick={() => props.history.push(`/users/${followed.id}`)}>View Profile</button></li>)} </p>
-              <Comment>
-                <Comment.Avatar src='https://react.semantic-ui.com/images/avatar/small/joe.jpg' />
-                  <Comment.Content>
-                    <Comment.Author><a href={`/users/${followed.id}`}>{followed.username}</a></Comment.Author>
-                  </Comment.Content>
-              </Comment>)} </p>
-              {/* <li><a href={`/users/${followed.id}`}>{followed.username}</a></li> )} </p> */}
-            
-              </>
-              : 
-              null
-              }
-            
-            {showPerson.followers ? 
-            <>
-            <p> {showPerson.followers.length} Followers: </p>
-            <p>{showPerson.followers.map(follower => 
-              // <li>{follower.username} <button onClick={() => props.history.push(`users/${follower.id}`)}>View Profile</button></li>)} </p>
-              
-              <Comment>
-                <Comment.Avatar src='https://react.semantic-ui.com/images/avatar/small/joe.jpg' />
-                  <Comment.Content>
-                    <Comment.Author><a href={`/users/${follower.id}`}>{follower.username}</a></Comment.Author>
-                  </Comment.Content>
-              </Comment>)} </p>
-              {/* <li><a href={`/users/${follower.id}`}>{follower.username}</a></li> )} </p> */}
-
-              </>
-            :
-            null
-          }
-          
-          </>
+           {showPerson ? <Relationships showPerson={showPerson}/> : null}
           
           </div>
         </div>

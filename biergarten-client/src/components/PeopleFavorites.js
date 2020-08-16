@@ -6,36 +6,36 @@ const PeopleFavorites = (props) => {
     const [favorites, setFavorites] = useState([])
     
     useEffect(() => {
-      getFaves()
+        getFaves()
     })
       
-
-
     const getFaves = () => {
-        if(props.showPerson){
+        if(props.showPerson.favorites){
           setFavorites(props.showPerson.favorites)
         }
     }
-    
+
     return(
-            <div>
-                <div className='favorites'>
+        <div>
+            <div className='favorites'>
                 <h3>Favorites: </h3>
-                {favorites ? favorites.map((favorite, key) => 
-                // <li>
-                //   <a href={`/beers/${favorite.beer_id}`}>{favorite.beer}</a>
-                // </li>) 
+                  {favorites ? favorites.map((favorite, key) => 
+                    // <li>
+                    //   <a href={`/beers/${favorite.beer_id}`}>{favorite.beer}</a>
+                    // </li>) 
                 <div key={key} className='beer-card'>
-                <img className='card-image' src={favorite.image} alt={favorite.beer}/>
-                <h3>Name: {favorite.beer}</h3>
-                <h3>Brewer: {favorite.brewery}</h3> 
-                <button><a href={`/beers/${favorite.beer_id}`}>See More Info</a></button>
+                  <img className='card-image' src={favorite.image} alt={favorite.beer}/>
+                  <h3>Name: {favorite.beer}</h3>
+                  <h3>Brewer: {favorite.brewery}</h3> 
+                  <button><a href={`/beers/${favorite.beer_id}`}>See More Info</a></button>
                 </div>
                 )
-                : null }
+                : null 
+                }
+
             </div>
-            </div>
-        )
+        </div>
+    )
 }
 
 export default PeopleFavorites
