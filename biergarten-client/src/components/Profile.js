@@ -73,10 +73,22 @@ class Profile extends React.Component{
           <>
           <p>Following {this.props.currentUser.followeds.length} Users:</p>
           <p>{this.props.currentUser.followeds.map(followed => 
-            <li>{followed.username} <button onClick={() => this.props.history.push(`users/${followed.id}`)}>View Profile</button></li>)} </p>
+            // <li>{followed.username} <button onClick={() => this.props.history.push(`users/${followed.id}`)}>View Profile</button></li>)} </p>
+            <Comment>
+            <Comment.Avatar src='https://react.semantic-ui.com/images/avatar/small/joe.jpg' />
+            <Comment.Content>
+              <Comment.Author><a href={`/users/${followed.id}`}>{followed.username}</a></Comment.Author>
+            </Comment.Content>
+          </Comment>)}</p>
           <p> {this.props.currentUser.followers.length} Followers: </p>
           <p>{this.props.currentUser.followers.map(follower => 
-            <li>{follower.username} <button onClick={() => this.props.history.push(`users/${follower.id}`)}>View Profile</button></li>)} </p>
+            // <li>{follower.username} <button onClick={() => this.props.history.push(`users/${follower.id}`)}>View Profile</button></li>)} </p>
+            <Comment>
+            <Comment.Avatar src='https://react.semantic-ui.com/images/avatar/small/joe.jpg' />
+            <Comment.Content>
+              <Comment.Author><a href={`/users/${follower.id}`}>{follower.username}</a></Comment.Author>
+            </Comment.Content>
+          </Comment>)}</p>
           </>
           :
           null
