@@ -12,7 +12,7 @@ const Relationships = (props) => {
         setFollowers(props.followers)
     }, [props.followers])
     
-    console.log(followers)
+    console.log(showPerson)
     
     return(
         <>

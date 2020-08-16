@@ -10,9 +10,10 @@ const PeoplePage = (props) => {
 
   const [showPerson, setShowPerson] = useState([])
   const [followers, setFollowers] = useState([])
+  const [following, setFollowing] = useState(null)
 
   //USE THIS WHEN TIME TO RUN
-  
+
   // const fetchPerson = () => {
   //   fetch(`http://localhost:3001/api/v1/users/${peopleId}`)
   //   .then(res => res.json())
@@ -40,7 +41,7 @@ const PeoplePage = (props) => {
     if(showPerson){
     setFollowers(showPerson.followers)
     }
-}, [showPerson.followers])
+  }, [showPerson.followers])
 
   const followHandler = (id) => {
     fetch('http://localhost:3001/api/v1/relationships', {
@@ -58,7 +59,25 @@ const PeoplePage = (props) => {
     })
   }
 
-  console.log(props)
+  const deleteFollow = (id) => {
+    let relat = showPerson.passive_relationships.find(relat => relat.follower.follower_id === id)
+    console.log(relat.id)
+    fetch(`http://localhost:3001/api/v1/relationships/${relat.id}`, {
+      method: 'DELETE',
+      headers:{
+        'content-type': 'application/json',
+        accept: 'application/json',
+        "Authorization": localStorage.token
+      }
+    })
+    .then(() => {
+      let newFollowers = followers.filter(follower => follower.id !== id)
+      setFollowers(newFollowers)
+    })
+   }
+  
+  console.log(props.currentUser, followers, following)
+  
   return(
     <>
       <Segment>
@@ -71,7 +90,7 @@ const PeoplePage = (props) => {
               <img src="https://semantic-ui.com/images/avatar2/large/kristy.png"/>
               </div>
               <div class="content">
-              <span>{showPerson.username} <Button onClick={() => followHandler(showPerson.id)} color='blue'>Follow</Button></span>
+              <span>{showPerson.username} <Button onClick={() => followHandler(showPerson.id)} color='blue'>{following === true ? 'Unfollow' : 'Follow'}</Button><Button onClick={() => deleteFollow(props.currentUser.id)} color='blue'>Unfollow</Button></span>
               </div>
             </div>
             <div>
