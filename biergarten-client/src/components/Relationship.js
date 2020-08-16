@@ -1,8 +1,18 @@
 import React from 'react'
 import { Divider, Grid, Comment, Header, Segment, Button } from 'semantic-ui-react'
+import { useState, useEffect } from 'react'
 
 const Relationships = (props) => {
+
     const {showPerson} = props
+    
+    const [followers, setFollowers] = useState([])
+
+    useEffect(() => {
+        setFollowers(props.followers)
+    }, [props.followers])
+    
+    console.log(followers)
     
     return(
         <>
@@ -27,10 +37,10 @@ const Relationships = (props) => {
           null
           }
         
-        {showPerson.followers ? 
+        {followers ? 
         <>
-        <p> {showPerson.followers.length} Followers: </p>
-        <p>{showPerson.followers.map(follower => 
+        <p> {followers.length} Followers: </p>
+        <p>{followers.map(follower => 
           // <li>{follower.username} <button onClick={() => props.history.push(`users/${follower.id}`)}>View Profile</button></li>)} </p>
           
           <Comment>

@@ -11,6 +11,8 @@ const BeerPage = (props) => {
   const [showBeer, setShowBeer] = useState([])
   const [open, setOpen] = useState(false)
 
+  // USE THIS WHEN TIME TO RUN
+  
   // const fetchBeer = () => {
   //   fetch(`http://localhost:3001/api/v1/beers/${beerId}`)
   //   .then(res => res.json())

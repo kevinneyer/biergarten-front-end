@@ -11,6 +11,20 @@ const PeoplePage = (props) => {
   const [showPerson, setShowPerson] = useState([])
   const [followers, setFollowers] = useState([])
 
+  //USE THIS WHEN TIME TO RUN
+  
+  // const fetchPerson = () => {
+  //   fetch(`http://localhost:3001/api/v1/users/${peopleId}`)
+  //   .then(res => res.json())
+  //   .then(data =>{
+  //     setShowPerson(data)
+  //   }) 
+  // } 
+
+  // useEffect(() => {
+  //   fetchPerson() 
+  // }, [fetchPerson]) 
+
   useEffect (() => {
     const fetchPerson = () => {
       fetch(`http://localhost:3001/api/v1/users/${peopleId}`)
@@ -21,6 +35,12 @@ const PeoplePage = (props) => {
     } 
     fetchPerson()
   }, [])
+
+  useEffect(() => {
+    if(showPerson){
+    setFollowers(showPerson.followers)
+    }
+}, [showPerson.followers])
 
   const followHandler = (id) => {
     fetch('http://localhost:3001/api/v1/relationships', {
@@ -74,7 +94,7 @@ const PeoplePage = (props) => {
           </div>
           <div>
             
-           {showPerson ? <Relationships showPerson={showPerson}/> : null}
+           {showPerson ? <Relationships followers={followers} showPerson={showPerson}/> : null}
           
           </div>
         </div>
