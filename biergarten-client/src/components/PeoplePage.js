@@ -14,28 +14,28 @@ const PeoplePage = (props) => {
 
   //USE THIS WHEN TIME TO RUN
 
-  // const fetchPerson = () => {
-  //   fetch(`http://localhost:3001/api/v1/users/${peopleId}`)
-  //   .then(res => res.json())
-  //   .then(data =>{
-  //     setShowPerson(data)
-  //   }) 
-  // } 
+  const fetchPerson = () => {
+    fetch(`http://localhost:3001/api/v1/users/${peopleId}`)
+    .then(res => res.json())
+    .then(data =>{
+      setShowPerson(data)
+    }) 
+  } 
 
-  // useEffect(() => {
-  //   fetchPerson() 
-  // }, [fetchPerson]) 
+  useEffect(() => {
+    fetchPerson() 
+  }, [fetchPerson]) 
 
-  useEffect (() => {
-    const fetchPerson = () => {
-      fetch(`http://localhost:3001/api/v1/users/${peopleId}`)
-      .then(res => res.json())
-      .then(data =>{
-         setShowPerson(data)      
-        }) 
-    } 
-    fetchPerson()
-  }, [])
+  // useEffect (() => {
+  //   const fetchPerson = () => {
+  //     fetch(`http://localhost:3001/api/v1/users/${peopleId}`)
+  //     .then(res => res.json())
+  //     .then(data =>{
+  //        setShowPerson(data)      
+  //       }) 
+  //   } 
+  //   fetchPerson()
+  // }, [])
 
   useEffect(() => {
     if(showPerson){
@@ -56,12 +56,13 @@ const PeoplePage = (props) => {
     .then(res => res.json())
     .then(data => {
       setFollowers([...followers, data])
+      setFollowing(true)
     })
   }
 
   const deleteFollow = (id) => {
     let relat = showPerson.passive_relationships.find(relat => relat.follower.follower_id === id)
-    console.log(relat.id)
+
     fetch(`http://localhost:3001/api/v1/relationships/${relat.id}`, {
       method: 'DELETE',
       headers:{
@@ -71,12 +72,25 @@ const PeoplePage = (props) => {
       }
     })
     .then(() => {
+      setFollowing(false)
       let newFollowers = followers.filter(follower => follower.id !== id)
       setFollowers(newFollowers)
+     
     })
    }
+
+  const isFollowing = () => {   
+    if(showPerson.passive_relationships && props.currentUser){
+      let relat = showPerson.passive_relationships.filter( relat => relat.follower.follower_id === props.currentUser.id)
+       if(relat){
+         setFollowing(true)
+       }
+    }
+  }
   
-  console.log(props.currentUser, followers, following)
+  useEffect(() => {
+    isFollowing()
+  }, [])
   
   return(
     <>
@@ -90,7 +104,11 @@ const PeoplePage = (props) => {
               <img src="https://semantic-ui.com/images/avatar2/large/kristy.png"/>
               </div>
               <div class="content">
-              <span>{showPerson.username} <Button onClick={() => followHandler(showPerson.id)} color='blue'>{following === true ? 'Unfollow' : 'Follow'}</Button><Button onClick={() => deleteFollow(props.currentUser.id)} color='blue'>Unfollow</Button></span>
+              <span>{showPerson.username}
+              {following ? (<Button onClick={() => deleteFollow(props.currentUser.id)} color='blue'>Unfollow</Button> 
+              ):( 
+              <Button onClick={() => followHandler(showPerson.id)} color='blue'>Follow</Button>)}
+              </span>
               </div>
             </div>
             <div>
