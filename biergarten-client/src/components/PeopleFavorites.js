@@ -23,7 +23,7 @@ const PeopleFavorites = (props) => {
                     // <li>
                     //   <a href={`/beers/${favorite.beer_id}`}>{favorite.beer}</a>
                     // </li>) 
-                <div key={key} className='beer-card'>
+                <div key={key} className='profile-favorite'>
                   <img className='card-image' src={favorite.image} alt={favorite.beer}/>
                   <h3>Name: {favorite.beer}</h3>
                   <h3>Brewer: {favorite.brewery}</h3> 

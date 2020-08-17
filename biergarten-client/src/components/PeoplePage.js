@@ -118,7 +118,7 @@ const PeoplePage = (props) => {
               <Header as='h3' dividing>
                 {showPerson.username}'s Reviews
               </Header>
-              <Segment raised style={{ overflow: "auto", maxHeight: "20em" }}>
+              <Segment>
               {showPerson.reviews ? showPerson.reviews.map((review, key) => 
 
               <Comment key={key}>
@@ -143,12 +143,12 @@ const PeoplePage = (props) => {
           </Grid.Column>
 
           <Grid.Column  width={6}>
-          <Segment raised style={{ overflow: "auto", maxHeight: "51.75em" }}>
+          <Segment raised>
             {showPerson ? <PeopleFavorites showPerson={showPerson} /> : null}
           </Segment>
           </Grid.Column>
           <Grid.Column width={4}>
-          <Segment>
+          <Segment raised>
             <div>
             {showPerson ? <Relationships followers={followers} showPerson={showPerson}/> : null}
 

@@ -52,7 +52,7 @@ class Profile extends React.Component{
           <Header as='h3' dividing>
            My Reviews
           </Header>
-          <Segment raised style={{ overflow: "auto", maxHeight: "20em" }}>
+          <Segment>
             {this.props.currentUser ? this.props.currentUser.reviews.map((review, key) => 
 
             <Comment>
@@ -80,12 +80,12 @@ class Profile extends React.Component{
         </Segment>
         </Grid.Column>
         <Grid.Column width={6}>
-          <Segment raised style={{ overflow: "auto", maxHeight: "51.75em" }}>
+          <Segment>
          {this.props.currentUser ? <Favorites currentUser={this.props.currentUser} /> : null}
          </Segment>
          </Grid.Column>
          <Grid.Column width={4}>
-          <Segment>
+          <Segment raised>
             <div>
           {this.props.currentUser ? 
           <>
