@@ -18,6 +18,7 @@ code {
   width: 25em;
   height: 38em;
   margin-top: 1em;
+  text-align: center;
 }
 
 .beer-contain{
@@ -29,6 +30,9 @@ code {
 .card-image{
   width: 7em;
   margin-top: .25em;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .show-image{
@@ -65,7 +69,7 @@ border: dotted;
 }
 
 .favorites{
-  margin-top: -32.75em;
+  /* margin-top: -32.75em; */
 }
 
 .profile-header{
@@ -83,4 +87,26 @@ border: dotted;
 .index{
   margin-left: 12%;
   margin-right: auto;
+}
+
+.signup-input{
+  margin-left: 25%;
+  margin-right: auto;
+  width: 50%;
+}
+
+.login-signup{
+  margin-top: 7.5em;
+}
+
+.loader{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: -25em;
+  width: 50em;
+}
+
+.filter-options{
+  display: inline;
 }

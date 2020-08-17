@@ -4,7 +4,7 @@ import BeerPage from '../components/BeerPage'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 import { useState, useEffect } from 'react'
 
-const BeerContainer = () => {
+const BeerContainer = (props) => {
 
     const [beers, setBeers] = useState([])
     const [filter, setFilter] = useState('')
@@ -20,37 +20,40 @@ const BeerContainer = () => {
     }, [])
 
     const filterChange = (e) => {
-      setFilter(e.target.value)
+      setFilter(e.target.innerText)
     }
 
     const sortHandler = (e) => {
-      setSort(e.target.value)
+      setSort(e.target.innerText)
     }
 
     const searchHandler = (e) =>{
-      setSearch(e.target.value)
+      console.log(e.target.innerText)
+      setSearch(e.target.innerText)
     }
         
-    let filteredBeers = beers.filter( beer =>
-      beer.recommended_drinking.toLowerCase().includes(search.toLowerCase()))
+    let filteredBeers = [...beers]
+    
+    // beers.filter( beer =>
+    //   beer.recommended_drinking.toLowerCase().includes(search.toLowerCase()))
 
     
-    if(sort === 'abv asc'){
+    if(sort === 'ABV Ascending'){
       filteredBeers.sort((a,b) => (a.abv > b.abv ? 1 : -1) )
     }
-    else if(sort === 'abv desc'){
+    else if(sort === 'ABV Descending'){
       filteredBeers.sort((a,b) => (a.abv < b.abv ? 1 : -1) )
     }
-    else if(sort === 'reviews asc'){
+    else if(sort === 'Reviews Ascending'){
       filteredBeers.sort((a,b) => (a.reviews.length > b.reviews.length ? 1 : -1) )
     }
-    else if(sort === 'reviews desc'){
+    else if(sort === 'Reviews Descending'){
       filteredBeers.sort((a,b) => (a.reviews.length < b.reviews.length ? 1 : -1) )
     }
-    else if(sort === 'likes asc'){
+    else if(sort === 'Likes Ascending'){
       filteredBeers.sort((a,b) => (a.likes > b.likes ? 1 : -1) )
     }
-    else if(sort === 'likes desc'){
+    else if(sort === 'Likes Descending'){
       filteredBeers.sort((a,b) => (a.likes < b.likes ? 1 : -1) )
     }
     // else if(sort === 'rating asc'){
@@ -60,30 +63,55 @@ const BeerContainer = () => {
     //   beers.sort((a,b) => (a.likes < b.likes ? 1 : -1) )
     // }
 
-    if(filter === "lager"){
+    if(filter === "Lager"){
      filteredBeers = filteredBeers.filter(beer => beer.style.includes('Lager'))
     }
-    else if(filter === "ipa"){
+    else if(filter === "Ipa"){
       filteredBeers = filteredBeers.filter(beer => beer.style.includes('IPA'))
     }
-    else if(filter === "ale"){
+    else if(filter === "Ale"){
       filteredBeers = filteredBeers.filter(beer => beer.style.includes('Ale'))
     }
-    else if(filter === "pilsner"){
+    else if(filter === "Pilsner"){
       filteredBeers = filteredBeers.filter(beer => beer.style.includes('Pilsner'))
     }
-    else if(filter === "stout"){
+    else if(filter === "Stout"){
       filteredBeers = filteredBeers.filter(beer => beer.style.includes('Stout'))
     }
-    else if(filter === "sour"){
+    else if(filter === "Sour"){
       filteredBeers = filteredBeers.filter(beer => beer.style.includes('Sour'))
+    }
+
+    if(search === "all year"){
+      filteredBeers = filteredBeers.filter(beer => beer.recommended_drinking.includes('all year'))
+    }
+    else if(search === "beach"){
+      filteredBeers = filteredBeers.filter(beer => beer.recommended_drinking.includes('beach'))
+    }
+    else if(search === "grilling"){
+      filteredBeers = filteredBeers.filter(beer => beer.recommended_drinking.includes('grilling'))
+    }
+     else if(search === "baseball"){
+      filteredBeers = filteredBeers.filter(beer => beer.recommended_drinking.includes('baseball'))
+    }
+    else if(search === "winter"){
+      filteredBeers = filteredBeers.filter(beer => beer.recommended_drinking.includes('winter'))
+    }
+    if(search === "outdoors"){
+      filteredBeers = filteredBeers.filter(beer => beer.recommended_drinking.includes('outdoors'))
+    }
+    else if(search === "summer"){
+      filteredBeers = filteredBeers.filter(beer => beer.recommended_drinking.includes('summer'))
+    }
+    else if(search === 'none'){
+      filteredBeers = filteredBeers.filter(beer => beer.recommended_drinking.includes(''))
     }
   
     return(
       <>
         <Router>
           <Route exact path="/beers" render={(routerProps) => <BeerCards beers={filteredBeers} search={search} searchHandler={searchHandler} filterChange={filterChange} sortHandler={sortHandler} {...routerProps} />} />
-          <Route exact path="/beers/:id" render={(routerProps) => <BeerPage beers={filteredBeers} {...routerProps} />} />
+          <Route exact path="/beers/:id" render={(routerProps) => <BeerPage beers={filteredBeers} currentUser={props.currentUser} {...routerProps} />} />
         </Router>
       </>
     )

@@ -1,5 +1,7 @@
 import React from 'react'
 import Filter from './Filter'
+import { Button, Grid, Segment } from 'semantic-ui-react'
+
 const BeerCards = (props) =>{
     
     const ratings = (beerArray) => {
@@ -17,22 +19,25 @@ const BeerCards = (props) =>{
         <div className='beer-contain'>
         {props.beers ? 
           props.beers.map( (beer, key) =>
+          <Segment raised>
               <div key={key} className='beer-card'>
                <img className='card-image' src={beer.img_url} alt={beer.name}/>
                <h3>Name: {beer.name}</h3>
                <h3>Brewer: {beer.brewery}</h3> 
-               <p>Style: {beer.style} ABV: {beer.abv}% </p>
+               <p>Style: {beer.style}</p>
+               <p>ABV: {beer.abv}% </p>
                <p>Total Likes: {beer.likes} </p>
                <p>Total Reviews: {beer.reviews.length} </p>
                <p>Average Rating :{ratings(beer.reviews)}</p>
-               <button onClick={() => props.history.push(`${props.match.path}/${beer.id}`)}>See More Info</button>
+               <Button color='blue' onClick={() => props.history.push(`${props.match.path}/${beer.id}`)}>See More Info</Button>
               </div>
+               </Segment>
           )
            :
            <div>Loading</div>
         }
         </div>
-        </div>
+       </div>
       </>
     )
 }

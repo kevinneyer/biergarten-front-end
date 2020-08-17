@@ -1,9 +1,8 @@
 import React from 'react'
 import ReviewForm from './ReviewForm'
 import { useState, useEffect } from 'react'
+
 import { Comment, Header } from 'semantic-ui-react'
-
-
 
 const Review = (props) => {
   
@@ -55,36 +54,43 @@ const Review = (props) => {
   
   return(
     <>
-    <div>
     <Comment.Group>
-    <Header as='h3' dividing>
-      Comments
-    </Header>
-      {/* <ul> */}
+      <Header as='h3' dividing>
+      Reviews
+      </Header>
+      <div>
+                {/* Reviews:
+                <br></br>
+                <ul> */}
+
       {reviews ? reviews.map((review, key) => 
-          <Comment>
-          <Comment.Avatar src='https://react.semantic-ui.com/images/avatar/small/matt.jpg' />
-          <Comment.Content>
-            <Comment.Author as='a'>{review.user}</Comment.Author>
-            <Comment.Text>{review.content}</Comment.Text>
-            <Comment.Actions>
-              <Comment.Action onClick={() => removeHandler(review.review_id)}>Delete</Comment.Action>
-            </Comment.Actions>
-          </Comment.Content>
-        </Comment>)
-        :
-        null}
+      
+      <Comment>
+      <Comment.Avatar src='https://react.semantic-ui.com/images/avatar/small/joe.jpg' />
+      <Comment.Content>
+        <Comment.Author><a href={`/users/${review.user_id}`}>{review.user}</a></Comment.Author>
+        <Comment.Text>{review.content}</Comment.Text>
+        <Comment.Actions>
+          <Comment.Action onClick={() => removeHandler(review.review_id)}>Delete Review</Comment.Action>
+        </Comment.Actions>
+      </Comment.Content>
+    </Comment>)
+    :
+    null
+    }
       {/* <li>{review.content} by user {review.user}<button onClick={() => removeHandler(review.review_id)}>x</button></li>) : null } */}
       {/* { props.beer.reviews ? props.beer.reviews.map((review, key) => <li key={key}>{review.content} by u/ {review.user}<button onClick={() => removeHandler(review.review_id)}>x</button></li>) : null}
       {reviewContent ? <li>{reviewContent.content} by u/ {reviewContent.user.user_name}<button>x</button></li> : null } */}
       {/* </ul> */}
-      </Comment.Group>
+  
     </div>
     <div>
       <ReviewForm 
       beer={props.beer}
       handleContent={handleContent} />
+      
     </div>
+    </Comment.Group>
     </>
   )
 }

@@ -1,5 +1,4 @@
-import React from 'react';
-// import './App.css';
+import React from 'react'
 import HomeContainer from './containers/HomeContainer'
 
 function App() {
@@ -7,7 +6,7 @@ function App() {
     <div>
         <HomeContainer />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
