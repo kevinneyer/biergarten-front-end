@@ -66,7 +66,7 @@ const BeerContainer = (props) => {
     if(filter === "Lager"){
      filteredBeers = filteredBeers.filter(beer => beer.style.includes('Lager'))
     }
-    else if(filter === "Ipa"){
+    else if(filter === "IPA"){
       filteredBeers = filteredBeers.filter(beer => beer.style.includes('IPA'))
     }
     else if(filter === "Ale"){
