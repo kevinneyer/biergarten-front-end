@@ -32,10 +32,12 @@ class Profile extends React.Component{
       console.log(this.props.currentUser)
     return(
         <>
+      <h1 className='profile-header'>{this.props.currentUser ? this.props.currentUser.username + '\'s ' + 'Profile Page' : 'Profile Page'}</h1>
     <Segment>
-    <Grid columns={2} relaxed='very'>
-      <Grid.Column>
-        <h1 className='profile-header'>{this.props.currentUser ? this.props.currentUser.username + '\'s ' + 'Profile Page' : 'Profile Page'}</h1>
+    <Grid columns={3} relaxed='very'>
+      <Grid.Column width={6}>
+        <Segment raised>
+        
         <div className='profile-card' >
           <div class="ui card">
             <div class="image">
@@ -50,6 +52,7 @@ class Profile extends React.Component{
           <Header as='h3' dividing>
            My Reviews
           </Header>
+          <Segment raised style={{ overflow: "auto", maxHeight: "20em" }}>
             {this.props.currentUser ? this.props.currentUser.reviews.map((review, key) => 
 
             <Comment>
@@ -65,10 +68,25 @@ class Profile extends React.Component{
             :
             null
             } */}
+            </Segment>
             </Comment.Group>
-        <button onClick={this.formHandler}>Edit Information</button>
+        {/* <button onClick={this.formHandler}>Edit Information</button> */}
         </div><br/>
-        <div>
+
+         <div>
+             {this.state.form ? <EditProfile currentUser={this.props.currentUser} /> : null}
+         </div>
+        </div>
+        </Segment>
+        </Grid.Column>
+        <Grid.Column width={6}>
+          <Segment raised style={{ overflow: "auto", maxHeight: "51.75em" }}>
+         {this.props.currentUser ? <Favorites currentUser={this.props.currentUser} /> : null}
+         </Segment>
+         </Grid.Column>
+         <Grid.Column width={4}>
+          <Segment>
+            <div>
           {this.props.currentUser ? 
           <>
           <p>Following {this.props.currentUser.followeds.length} Users:</p>
@@ -94,17 +112,11 @@ class Profile extends React.Component{
           null
         }
         </div>
-         <div>
-             {this.state.form ? <EditProfile currentUser={this.props.currentUser} /> : null}
-         </div>
-        </div>
-        </Grid.Column>
-        <Grid.Column>
-         {this.props.currentUser ? <Favorites currentUser={this.props.currentUser} /> : null}
+         </Segment>
          </Grid.Column>
     </Grid>
 
-    <Divider vertical></Divider>
+    {/* <Divider vertical></Divider> */}
   </Segment>
         </>
     )
