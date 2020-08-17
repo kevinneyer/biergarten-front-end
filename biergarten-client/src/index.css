@@ -105,3 +105,7 @@ border: dotted;
   margin-top: -25em;
   width: 50em;
 }
+
+.filter-options{
+  display: inline;
+}
