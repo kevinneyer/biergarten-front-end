@@ -64,9 +64,9 @@ border: dotted;
 }
 
 .profile-card{
-  margin-left: 50%;
-  margin-top: 5em;
-}
+  /* margin-left: 50%; */
+  
+} 
 
 .favorites{
   /* margin-top: -32.75em; */
@@ -109,4 +109,13 @@ border: dotted;
 
 .filter-options{
   display: inline;
+}
+
+.profile-favorite{
+  margin-right: 10em;
+  border: solid;
+  width: 25em;
+  height: 25em;
+  margin-top: 1em;
+  text-align: center;
 }

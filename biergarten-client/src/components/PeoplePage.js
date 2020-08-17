@@ -95,10 +95,11 @@ const PeoplePage = (props) => {
   console.log(showPerson)
   return(
     <>
+      <h1 className='profile-header'>{showPerson ? showPerson.username + '\'s ' + 'Profile Page' : 'Profile Page'}</h1>
       <Segment>
-      <Grid columns={2} relaxed='very'>
-        <Grid.Column>
-          <h1 className='profile-header'>{showPerson.username + '\'s ' + 'Profile Page'}</h1>
+      <Grid columns={3} relaxed='very'>
+        <Grid.Column width={6}>
+          <Segment raised>
           <div className='profile-card' >
             <div class="ui card">
               <div class="image">
@@ -117,6 +118,7 @@ const PeoplePage = (props) => {
               <Header as='h3' dividing>
                 {showPerson.username}'s Reviews
               </Header>
+              <Segment raised style={{ overflow: "auto", maxHeight: "20em" }}>
               {showPerson.reviews ? showPerson.reviews.map((review, key) => 
 
               <Comment key={key}>
@@ -128,23 +130,35 @@ const PeoplePage = (props) => {
               : 
               null 
               }
+              </Segment>
               </Comment.Group>
           </div>
           <div>
             
-           {showPerson ? <Relationships followers={followers} showPerson={showPerson}/> : null}
+           {/* {showPerson ? <Relationships followers={followers} showPerson={showPerson}/> : null} */}
           
           </div>
         </div>
+        </Segment>
           </Grid.Column>
 
-          <Grid.Column>
+          <Grid.Column  width={6}>
+          <Segment raised style={{ overflow: "auto", maxHeight: "51.75em" }}>
             {showPerson ? <PeopleFavorites showPerson={showPerson} /> : null}
+          </Segment>
           </Grid.Column>
+          <Grid.Column width={4}>
+          <Segment>
+            <div>
+            {showPerson ? <Relationships followers={followers} showPerson={showPerson}/> : null}
+
+            </div>
+         </Segment>
+         </Grid.Column>
 
       </Grid>
 
-      <Divider vertical></Divider>
+      {/* <Divider vertical></Divider> */}
     </Segment>
   </>
   )
