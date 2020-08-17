@@ -161,7 +161,6 @@ const Filter = (props) =>{
 
   return(
     <>
-      <div className='filter-options'> 
         {/* <label>Search by Recommended Drinking</label>
         <input onChange={props.searchHandler} value={props.search} type="text" placeholder="Search" /> */}
 
@@ -177,7 +176,6 @@ const Filter = (props) =>{
             />
           </Header.Content>
         </Header>
-  
         <Header as='h4'>
             <Header.Content>
               Sort beers by {' '}
@@ -204,7 +202,6 @@ const Filter = (props) =>{
               />
             </Header.Content>
           </Header>
-        </div>
       </>
     )
 }

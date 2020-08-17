@@ -7,6 +7,7 @@ import PeoplePage from '../components/PeoplePage'
 import PeopleCards from '../components/PeopleCards'
 import Login from '../components/Login'
 import Signup from '../components/Signup'
+import Header from '../Header'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 import MapContainer from './MapContainer'
 import { useState, useEffect } from 'react'
@@ -48,7 +49,8 @@ const HomeContainer = () => {
 
   return(
     <div>
-        <NavBar  currentUser={currentUser} logout={logout}/>
+        <Header />
+        <NavBar currentUser={currentUser} logout={logout}/>
         <BeerContainer currentUser={currentUser} />
         <Router>
           <Route exact path="/" component={HomePage} />

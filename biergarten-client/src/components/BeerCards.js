@@ -15,11 +15,14 @@ const BeerCards = (props) =>{
     return(
       <>
         <Filter search={props.search} searchHandler={props.searchHandler} filterChange={props.filterChange} sortHandler={props.sortHandler} />
-       <div className='index'>
-        <div className='beer-contain'>
-        {props.beers ? 
-          props.beers.map( (beer, key) =>
-          <Segment raised>
+          <div className='index'>
+            <div className='beer-contain'>
+              <Grid columns='equal' padded='vertically'> 
+              <Grid.Row columns={2}>
+              {props.beers ? 
+                props.beers.map( (beer, key) =>
+                <Grid.Column width={6} padded='vertically'>
+                <Segment className='index-card' raised>
               <div key={key} className='beer-card'>
                <img className='card-image' src={beer.img_url} alt={beer.name}/>
                <h3>Name: {beer.name}</h3>
@@ -32,10 +35,13 @@ const BeerCards = (props) =>{
                <Button color='blue' onClick={() => props.history.push(`${props.match.path}/${beer.id}`)}>See More Info</Button>
               </div>
                </Segment>
+               </Grid.Column>
           )
            :
            <div>Loading</div>
         }
+        </Grid.Row>
+        </Grid>
         </div>
        </div>
       </>

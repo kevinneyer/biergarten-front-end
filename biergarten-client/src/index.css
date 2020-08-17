@@ -21,6 +21,11 @@ code {
   text-align: center;
 }
 
+.beer-card:hover {
+  width: 27em;
+  height: 40em;
+}
+
 .beer-contain{
   display: flex;
   flex-direction: row;
@@ -107,10 +112,6 @@ border: dotted;
   width: 50em;
 }
 
-.filter-options{
-  display: inline;
-}
-
 .profile-favorite{
   margin-right: 10em;
   border: solid;
@@ -118,4 +119,11 @@ border: dotted;
   height: 25em;
   margin-top: 1em;
   text-align: center;
+}
+
+.index{
+  /* display: block;
+  margin-left: auto;
+  margin-right: auto; */
+
 }
