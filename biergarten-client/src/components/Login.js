@@ -19,15 +19,15 @@ const Login = (props) => {
     const handleLogin = (e) => {
       e.preventDefault();
       fetch('http://localhost:3001/api/v1/login', {
-          method: 'POST',
-          headers: {
-              'content-type': 'application/json',
-              accept: 'application/json'
-          },
-          body: JSON.stringify({
-              username: username,
-              password: password
-          })
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json',
+            accept: 'application/json'
+        },
+        body: JSON.stringify({
+            username: username,
+            password: password
+        })
       })
       .then(res => res.json())
       .then( data => {
