@@ -8,6 +8,7 @@ const Review = (props) => {
   
   //const [reviewContent, setReviewContent] = useState('')
   const [reviews, setReviews] = useState([])
+  const [loggedIn, setLoggedIn] = useState(null)
 
   useEffect(() => {
     setReviews(props.beer.reviews)
@@ -51,7 +52,13 @@ const Review = (props) => {
        setReviews(newReviews)
     })
   }
-  
+
+  useEffect(() => {
+    if(props.currentUser){
+      setLoggedIn(true)
+    }
+  })
+  console.log(reviews)
   return(
     <>
     <Comment.Group>
@@ -71,7 +78,7 @@ const Review = (props) => {
         <Comment.Author><a href={`/users/${review.user_id}`}>{review.user}</a></Comment.Author>
         <Comment.Text>{review.content}</Comment.Text>
         <Comment.Actions>
-          <Comment.Action onClick={() => removeHandler(review.review_id)}>Delete Review</Comment.Action>
+      {props.currentUser ? props.currentUser.id === review.user_id ? <Comment.Action onClick={() => removeHandler(review.review_id)}>Delete Review</Comment.Action> : ''  : null }
         </Comment.Actions>
       </Comment.Content>
     </Comment>)
