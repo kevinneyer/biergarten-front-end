@@ -204,7 +204,7 @@ const Filter = (props) =>{
               />
             </Header.Content>
           </Header>
-          </div>
+        </div>
       </>
     )
 }
