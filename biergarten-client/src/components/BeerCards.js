@@ -1,6 +1,6 @@
 import React from 'react'
 import Filter from './Filter'
-import { Grid, Segment } from 'semantic-ui-react'
+import { Button, Grid, Segment } from 'semantic-ui-react'
 
 const BeerCards = (props) =>{
     
@@ -29,9 +29,9 @@ const BeerCards = (props) =>{
                <p>Total Likes: {beer.likes} </p>
                <p>Total Reviews: {beer.reviews.length} </p>
                <p>Average Rating :{ratings(beer.reviews)}</p>
-               <button onClick={() => props.history.push(`${props.match.path}/${beer.id}`)}>See More Info</button>
+               <Button color='blue' onClick={() => props.history.push(`${props.match.path}/${beer.id}`)}>See More Info</Button>
               </div>
-              </Segment>
+               </Segment>
           )
            :
            <div>Loading</div>
