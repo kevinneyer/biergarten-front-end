@@ -14,28 +14,28 @@ const PeoplePage = (props) => {
 
   //USE THIS WHEN TIME TO RUN
 
-  const fetchPerson = () => {
-    fetch(`http://localhost:3001/api/v1/users/${peopleId}`)
-    .then(res => res.json())
-    .then(data =>{
-      setShowPerson(data)
-    }) 
-  } 
+  // const fetchPerson = () => {
+  //   fetch(`http://localhost:3001/api/v1/users/${peopleId}`)
+  //   .then(res => res.json())
+  //   .then(data =>{
+  //     setShowPerson(data)
+  //   }) 
+  // } 
 
-  useEffect(() => {
-    fetchPerson() 
-  }, [fetchPerson]) 
+  // useEffect(() => {
+  //   fetchPerson() 
+  // }, [fetchPerson]) 
 
-  // useEffect (() => {
-  //   const fetchPerson = () => {
-  //     fetch(`http://localhost:3001/api/v1/users/${peopleId}`)
-  //     .then(res => res.json())
-  //     .then(data =>{
-  //        setShowPerson(data)      
-  //       }) 
-  //   } 
-  //   fetchPerson()
-  // }, [])
+  useEffect (() => {
+    const fetchPerson = () => {
+      fetch(`http://localhost:3001/api/v1/users/${peopleId}`)
+      .then(res => res.json())
+      .then(data =>{
+         setShowPerson(data)      
+        }) 
+    } 
+    fetchPerson()
+  }, [])
 
   useEffect(() => {
     if(showPerson){
@@ -81,7 +81,7 @@ const PeoplePage = (props) => {
 
   const isFollowing = () => {   
     if(showPerson.passive_relationships && props.currentUser){
-      let relat = showPerson.passive_relationships.filter( relat => relat.follower.follower_id === props.currentUser.id)
+      let relat = showPerson.passive_relationships.find( relat => relat.follower.follower_id === props.currentUser.id)
        if(relat){
          setFollowing(true)
        }
@@ -90,8 +90,9 @@ const PeoplePage = (props) => {
   
   useEffect(() => {
     isFollowing()
-  }, [])
+  }, [isFollowing])
   
+  console.log(showPerson)
   return(
     <>
       <Segment>
