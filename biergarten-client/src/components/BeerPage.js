@@ -13,17 +13,17 @@ const BeerPage = (props) => {
 
   // USE THIS WHEN TIME TO RUN
   
-  // const fetchBeer = () => {
-  //   fetch(`http://localhost:3001/api/v1/beers/${beerId}`)
-  //   .then(res => res.json())
-  //   .then(data =>{
-  //     setShowBeer(data)
-  //   }) 
-  // } 
+  const fetchBeer = () => {
+    fetch(`http://localhost:3001/api/v1/beers/${beerId}`)
+    .then(res => res.json())
+    .then(data =>{
+      setShowBeer(data)
+    }) 
+  } 
 
-  // useEffect(() => {
-  //   fetchBeer() 
-  // }, [fetchBeer]) 
+  useEffect(() => {
+    fetchBeer() 
+  }, [fetchBeer]) 
 
   useEffect (() => {
     const fetchBeer = () => {
