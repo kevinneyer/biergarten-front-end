@@ -89,7 +89,6 @@ const BeerPage = (props) => {
     isFavorite()
   },[isFavorite])
 
-  console.log(favorite, showBeer)
   return (
     <div>
       <Segment>
@@ -106,7 +105,7 @@ const BeerPage = (props) => {
                 content='Like'
                 icon='heart'
                 label={{ basic: true, color: 'red', pointing: 'left', content: showBeer.likes }}
-              />
+              /> 
               {favorite ? (<Button disabled>You've already favorited this beer</Button>)
               :(
               <Modal

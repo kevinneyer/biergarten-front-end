@@ -41,7 +41,7 @@ const NavBar = (props) => {
             {props.currentUser ? <Button onClick={props.logout}>Logout</Button> : null }
             </Menu> */}
 
-        <Menu>
+        <Menu fluid size="large" inverted>
             <Menu.Item
             name='All Beers'
            
@@ -77,6 +77,7 @@ const NavBar = (props) => {
             <Menu.Item
             name='logout'
             onClick={props.logout}
+            href='/'
             >
             {props.currentUser ? 'Logout': null }
             </Menu.Item>
