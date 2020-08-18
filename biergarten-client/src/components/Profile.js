@@ -1,7 +1,7 @@
 import React from 'react'
 import EditProfile from './EditProfile'
 import Favorites from './Favorites'
-import { Divider, Grid, Comment, Header, Segment, Image } from 'semantic-ui-react'
+import { Divider, Grid, Comment, Header, Segment, Image, Card } from 'semantic-ui-react'
 
 class Profile extends React.Component{
 
@@ -16,7 +16,7 @@ class Profile extends React.Component{
     }
 
     render(){
-
+      console.log(this.props.currentUser)
       return(
         <>
         <h1 className='profile-header'>{this.props.currentUser ? this.props.currentUser.username + '\'s ' + 'Profile Page' : 'Profile Page'}</h1>
@@ -24,47 +24,47 @@ class Profile extends React.Component{
           <Grid columns={3} relaxed='very'>
             <Grid.Column width={6}>
               <Segment raised>
-              
-              <div className='profile-card' >
-                <div class="ui card">
-                  <div class="image">
-                  {this.props.currentUser ?  <img src={this.props.currentUser.image}/> : "No User. Please Login" }
-                  </div>
-                  <div class="content">
-                  {this.props.currentUser ? <span class="header">{this.props.currentUser.username}</span> : "No User. Please Login"  }
-                  </div>
-                </div>
+                  <Card>
+                  {this.props.currentUser ?  <Image src={this.props.currentUser.image}/> : "No User. Please Login" }
+                  {/* </div> */}
+                  {/* <div class="content"> */}
+                  <Card.Content >
+                  {this.props.currentUser ? <Card.Header >{this.props.currentUser.username}</Card.Header> : "No User. Please Login"  }
+                  </Card.Content>
+                  {/* </div> */}
+                {/* </div> */}
+                </Card>
+                </Segment>
+                <br/>
                 <div>
-                <Comment.Group>
+
                 <Header as='h3' dividing>
                 My Reviews
                 </Header>
-                <Segment>
-                  {this.props.currentUser ? this.props.currentUser.reviews.map((review, key) => 
 
+              <Segment raised>
+                <Comment.Group>
+                  {this.props.currentUser ? this.props.currentUser.reviews.map((review, key) => 
                   <Comment>
                   <Comment.Content>
-                    <Comment.Author>{review.beer}</Comment.Author>
+                   
+                   <Image src={review.beer_img} size='mini'/>
+                   <Comment.Author href={`/beers/${review.beer_id}`}>{review.beer}</Comment.Author>
                     <Comment.Text>{review.content}</Comment.Text>
                   </Comment.Content>
                   </Comment>)
                   :
                   null
                   }
-                  {/* <li>{review.beer} - {review.content}</li>)
-                  :
-                  null
-                  } */}
-                  </Segment>
-                  </Comment.Group>
+                </Comment.Group>
+              </Segment>
               {/* <button onClick={this.formHandler}>Edit Information</button> */}
-              </div><br/>
+              {/* </div><br/> */}
 
               <div>
                   {this.state.form ? <EditProfile currentUser={this.props.currentUser} /> : null}
               </div>
               </div>
-              </Segment>
               </Grid.Column>
               <Grid.Column width={6}>
                 <Segment>
