@@ -148,3 +148,7 @@ border: dotted;
   margin-right: 1em;
   margin-left: 1em;
 }
+
+.avatar-image{
+  width: 10px;
+}
