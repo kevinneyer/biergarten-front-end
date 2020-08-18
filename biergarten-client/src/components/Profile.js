@@ -16,7 +16,7 @@ class Profile extends React.Component{
     }
 
     render(){
-      console.log(this.props.currentUser)
+  
       return(
         <>
         <h1 className='profile-header'>{this.props.currentUser ? this.props.currentUser.username + '\'s ' + 'Profile Page' : 'Profile Page'}</h1>
@@ -49,17 +49,17 @@ class Profile extends React.Component{
                 
                 {/* <div> */}
 
-                <Header as='h3' dividing>
+                <Header as='h3'>
                 My Reviews
                 </Header>
+                <div class="ui divider"></div>
 
               <Segment raised>
                 <Comment.Group>
                   {this.props.currentUser ? this.props.currentUser.reviews.map((review, key) => 
-                  <Comment>
-                  <Comment.Content>
-                   
-                   <Image src={review.beer_img} size='mini'/>
+                  <Comment key={key}>
+                    <Comment.Content>
+                      <Image src={review.beer_img} size='mini'/>
                    <Comment.Author href={`/beers/${review.beer_id}`}>{review.beer}</Comment.Author>
                     <Comment.Text>{review.content}</Comment.Text>
                   </Comment.Content>
