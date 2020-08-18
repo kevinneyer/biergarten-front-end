@@ -1,5 +1,6 @@
 import React from 'react'
 import {useState, useEffect} from 'react'
+import {Card, Image, Button} from 'semantic-ui-react'
 
 const PeopleFavorites = (props) => {
 
@@ -17,23 +18,26 @@ const PeopleFavorites = (props) => {
 
     return(
         <div>
-            <div className='favorites'>
-                <h3>Favorites: </h3>
-                  {favorites ? favorites.map((favorite, key) => 
-                    // <li>
-                    //   <a href={`/beers/${favorite.beer_id}`}>{favorite.beer}</a>
-                    // </li>) 
-                <div key={key} className='profile-favorite'>
-                  <img className='card-image' src={favorite.image} alt={favorite.beer}/>
-                  <h3>Name: {favorite.beer}</h3>
-                  <h3>Brewer: {favorite.brewery}</h3> 
-                  <button><a href={`/beers/${favorite.beer_id}`}>See More Info</a></button>
-                </div>
+            <h3>Favorites: </h3>
+                {favorites ? favorites.map((favorite, key) => 
+                // <li>
+                //   <a href={`/beers/${favorite.beer_id}`}>{favorite.beer}</a>
+                // </li>) 
+                    <Card key={key}> 
+                      <Image src={favorite.image} size='small' />
+                      <Card.Content>
+                        <Card.Header>{favorite.beer}</Card.Header>
+                        <Card.Description>Brewer: {favorite.brewery}</Card.Description>
+                      </Card.Content>
+                      <Card.Content extra>
+                        <span><Button color='black' href={`/beers/${favorite.beer_id}`}>See More Info</Button></span>
+                      </Card.Content>
+                    </Card>
                 )
-                : null 
+                : 
+                null 
                 }
 
-            </div>
         </div>
     )
 }
