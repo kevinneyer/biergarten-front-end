@@ -2,7 +2,7 @@ import React from 'react'
 import ReviewForm from './ReviewForm'
 import { useState, useEffect } from 'react'
 
-import { Comment, Header } from 'semantic-ui-react'
+import { Comment, Header, Rating } from 'semantic-ui-react'
 
 const Review = (props) => {
   
@@ -58,7 +58,7 @@ const Review = (props) => {
       setLoggedIn(true)
     }
   })
-  console.log(reviews)
+  
   return(
     <>
     <Comment.Group>
@@ -76,7 +76,7 @@ const Review = (props) => {
       <Comment.Avatar src='https://react.semantic-ui.com/images/avatar/small/joe.jpg' />
       <Comment.Content>
         <Comment.Author><a href={`/users/${review.user_id}`}>{review.user}</a></Comment.Author>
-        <Comment.Text>{review.content}</Comment.Text>
+        <Comment.Text><Rating defaultRating={review.rating} maxRating={review.rating} disabled /> {review.content}</Comment.Text>
         <Comment.Actions>
       {props.currentUser ? props.currentUser.id === review.user_id ? <Comment.Action onClick={() => removeHandler(review.review_id)}>Delete Review</Comment.Action> : ''  : null }
         </Comment.Actions>

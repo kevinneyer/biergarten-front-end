@@ -37,6 +37,18 @@ const BeerPage = (props) => {
     fetchBeer()
   }, [])
 
+  const ratings = (beerArray) => {
+    let average = beerArray.map( beer => beer.rating)
+    let sum = average.reduce(function(a, b){
+      return a + b;
+    }, 0);
+    if(beerArray.length === 0){
+      return '0. No Reviews or just really bad? You be the judge!'
+    }
+    else
+      return sum / beerArray.length
+  }
+
   const likeHandler = () => {
     fetch(`http://localhost:3001/api/v1/beers/${beerId}`, {
       method: 'PATCH',
@@ -140,6 +152,7 @@ const BeerPage = (props) => {
               <p>Style: {showBeer.style}</p>
               <p>Tasting Notes: {showBeer.tasting_notes}</p>
               <p>Recommended For: {showBeer.recommended_drinking}</p>
+              {showBeer.reviews ? <p>Average Rating: {ratings(showBeer.reviews)}</p> : null}
             </div> 
           </Grid.Column>
           <Grid.Column>
