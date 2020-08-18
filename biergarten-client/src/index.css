@@ -116,7 +116,7 @@ border: dotted;
 
 .profile-favorite{
   margin-right: 10em;
-  border: solid;
+
   width: 25em;
   height: 25em;
   margin-top: 1em;
@@ -147,8 +147,4 @@ border: dotted;
 .grid{
   margin-right: 1em;
   margin-left: 1em;
-}
-
-.avatar-image{
-  width: 10px;
 }

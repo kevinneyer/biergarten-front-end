@@ -92,6 +92,7 @@ const Review = (props) => {
   
     </div>
     <div>
+      <br/>
       <ReviewForm 
       beer={props.beer}
       handleContent={handleContent} />
