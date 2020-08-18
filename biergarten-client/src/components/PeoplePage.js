@@ -1,6 +1,6 @@
 import React from 'react'
 import PeopleFavorites from './PeopleFavorites'
-import { Divider, Grid, Comment, Header, Segment, Button, Image } from 'semantic-ui-react'
+import { Divider,Card, Icon, Grid, Comment, Header, Segment, Button, Image, Feed } from 'semantic-ui-react'
 import { useState, useEffect } from 'react'
 import Relationships from './Relationship'
 
@@ -100,53 +100,70 @@ const PeoplePage = (props) => {
       <Grid columns={3} relaxed='very'>
         <Grid.Column width={6}>
           <Segment raised>
-          <div className='profile-card' >
-            <div class="ui card">
-              <div class="image">
-              <img src={showPerson.image}/>
-              </div>
-              <div class="content">
-              <span>{showPerson.username}
-              {following ? (<Button onClick={() => deleteFollow(props.currentUser.id)} color='blue'>Unfollow</Button> 
+              <Card>
+              {showPerson ? <Image src={showPerson.image}/> : 'User Not found!' }
+              <Card.Content >
+                  {showPerson ? <Card.Header >{showPerson.username}</Card.Header> : 'User Not Found!'  }
+              </Card.Content>
+              <Card.Content extra>
+                    {showPerson.followers ? 
+                    <>
+                    <Icon name='user' />
+                    <span>{showPerson.followers.length} followers</span>
+                    </>
+                    :
+                    null
+                    }
+                    {following ? (<Button floated='right' onClick={() => deleteFollow(props.currentUser.id)} color='blue'>Unfollow</Button> 
+                    ):( 
+                    <Button floated='right' onClick={() => followHandler(showPerson.id)} color='blue'>Follow</Button>)}
+               </Card.Content>
+              {/* {following ? (<Button onClick={() => deleteFollow(props.currentUser.id)} color='blue'>Unfollow</Button> 
               ):( 
-              <Button onClick={() => followHandler(showPerson.id)} color='blue'>Follow</Button>)}
-              </span>
-              </div>
-            </div>
-            <div>
-            <Comment.Group>
-              <Header as='h3' dividing>
+              <Button onClick={() => followHandler(showPerson.id)} color='blue'>Follow</Button>)} */}
+              </Card>
+              </Segment>
+             
+              <Header as='h3'>
                 {showPerson.username}'s Reviews
               </Header>
-              <Segment>
+              <div class="ui divider"></div>
+
+           
+              <Segment raised>
+              <Comment.Group>
               {showPerson.reviews ? showPerson.reviews.map((review, key) => 
 
               <Comment key={key}>
                 <Comment.Content>
-                  <Comment.Author>{review.beer}</Comment.Author>
+                  <Image src={review.beer_img} size='mini'/>  
+                  <Comment.Author href={`/beers/${review.beer_id}`}>{review.beer}</Comment.Author>
                   <Comment.Text>{review.content}</Comment.Text>
                 </Comment.Content>
               </Comment>)
               : 
               null 
               }
+                </Comment.Group>
               </Segment>
-              </Comment.Group>
-          </div>
-          <div>
+
+         
+          {/* <div> */}
             
            {/* {showPerson ? <Relationships followers={followers} showPerson={showPerson}/> : null} */}
           
-          </div>
-        </div>
-        </Segment>
+          {/* </div> */}
+     
+       
           </Grid.Column>
 
-          <Grid.Column  width={6}>
-          <Segment raised>
+          <Grid.Column>
+          <Segment>
             {showPerson ? <PeopleFavorites showPerson={showPerson} /> : null}
           </Segment>
           </Grid.Column>
+
+{/*           
           <Grid.Column width={4}>
           <Segment raised>
             <div>
@@ -154,8 +171,57 @@ const PeoplePage = (props) => {
 
             </div>
          </Segment>
-         </Grid.Column>
+         </Grid.Column> */}
 
+      <Grid.Column width={4}>
+        <Header as='h3'>Following</Header>
+              
+      <Feed>
+        
+        {showPerson.followeds  ? 
+        showPerson.followeds.map(
+          followed =>
+          <Feed.Event>
+            <Feed.Label>
+              <Image src={followed.image} size='mini'/>
+            </Feed.Label>
+            <Feed.Content>
+              <Feed.Summary>
+                  <Feed.User href={`/users/${followed.id}`}>{followed.username}</Feed.User>
+              </Feed.Summary>
+            </Feed.Content>
+          </Feed.Event>
+        )
+          :
+          null
+        }
+      
+      </Feed>
+      <Header as='h3'>Followers</Header>
+              <Feed>
+                
+                {showPerson.followers  ? 
+                showPerson.followers.map(
+                  follower =>
+                  <Feed.Event>
+                    <Feed.Label>
+                      <Image src={follower.image} size='mini'/>
+                    </Feed.Label>
+                   <Feed.Content>
+                      <Feed.Summary>
+                         <Feed.User href={`/users/${follower.id}`}>{follower.username}</Feed.User>
+                      </Feed.Summary>
+                    </Feed.Content>
+                  </Feed.Event>
+                )
+                 :
+                 null
+                }
+      
+      </Feed>
+     
+              
+              </Grid.Column> 
       </Grid>
 
       {/* <Divider vertical></Divider> */}
