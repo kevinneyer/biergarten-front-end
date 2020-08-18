@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { Grid, Segment, Button } from 'semantic-ui-react'
+import { Grid, Segment, Card, Button, Image, Icon } from 'semantic-ui-react'
 
 const PeopleCards = (props) => {
 
@@ -15,27 +15,42 @@ const PeopleCards = (props) => {
     }, [])
 
     return(
-        <div className='index'>
-        <div className='beer-contain'>
+        <>
         <div>
+        <Card.Group itemsPerRow={3}>
           {users ? 
             users.map( (user, key) =>
-          <Segment raised>
+          <Card raised>
               <div key={key} className='beer-card'>
-               <img className='card-image' src="https://semantic-ui.com/images/avatar2/large/kristy.png" alt={user.username}/>
-               <h3>Username: {user.username}</h3> 
+               <Image src="https://semantic-ui.com/images/avatar2/large/kristy.png" size='small' alt={user.username}/>
+               <Card.Content>
+                 <Card.Header>{user.username}</Card.Header>
+                 <Card.Description>
+                   Has {user.favorites.length} favorites
+                </Card.Description>
+                </Card.Content>
+                <Card.Content extra>
+                    <p><Icon name='user' />
+                      {user.followers.length} Followers
+                    </p>
+                    <p><Icon name='user' />
+                      Following {user.followeds.length} 
+                    </p>
+                    <Button color='blue' onClick={() => props.history.push(`${props.match.path}${user.id}`)}>{`See ${user.username}\'s profile`}</Button>
+                    </Card.Content>
+               {/* <h3>Username: {user.username}</h3> 
                <p>Followers: {user.followers.length} </p>
                <p>Following: {user.followeds.length} </p>
-               <Button color='blue' onClick={() => props.history.push(`${props.match.path}${user.id}`)}>{`See ${user.username}\'s profile`}</Button>
+               <Button color='blue' onClick={() => props.history.push(`${props.match.path}${user.id}`)}>{`See ${user.username}\'s profile`}</Button> */}
               </div>
-              </Segment>
+              </Card>
           )
            :
            <div>Loading</div>
         }
+        </Card.Group>
         </div>
-        </div>
-        </div>
+        </>
     )
 }
 
