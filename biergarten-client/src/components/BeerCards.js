@@ -9,7 +9,12 @@ const BeerCards = (props) =>{
       let sum = average.reduce(function(a, b){
         return a + b;
       }, 0);
-     return sum / beerArray.length
+     if(beerArray.length === 0){
+       return '0'
+     }
+     else
+       return sum / beerArray.length
+ 
     }
     
     return(
@@ -31,7 +36,7 @@ const BeerCards = (props) =>{
                <p>ABV: {beer.abv}% </p>
                <p>Total Likes: {beer.likes} </p>
                <p>Total Reviews: {beer.reviews.length} </p>
-               <p>Average Rating :{ratings(beer.reviews)}</p>
+               <p>Average Rating: {ratings(beer.reviews)}</p>
                <Button color='blue' onClick={() => props.history.push(`${props.match.path}/${beer.id}`)}>See More Info</Button>
               </div>
                </Segment>
