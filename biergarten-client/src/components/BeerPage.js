@@ -155,7 +155,7 @@ const BeerPage = (props) => {
               {showBeer.reviews ? <p>Average Rating: {ratings(showBeer.reviews)}</p> : null}
             </div> 
           </Grid.Column>
-          <Grid.Column>
+          <Grid.Column width={8}>
             <div className='review-div'>
               {showBeer ? <Review beer={showBeer} currentUser={props.currentUser} /> : null }
             </div>

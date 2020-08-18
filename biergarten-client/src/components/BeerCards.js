@@ -1,6 +1,7 @@
 import React from 'react'
 import Filter from './Filter'
-import { Button, Grid, Segment } from 'semantic-ui-react'
+import BlockHeader from '../BlockHeader'
+import { Button, Grid, Segment, Divider, Header} from 'semantic-ui-react'
 
 const BeerCards = (props) =>{
     
@@ -19,6 +20,9 @@ const BeerCards = (props) =>{
     
     return(
       <>
+        <div className="header-div" class="ui divider"></div>
+        <BlockHeader />
+        <div class="ui divider"></div>
         <Filter search={props.search} searchHandler={props.searchHandler} filterChange={props.filterChange} sortHandler={props.sortHandler} />
           <div className='index'>
             <div className='beer-contain'>
@@ -30,14 +34,14 @@ const BeerCards = (props) =>{
                 <Segment className='index-card' raised>
               <div key={key} className='beer-card'>
                <img className='card-image' src={beer.img_url} alt={beer.name}/>
-               <h3>Name: {beer.name}</h3>
+               <h1>{beer.name}</h1>
                <h3>Brewer: {beer.brewery}</h3> 
                <p>Style: {beer.style}</p>
                <p>ABV: {beer.abv}% </p>
                <p>Total Likes: {beer.likes} </p>
                <p>Total Reviews: {beer.reviews.length} </p>
                <p>Average Rating: {ratings(beer.reviews)}</p>
-               <Button color='blue' onClick={() => props.history.push(`${props.match.path}/${beer.id}`)}>See More Info</Button>
+               <Button color='black' onClick={() => props.history.push(`${props.match.path}/${beer.id}`)}>See More Info</Button>
               </div>
                </Segment>
                </Grid.Column>

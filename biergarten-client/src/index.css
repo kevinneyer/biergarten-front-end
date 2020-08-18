@@ -14,15 +14,15 @@ code {
 
 .beer-card{
   margin-right: 10em;
-  border: solid;
+  /* height: auto; */
   width: 25em;
-  height: 38em;
+  height: 40em;
   margin-top: 1em;
   text-align: center;
 }
 
 .beer-card:hover {
-  width: 27em;
+  
   height: 40em;
 }
 
@@ -33,7 +33,7 @@ code {
 }
 
 .card-image{
-  width: 7em;
+  width: 8em;
   margin-top: .25em;
   display: block;
   margin-left: auto;
@@ -67,6 +67,7 @@ border: dotted;
   margin-top: 5em; */
   width: 100vw;
   height: 100vh;
+  margin-top: -1em;
 }
 
 .profile-card{
@@ -122,9 +123,22 @@ border: dotted;
   text-align: center;
 }
 
-.index{
-  /* display: block;
-  margin-left: auto;
-  margin-right: auto; */
+.header{
+  width: 100vw;
+}
 
+.home-screen{
+  background-color: black;
+}
+
+.index-card{
+  border: black;
+}
+
+.header-div{
+  background-color: gray;
+}
+
+.beer-contain{
+  margin-bottom: 1em;
 }
