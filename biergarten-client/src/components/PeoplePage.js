@@ -1,6 +1,6 @@
 import React from 'react'
 import PeopleFavorites from './PeopleFavorites'
-import { Divider, Grid, Comment, Header, Segment, Button } from 'semantic-ui-react'
+import { Divider, Grid, Comment, Header, Segment, Button, Image } from 'semantic-ui-react'
 import { useState, useEffect } from 'react'
 import Relationships from './Relationship'
 
