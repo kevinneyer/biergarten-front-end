@@ -41,10 +41,10 @@ class Profile extends React.Component{
         <div className='profile-card' >
           <div class="ui card">
             <div class="image">
-            {this.props.currentUser ?  <img src="https://semantic-ui.com/images/avatar2/large/kristy.png"/> : "No User. Please Login" }
+            {this.props.currentUser ?  <img src={this.props.currentUser.image}/> : "No User. Please Login" }
             </div>
             <div class="content">
-            {this.props.currentUser ? <a class="header">{this.props.currentUser.username}</a> : "No User. Please Login"  }
+            {this.props.currentUser ? <span class="header">{this.props.currentUser.username}</span> : "No User. Please Login"  }
             </div>
           </div>
           <div>

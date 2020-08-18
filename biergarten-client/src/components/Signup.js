@@ -10,6 +10,7 @@ const Signup = (props) => {
   const [confirmPassword, setConfirmPassword] = useState('')
   const [email, setEmail] = useState('')
   const [zipcode, setZipcode] = useState('')
+  const [image, setImage] = useState('')
 
   const handleUsername = (e) => {
     setUsername(e.target.value)
@@ -30,6 +31,10 @@ const Signup = (props) => {
   const handleZipcode = (e) => {
     setZipcode(e.target.value)
   }
+  
+  const handleImage = (e) => {
+    setImage(e.target.value)
+  }
 
   const handleSignup = (e) => {
     e.preventDefault();
@@ -44,7 +49,8 @@ const Signup = (props) => {
           username: username,
           email: email,
           password: password,
-          zipcode: zipcode
+          zipcode: zipcode,
+          image: image
         })
       })
       .then(res => res.json())
@@ -100,14 +106,14 @@ const Signup = (props) => {
         className='signup-input'
           icon='lock'
           iconPosition='left'
-          label='Password'
-          placeholder='password'
+          label='Confirm Password'
+          placeholder='confirm password'
           type='password'
           onChange={handleConfirmPassword} 
           value={confirmPassword}
         />
         <Form.Input
-        className='signup-input'
+          className='signup-input'
           icon='home'
           iconPosition='left'
           label='Zipcode'
@@ -115,8 +121,17 @@ const Signup = (props) => {
           onChange={handleZipcode} 
           value={zipcode} 
         />
+        <Form.Input
+          className='signup-input'
+          icon='image'
+          iconPosition='left'
+          label='Image'
+          placeholder='image'
+          onChange={handleImage} 
+          value={image} 
+        />
 
-        <Button content='Login' primary />
+        <Button content='Signup' primary />
         </Form>
       {/* <form onSubmit={handleSignup}>
         <input onChange={handleUsername} value={username} type="text" placeholder="username"/><br></br>

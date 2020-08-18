@@ -103,7 +103,7 @@ const PeoplePage = (props) => {
           <div className='profile-card' >
             <div class="ui card">
               <div class="image">
-              <img src="https://semantic-ui.com/images/avatar2/large/kristy.png"/>
+              <img src={showPerson.image}/>
               </div>
               <div class="content">
               <span>{showPerson.username}

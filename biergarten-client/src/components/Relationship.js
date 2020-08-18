@@ -25,7 +25,7 @@ const Relationships = (props) => {
         <p>{showPerson.followeds.map(followed => 
           // <li>{followed.username} <button onClick={() => props.history.push(`/users/${followed.id}`)}>View Profile</button></li>)} </p>
           <Comment>
-            <Comment.Avatar src='https://react.semantic-ui.com/images/avatar/small/joe.jpg' />
+            <Comment.Avatar src={followed.image} />
               <Comment.Content>
                 <Comment.Author><a href={`/users/${followed.id}`}>{followed.username}</a></Comment.Author>
               </Comment.Content>
@@ -44,7 +44,7 @@ const Relationships = (props) => {
           // <li>{follower.username} <button onClick={() => props.history.push(`users/${follower.id}`)}>View Profile</button></li>)} </p>
           
           <Comment>
-            <Comment.Avatar src='https://react.semantic-ui.com/images/avatar/small/joe.jpg' />
+            <Comment.Avatar src={follower.image} size='mini'/>
               <Comment.Content>
                 <Comment.Author><a href={`/users/${follower.id}`}>{follower.username}</a></Comment.Author>
               </Comment.Content>
