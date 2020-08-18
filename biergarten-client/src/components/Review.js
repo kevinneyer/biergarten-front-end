@@ -58,7 +58,7 @@ const Review = (props) => {
       setLoggedIn(true)
     }
   })
-  
+  console.log(reviews)
   return(
     <>
     <Comment.Group>
@@ -73,7 +73,7 @@ const Review = (props) => {
       {reviews ? reviews.map((review, key) => 
       
       <Comment>
-      <Comment.Avatar src='https://react.semantic-ui.com/images/avatar/small/joe.jpg' />
+      <Comment.Avatar src={review.user_image} />
       <Comment.Content>
         <Comment.Author><a href={`/users/${review.user_id}`}>{review.user}</a></Comment.Author>
         <Comment.Text><Rating defaultRating={review.rating} maxRating={review.rating} disabled /> {review.content}</Comment.Text>

@@ -13,7 +13,7 @@ const PeopleCards = (props) => {
             setUsers( users )
         })
     }, [])
-
+     console.log(users)
     return(
         <>
         <div>
@@ -22,7 +22,7 @@ const PeopleCards = (props) => {
             users.map( (user, key) =>
           <Card raised>
               <div key={key} className='beer-card'>
-               <Image src="https://semantic-ui.com/images/avatar2/large/kristy.png" size='small' alt={user.username}/>
+               <Image src={user.image} size='small' alt={user.username}/>
                <Card.Content>
                  <Card.Header>{user.username}</Card.Header>
                  <Card.Description>

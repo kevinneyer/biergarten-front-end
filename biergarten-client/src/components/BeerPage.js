@@ -100,7 +100,7 @@ const BeerPage = (props) => {
   useEffect(() => {
     isFavorite()
   },[isFavorite])
-
+  console.log(showBeer)
   return (
     <div>
       <Segment>
@@ -153,6 +153,7 @@ const BeerPage = (props) => {
               <p>Tasting Notes: {showBeer.tasting_notes}</p>
               <p>Recommended For: {showBeer.recommended_drinking}</p>
               {showBeer.reviews ? <p>Average Rating: {ratings(showBeer.reviews)}</p> : null}
+            <p> See More from <a href={showBeer.url}>{showBeer.brewery}</a></p>
             </div> 
           </Grid.Column>
           <Grid.Column width={8}>
