@@ -44,6 +44,7 @@ const PeoplePage = (props) => {
   }, [showPerson.followers])
 
   const followHandler = (id) => {
+    if(props.currentUser){
     fetch('http://localhost:3001/api/v1/relationships', {
       method: 'POST',
       headers:{
@@ -58,6 +59,9 @@ const PeoplePage = (props) => {
       setFollowers([...followers, data])
       setFollowing(true)
     })
+   }
+   else 
+     alert('You need to be logged in!')
   }
 
   const deleteFollow = (id) => {

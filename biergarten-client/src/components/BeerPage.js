@@ -50,6 +50,7 @@ const BeerPage = (props) => {
   }
 
   const likeHandler = () => {
+    if(props.currentUser){
     fetch(`http://localhost:3001/api/v1/beers/${beerId}`, {
       method: 'PATCH',
       headers: {
@@ -62,6 +63,9 @@ const BeerPage = (props) => {
       .then(data => {
         setShowBeer(data)
       })
+    }
+    else 
+      alert('You need to be logged in!')
   }
 
   const favoriteHandler = () => {
@@ -120,13 +124,13 @@ const BeerPage = (props) => {
               /> 
           
 
-              {favorite ? (<Button disabled>Already Favorited!</Button>)
+              {favorite ? (<Button disabled>Already Bookmarked!</Button>)
               :(
               <Modal
                 onClose={() => setOpen(false)}
                 onOpen={() => setOpen(true)}
                 open={open}
-                trigger={<Button color='blue'>Add as a Favorite!</Button>}
+                trigger={<Button color='blue'>Bookmark this Beer</Button>}
               >
                 <Modal.Header>Select as favorite?</Modal.Header>
                 <Modal.Content image>

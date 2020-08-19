@@ -15,6 +15,7 @@ const Review = (props) => {
   }, [props.beer.reviews])
 
   const handleContent = (content, rating) => {
+    if(props.currentUser){
     fetch('http://localhost:3001/api/v1/reviews', {
     method: 'POST',
     headers: {
@@ -37,6 +38,9 @@ const Review = (props) => {
       // console.log(data)
       setReviews([...reviews, data.content])
     })
+    }
+    else
+      alert('You need to be logged in!')
   }
 
   const removeHandler = (id) =>{

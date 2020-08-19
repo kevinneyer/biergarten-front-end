@@ -15,31 +15,47 @@ const NavBar = (props) => {
                     >
                     All Beers
                     </Menu.Item>
-                    <Menu.Item
+                    {/* <Menu.Item
                     name='Profile'
                     href='/profile'
                     >
                     Profile
-                    </Menu.Item>
+                    </Menu.Item> */}
                     <Menu.Item
                     name='All Users'
                     href="/users"
                     >
                     All Users
                     </Menu.Item>
+
                     <Menu.Menu position='right'>
+                                            {props.currentUser ? 
+                        <Menu.Item
+                        name='login signup'
+                        href='/profile'
+                        >
+                        Welcome {props.currentUser.username}
+                        </Menu.Item>
+                        :
                         <Menu.Item
                         name='login signup'
                         href='/login'
                         >
-                        {props.currentUser ? `Welcome ${props.currentUser.username}`: 'Login/Signup' }
+                        Login/Signup
                         </Menu.Item>
+                        }
+                        {/* <Menu.Item
+                        name='login signup'
+                        href='/login'
+                        >
+                        {props.currentUser ? `Welcome ${props.currentUser.username}`: 'Login/Signup' }
+                        </Menu.Item> */}
                         <Menu.Item
                         name='logout'
                         onClick={props.logout}
                         href='/'
                         >
-                        {props.currentUser ? 'Logout': null }
+                        {props.currentUser ? 'Logout': '' }
                         </Menu.Item>
                     </Menu.Menu>
                 </Menu>
