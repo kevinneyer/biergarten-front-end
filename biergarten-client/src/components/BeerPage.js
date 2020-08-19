@@ -1,6 +1,6 @@
 import React from 'react'
 import Review from './Review'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import {Button, Divider, Grid, Segment, Modal, Image } from 'semantic-ui-react'
 
 
@@ -20,10 +20,9 @@ const BeerPage = (props) => {
     .then(data =>{
       setShowBeer(data)
     }) 
-  } 
+  }
 
   useEffect(() => {
-    
     fetchBeer() 
   }, [fetchBeer]) 
 
