@@ -14,28 +14,29 @@ const BeerPage = (props) => {
 
   // USE THIS WHEN TIME TO RUN
   
-  // const fetchBeer = () => {
-  //   fetch(`http://localhost:3001/api/v1/beers/${beerId}`)
-  //   .then(res => res.json())
-  //   .then(data =>{
-  //     setShowBeer(data)
-  //   }) 
-  // } 
+  const fetchBeer = () => {
+    fetch(`http://localhost:3001/api/v1/beers/${beerId}`)
+    .then(res => res.json())
+    .then(data =>{
+      setShowBeer(data)
+    }) 
+  } 
 
-  // useEffect(() => {
-  //   fetchBeer() 
-  // }, [fetchBeer]) 
+  useEffect(() => {
+    
+    fetchBeer() 
+  }, [fetchBeer]) 
 
-  useEffect (() => {
-    const fetchBeer = () => {
-      fetch(`http://localhost:3001/api/v1/beers/${beerId}`)
-      .then(res => res.json())
-      .then(data =>{
-        setShowBeer(data)
-      }) 
-    } 
-    fetchBeer()
-  }, [showBeer])
+  // useEffect (() => {
+  //   const fetchBeer = () => {
+  //     fetch(`http://localhost:3001/api/v1/beers/${beerId}`)
+  //     .then(res => res.json())
+  //     .then(data =>{
+  //       setShowBeer(data)
+  //     }) 
+  //   } 
+  //   fetchBeer()
+  // }, [showBeer])
 
   const ratings = (beerArray) => {
     let average = beerArray.map( beer => beer.rating)
@@ -122,8 +123,6 @@ const BeerPage = (props) => {
                 icon='heart'
                 label={{ basic: true, color: 'red', pointing: 'left', content: showBeer.likes }}
               /> 
-          
-
               {favorite ? (<Button disabled>Already Bookmarked!</Button>)
               :(
               <Modal
