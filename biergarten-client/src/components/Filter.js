@@ -158,7 +158,7 @@ const Filter = (props) =>{
       label: { color: 'blue', empty: true, circular: true },
     }
   ]
-
+       
   return(
     <>
         {/* <label>Search by Recommended Drinking</label>
