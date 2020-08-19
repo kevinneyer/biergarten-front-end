@@ -76,7 +76,7 @@ const Review = (props) => {
       <Comment.Avatar src={review.user_image} />
       <Comment.Content>
         <Comment.Author><a href={`/users/${review.user_id}`}>{review.user}</a></Comment.Author>
-        <Comment.Metadata>{review.user_reviews.length} reviews</Comment.Metadata>
+        {review.user_reviews? <Comment.Metadata>{review.user_reviews.length} reviews</Comment.Metadata> : null }
         <Comment.Text><Rating defaultRating={review.rating} maxRating={review.rating} disabled /> {review.content}</Comment.Text>
         <Comment.Actions>
       {props.currentUser ? props.currentUser.id === review.user_id ? <Comment.Action onClick={() => removeHandler(review.review_id)}>Delete Review</Comment.Action> : ''  : null }

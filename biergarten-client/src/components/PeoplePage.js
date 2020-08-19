@@ -14,28 +14,28 @@ const PeoplePage = (props) => {
 
   //USE THIS WHEN TIME TO RUN
 
-  // const fetchPerson = () => {
-  //   fetch(`http://localhost:3001/api/v1/users/${peopleId}`)
-  //   .then(res => res.json())
-  //   .then(data =>{
-  //     setShowPerson(data)
-  //   }) 
-  // } 
+  const fetchPerson = () => {
+    fetch(`http://localhost:3001/api/v1/users/${peopleId}`)
+    .then(res => res.json())
+    .then(data =>{
+      setShowPerson(data)
+    }) 
+  } 
 
-  // useEffect(() => {
-  //   fetchPerson() 
-  // }, [fetchPerson]) 
+  useEffect(() => {
+    fetchPerson() 
+  }, [fetchPerson]) 
 
-  useEffect (() => {
-    const fetchPerson = () => {
-      fetch(`http://localhost:3001/api/v1/users/${peopleId}`)
-      .then(res => res.json())
-      .then(data =>{
-         setShowPerson(data)      
-        }) 
-    } 
-    fetchPerson()
-  }, [])
+  // useEffect (() => {
+  //   const fetchPerson = () => {
+  //     fetch(`http://localhost:3001/api/v1/users/${peopleId}`)
+  //     .then(res => res.json())
+  //     .then(data =>{
+  //        setShowPerson(data)      
+  //       }) 
+  //   } 
+  //   fetchPerson()
+  // }, [])
 
   useEffect(() => {
     if(showPerson){
