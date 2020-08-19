@@ -24,7 +24,7 @@ const PeoplePage = (props) => {
 
   useEffect(() => {
     fetchPerson() 
-  }, [followers, following]) 
+  }, [following]) 
 
   // useEffect (() => {
   //   function fetchPerson() {
