@@ -24,6 +24,8 @@ const BeerCards = (props) =>{
         <BlockHeader />
         <div class="ui divider"></div>
         <Filter search={props.search} searchHandler={props.searchHandler} filterChange={props.filterChange} sortHandler={props.sortHandler} />
+        <br/>
+        <Divider section={true} />
         <div>
             <div className="beer-contain">
               <Grid className="grid" columns={8}>  
@@ -32,9 +34,9 @@ const BeerCards = (props) =>{
                 props.beers.map( (beer, key) =>
                 // <Grid.Column  padded='vertically'>
                 <Card className='index-card' raised>
-                <Image src={beer.img_url} wrapped ui={false} size='mini' />
+                <Image src={beer.img_url} centered size='small' />  {/*wrapped ui={false}*/}
                 <Card.Content>
-                <Card.Header >{beer.name}</Card.Header><br />
+                <Card.Header>{beer.name}</Card.Header><br />
                 <Card.Meta textAlign="center">
                 <span className='date'>
                   <h3>Brewer: {beer.brewery}</h3> 

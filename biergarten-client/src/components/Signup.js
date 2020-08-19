@@ -71,10 +71,12 @@ const Signup = (props) => {
   console.log(password, confirmPassword)
   return(
     <div>
-      <div className='signup-form'>
+    
       <h3>Signup!</h3>
+      <Segment raised textAlign='center'>
       <Form onSubmit={handleSignup}>
         <Form.Input
+        centered
          className='signup-input'
           icon='user'
           iconPosition='left'
@@ -133,6 +135,8 @@ const Signup = (props) => {
 
         <Button content='Signup' primary />
         </Form>
+
+        </Segment>
       {/* <form onSubmit={handleSignup}>
         <input onChange={handleUsername} value={username} type="text" placeholder="username"/><br></br>
         <input onChange={handleEmail} value={email} type="text" placeholder="email"/><br></br>
@@ -141,7 +145,7 @@ const Signup = (props) => {
         <input onChange={handleZipcode} value={zipcode} type="text" placeholder="zipcode" /><br></br>
         <button>Signup</button>
       </form> */}
-      </div>
+     
     </div>
   )
 }

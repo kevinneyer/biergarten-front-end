@@ -14,28 +14,28 @@ const PeoplePage = (props) => {
 
   //USE THIS WHEN TIME TO RUN
 
-  const fetchPerson = () => {
-    fetch(`http://localhost:3001/api/v1/users/${peopleId}`)
-    .then(res => res.json())
-    .then(data =>{
-      setShowPerson(data)
-    }) 
-  } 
+  // const fetchPerson = () => {
+  //   fetch(`http://localhost:3001/api/v1/users/${peopleId}`)
+  //   .then(res => res.json())
+  //   .then(data =>{
+  //     setShowPerson(data)
+  //   }) 
+  // } 
 
-  useEffect(() => {
-    fetchPerson() 
-  }, [fetchPerson]) 
+  // useEffect(() => {
+  //   fetchPerson() 
+  // }, [fetchPerson]) 
 
-  // useEffect (() => {
-  //   const fetchPerson = () => {
-  //     fetch(`http://localhost:3001/api/v1/users/${peopleId}`)
-  //     .then(res => res.json())
-  //     .then(data =>{
-  //        setShowPerson(data)      
-  //       }) 
-  //   } 
-  //   fetchPerson()
-  // }, [])
+  useEffect (() => {
+    const fetchPerson = () => {
+      fetch(`http://localhost:3001/api/v1/users/${peopleId}`)
+      .then(res => res.json())
+      .then(data =>{
+         setShowPerson(data)      
+        }) 
+    } 
+    fetchPerson()
+  }, [])
 
   useEffect(() => {
     if(showPerson){
@@ -100,7 +100,7 @@ const PeoplePage = (props) => {
       <Grid columns={3} relaxed='very'>
         <Grid.Column width={6}>
           <Segment raised>
-              <Card>
+              <Card centered>
               {showPerson ? <Image src={showPerson.image}/> : 'User Not found!' }
               <Card.Content >
                   {showPerson ? <Card.Header >{showPerson.username}</Card.Header> : 'User Not Found!'  }

@@ -37,14 +37,14 @@ class Favorites extends React.Component{
         return(
             <div>
                 <div className='favorites'>
-                <h3>Favorites: </h3>
+                <h3>Favorites </h3>
                 {this.state.favorites ? this.state.favorites.map((favorite, key) => 
                 // <li>
                 //   <a href={`/beers/${favorite.beer_id}`}>{favorite.beer}</a>
                 // </li>) 
                 // <div key={key} className='profile-favorite'>
-                    <Card>
-                    <Image src={favorite.image} size='small' />
+                    <Card centered>
+                    <Image src={favorite.image} size='small' centered/>
                     <Card.Content>
                       <Card.Header>{favorite.beer}</Card.Header>
                       <Card.Description>

@@ -25,7 +25,7 @@ class Profile extends React.Component{
           <Grid columns={3} relaxed='very'>
             <Grid.Column width={6}>
               <Segment raised>
-                  <Card>
+                  <Card centered>
                   {this.props.currentUser ?  <Image src={this.props.currentUser.image}/> : "No User. Please Login" }
                   {/* </div> */}
                   {/* <div class="content"> */}

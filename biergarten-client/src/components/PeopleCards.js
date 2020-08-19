@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { Grid, Segment, Card, Button, Image, Icon } from 'semantic-ui-react'
+import { Grid, Segment, Header, Card, Button, Image, Icon } from 'semantic-ui-react'
 
 const PeopleCards = (props) => {
 
@@ -13,23 +13,23 @@ const PeopleCards = (props) => {
             setUsers( users )
         })
     }, [])
-     console.log(users)
+ 
     return(
         <>
-        <div>
+        <Header as='h3' textAlign='center' dividing >All Users</Header>
+        
         <Card.Group itemsPerRow={3}>
           {users ? 
             users.map( (user, key) =>
           <Card raised>
-              <div key={key} className='beer-card'>
-               <Image src={user.image} size='small' alt={user.username}/>
+               <Image src={user.image} size='small' alt={user.username} centered/>
                <Card.Content>
                  <Card.Header>{user.username}</Card.Header>
                  <Card.Description>
                    Has {user.favorites.length} favorites
                 </Card.Description>
                 </Card.Content>
-                <Card.Content extra>
+                <Card.Content textAlign='center' extra>
                     <p><Icon name='user' />
                       {user.followers.length} Followers
                     </p>
@@ -42,14 +42,14 @@ const PeopleCards = (props) => {
                <p>Followers: {user.followers.length} </p>
                <p>Following: {user.followeds.length} </p>
                <Button color='blue' onClick={() => props.history.push(`${props.match.path}${user.id}`)}>{`See ${user.username}\'s profile`}</Button> */}
-              </div>
               </Card>
+        
           )
            :
            <div>Loading</div>
         }
         </Card.Group>
-        </div>
+       
         </>
     )
 }
