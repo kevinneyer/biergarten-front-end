@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-import { Button, Divider, Form, Grid, Segment } from 'semantic-ui-react'
+import { Header, Button, Divider, Form, Grid, Segment } from 'semantic-ui-react'
 
 
 const Signup = (props) => {
@@ -68,13 +68,14 @@ const Signup = (props) => {
       alert('Passwords do not match!')
 
   }
-  console.log(password, confirmPassword)
+
   return(
     <div>
-      <div className='signup-form'>
-      <h3>Signup!</h3>
+      <Header textAlign='center' as='h3'>Signup!</Header>
+      <Segment raised textAlign='center'>
       <Form onSubmit={handleSignup}>
         <Form.Input
+        centered
          className='signup-input'
           icon='user'
           iconPosition='left'
@@ -133,6 +134,8 @@ const Signup = (props) => {
 
         <Button content='Signup' primary />
         </Form>
+
+        </Segment>
       {/* <form onSubmit={handleSignup}>
         <input onChange={handleUsername} value={username} type="text" placeholder="username"/><br></br>
         <input onChange={handleEmail} value={email} type="text" placeholder="email"/><br></br>
@@ -141,7 +144,7 @@ const Signup = (props) => {
         <input onChange={handleZipcode} value={zipcode} type="text" placeholder="zipcode" /><br></br>
         <button>Signup</button>
       </form> */}
-      </div>
+     
     </div>
   )
 }

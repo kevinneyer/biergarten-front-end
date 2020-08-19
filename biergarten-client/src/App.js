@@ -3,7 +3,7 @@ import HomeContainer from './containers/HomeContainer'
 
 function App() {
   return (
-    <div>
+    <div> 
         <HomeContainer />
     </div>
   )

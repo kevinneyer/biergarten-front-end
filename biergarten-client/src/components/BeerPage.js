@@ -14,28 +14,28 @@ const BeerPage = (props) => {
 
   // USE THIS WHEN TIME TO RUN
   
-  const fetchBeer = () => {
-    fetch(`http://localhost:3001/api/v1/beers/${beerId}`)
-    .then(res => res.json())
-    .then(data =>{
-      setShowBeer(data)
-    }) 
-  } 
+  // const fetchBeer = () => {
+  //   fetch(`http://localhost:3001/api/v1/beers/${beerId}`)
+  //   .then(res => res.json())
+  //   .then(data =>{
+  //     setShowBeer(data)
+  //   }) 
+  // } 
 
-  useEffect(() => {
-    fetchBeer() 
-  }, [fetchBeer]) 
+  // useEffect(() => {
+  //   fetchBeer() 
+  // }, [fetchBeer]) 
 
-  // useEffect (() => {
-  //   const fetchBeer = () => {
-  //     fetch(`http://localhost:3001/api/v1/beers/${beerId}`)
-  //     .then(res => res.json())
-  //     .then(data =>{
-  //       setShowBeer(data)
-  //     }) 
-  //   } 
-  //   fetchBeer()
-  // }, [])
+  useEffect (() => {
+    const fetchBeer = () => {
+      fetch(`http://localhost:3001/api/v1/beers/${beerId}`)
+      .then(res => res.json())
+      .then(data =>{
+        setShowBeer(data)
+      }) 
+    } 
+    fetchBeer()
+  }, [])
 
   const ratings = (beerArray) => {
     let average = beerArray.map( beer => beer.rating)
@@ -100,13 +100,13 @@ const BeerPage = (props) => {
   useEffect(() => {
     isFavorite()
   },[isFavorite])
-  console.log(showBeer)
+ 
   return (
     <div>
       <Segment>
         <Grid columns={2} relaxed='very'>
           <Grid.Column>
-            <div className=''>
+          
               <h1>{showBeer.name}</h1>
               <h3>by {showBeer.brewery}</h3>
               <img className='show-image' src={showBeer.img_url} alt={showBeer.name} />
@@ -118,6 +118,8 @@ const BeerPage = (props) => {
                 icon='heart'
                 label={{ basic: true, color: 'red', pointing: 'left', content: showBeer.likes }}
               /> 
+          
+
               {favorite ? (<Button disabled>Already Favorited!</Button>)
               :(
               <Modal
@@ -154,7 +156,7 @@ const BeerPage = (props) => {
               <p>Recommended For: {showBeer.recommended_drinking}</p>
               {showBeer.reviews ? <p>Average Rating: {ratings(showBeer.reviews)}</p> : null}
             <p> See More from <a href={showBeer.url}>{showBeer.brewery}</a></p>
-            </div> 
+           
           </Grid.Column>
           <Grid.Column width={8}>
             <div className='review-div'>
