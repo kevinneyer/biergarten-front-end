@@ -103,14 +103,13 @@ const BeerPage = (props) => {
 
   useEffect(() => {
     isFavorite()
-  },[isFavorite])
+  },[showBeer.favorites])
  
   return (
     <div>
       <Segment>
         <Grid columns={2} relaxed='very'>
-          <Grid.Column>
-          
+          <Grid.Column> 
               <h1>{showBeer.name}</h1>
               <h3>by {showBeer.brewery}</h3>
               <img className='show-image' src={showBeer.img_url} alt={showBeer.name} />
@@ -125,17 +124,18 @@ const BeerPage = (props) => {
               {favorite ? (<Button disabled>Already Bookmarked!</Button>)
               :(
               <Modal
+                size='fullscreen'
                 onClose={() => setOpen(false)}
                 onOpen={() => setOpen(true)}
                 open={open}
                 trigger={<Button color='blue'>Bookmark this Beer</Button>}
               >
-                <Modal.Header>Select as favorite?</Modal.Header>
+                <Modal.Header>Select as desired Beer?</Modal.Header>
                 <Modal.Content image>
-                  <Image size='medium' src={showBeer.img_url} wrapped />
+                  <Image size='medium' src={showBeer.img_url}  />
                   <Modal.Description>
-                    <p> You've selected to favorite {showBeer.name}</p>
-                    <p>Do you want to favorite?</p>
+                    <p> You've selected {showBeer.name}</p>
+                    <p>Do you want to add to desired beers?</p>
                   </Modal.Description>
                 </Modal.Content>
                 <Modal.Actions>
