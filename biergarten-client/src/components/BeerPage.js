@@ -35,7 +35,7 @@ const BeerPage = (props) => {
       }) 
     } 
     fetchBeer()
-  }, [])
+  }, [showBeer])
 
   const ratings = (beerArray) => {
     let average = beerArray.map( beer => beer.rating)
