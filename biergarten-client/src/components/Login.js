@@ -35,10 +35,13 @@ const Login = (props) => {
               alert(data.errors)
           }
           else 
-            (props.setUser(data))
+           
             // setPassword('')
             // setUsername('')
+            
+            props.setUser(data) 
             props.history.push('/profile')
+          
       })
     }
 

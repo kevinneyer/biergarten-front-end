@@ -1,6 +1,6 @@
 import React from 'react'
 import Review from './Review'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import {Button, Divider, Grid, Segment, Modal, Image } from 'semantic-ui-react'
 
 
@@ -14,28 +14,28 @@ const BeerPage = (props) => {
 
   // USE THIS WHEN TIME TO RUN
   
-  // const fetchBeer = () => {
-  //   fetch(`http://localhost:3001/api/v1/beers/${beerId}`)
-  //   .then(res => res.json())
-  //   .then(data =>{
-  //     setShowBeer(data)
-  //   }) 
-  // } 
+  const fetchBeer = () => {
+    fetch(`http://localhost:3001/api/v1/beers/${beerId}`)
+    .then(res => res.json())
+    .then(data =>{
+      setShowBeer(data)
+    }) 
+  }
 
-  // useEffect(() => {
-  //   fetchBeer() 
-  // }, [fetchBeer]) 
+  useEffect(() => {
+    fetchBeer() 
+  }, [fetchBeer]) 
 
-  useEffect (() => {
-    const fetchBeer = () => {
-      fetch(`http://localhost:3001/api/v1/beers/${beerId}`)
-      .then(res => res.json())
-      .then(data =>{
-        setShowBeer(data)
-      }) 
-    } 
-    fetchBeer()
-  }, [])
+  // useEffect (() => {
+  //   const fetchBeer = () => {
+  //     fetch(`http://localhost:3001/api/v1/beers/${beerId}`)
+  //     .then(res => res.json())
+  //     .then(data =>{
+  //       setShowBeer(data)
+  //     }) 
+  //   } 
+  //   fetchBeer()
+  // }, [showBeer])
 
   const ratings = (beerArray) => {
     let average = beerArray.map( beer => beer.rating)
@@ -50,6 +50,7 @@ const BeerPage = (props) => {
   }
 
   const likeHandler = () => {
+    if(props.currentUser){
     fetch(`http://localhost:3001/api/v1/beers/${beerId}`, {
       method: 'PATCH',
       headers: {
@@ -62,6 +63,9 @@ const BeerPage = (props) => {
       .then(data => {
         setShowBeer(data)
       })
+    }
+    else 
+      alert('You need to be logged in!')
   }
 
   const favoriteHandler = () => {
@@ -118,15 +122,13 @@ const BeerPage = (props) => {
                 icon='heart'
                 label={{ basic: true, color: 'red', pointing: 'left', content: showBeer.likes }}
               /> 
-          
-
-              {favorite ? (<Button disabled>Already Favorited!</Button>)
+              {favorite ? (<Button disabled>Already Bookmarked!</Button>)
               :(
               <Modal
                 onClose={() => setOpen(false)}
                 onOpen={() => setOpen(true)}
                 open={open}
-                trigger={<Button color='blue'>Add as a Favorite!</Button>}
+                trigger={<Button color='blue'>Bookmark this Beer</Button>}
               >
                 <Modal.Header>Select as favorite?</Modal.Header>
                 <Modal.Content image>

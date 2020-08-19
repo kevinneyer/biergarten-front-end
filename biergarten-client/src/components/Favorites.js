@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, Icon, Image, Button } from 'semantic-ui-react'
+import { Card, Icon, Image, Button , Header} from 'semantic-ui-react'
 
 class Favorites extends React.Component{
 
@@ -37,7 +37,7 @@ class Favorites extends React.Component{
         return(
             <div>
                 <div className='favorites'>
-                <h3>Favorites </h3>
+                <Header centered as='h3' content='Desired Beers!'/>
                 {this.state.favorites ? this.state.favorites.map((favorite, key) => 
                 // <li>
                 //   <a href={`/beers/${favorite.beer_id}`}>{favorite.beer}</a>

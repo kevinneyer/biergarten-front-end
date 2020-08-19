@@ -1,6 +1,6 @@
 import React from 'react'
 import {useState, useEffect} from 'react'
-import {Card, Image, Button} from 'semantic-ui-react'
+import {Card, Image, Button, Header} from 'semantic-ui-react'
 
 const PeopleFavorites = (props) => {
 
@@ -18,7 +18,7 @@ const PeopleFavorites = (props) => {
 
     return(
         <div>
-            <h3>Favorites: </h3>
+            <Header as='h3' content='Desired Beers!' />
                 {favorites ? favorites.map((favorite, key) => 
                 // <li>
                 //   <a href={`/beers/${favorite.beer_id}`}>{favorite.beer}</a>

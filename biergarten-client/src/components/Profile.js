@@ -19,6 +19,7 @@ class Profile extends React.Component{
   
       return(
         <>
+      
         <h1 className='profile-header'>{this.props.currentUser ? this.props.currentUser.username + '\'s ' + 'Profile Page' : 'Profile Page'}</h1>
           <Segment>
          
@@ -36,7 +37,7 @@ class Profile extends React.Component{
                     {this.props.currentUser ? 
                     <>
                     <Icon name='user' />
-                    <span>{this.props.currentUser.followers.length} followers</span>
+                   <span>{this.props.currentUser.followers.length} followers</span>
                     </>
                     :
                     null
@@ -144,6 +145,7 @@ class Profile extends React.Component{
 
           {/* <Divider vertical></Divider> */}
         </Segment>
+       
         </>
     )
   }

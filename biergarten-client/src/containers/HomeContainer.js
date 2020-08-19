@@ -53,7 +53,7 @@ const HomeContainer = () => {
         <Router>
           <Route exact path="/" component={HomePage} />
           <Route exact path="/profile" render={(routerProps) => <Profile currentUser={currentUser} {...routerProps} />} />
-          <Route exact path="/login" render={(routerProps) => <Login setUser={setUser} {...routerProps} />} />
+          <Route exact path="/login" render={(routerProps) => <Login setUser={setUser} currentUser={currentUser} {...routerProps} />} />
           <Route exact path="/signup" render={(routerProps) => <Signup setUser={setUser} {...routerProps} />} />
           <Route exact path="/breweries" render={(routerProps) => <MapContainer currentUser={currentUser} {...routerProps} />} />
           <Route exact path="/users/" render={(routerProps) => <PeopleCards currentUser={currentUser} {...routerProps} />} />
