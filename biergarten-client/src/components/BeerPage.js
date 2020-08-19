@@ -118,6 +118,8 @@ const BeerPage = (props) => {
                 icon='heart'
                 label={{ basic: true, color: 'red', pointing: 'left', content: showBeer.likes }}
               /> 
+          
+
               {favorite ? (<Button disabled>Already Favorited!</Button>)
               :(
               <Modal
