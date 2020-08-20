@@ -3,6 +3,8 @@ import BeerCards from '../components/BeerCards'
 import BeerPage from '../components/BeerPage'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 import { useState, useEffect } from 'react'
+import Login from '../components/Login'
+import Signup from '../components/Signup'
 
 const BeerContainer = (props) => {
 
@@ -102,6 +104,8 @@ const BeerContainer = (props) => {
       <Router>
         <Route exact path="/beers" render={(routerProps) => <BeerCards beers={filteredBeers} search={search} searchHandler={searchHandler} filterChange={filterChange} sortHandler={sortHandler} {...routerProps} />} />
         <Route exact path="/beers/:id" render={(routerProps) => <BeerPage beers={filteredBeers} currentUser={props.currentUser} {...routerProps} />} />
+        <Route exact path="/login" render={(routerProps) => <Login beers={filteredBeers} setUser={props.setUser} currentUser={props.currentUser} {...routerProps} />} />
+        <Route exact path="/signup" render={(routerProps) => <Signup beers={filteredBeers} setUser={props.setUser} {...routerProps} />} />
       </Router>
     </>
   )

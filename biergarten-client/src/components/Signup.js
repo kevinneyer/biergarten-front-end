@@ -60,7 +60,9 @@ const Signup = (props) => {
         }
         else
           props.setUser(data)
+          if(props.beers){
           props.history.push('/beers')
+          }
       })
     }
     else

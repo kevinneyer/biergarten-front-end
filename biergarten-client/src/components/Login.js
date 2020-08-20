@@ -36,7 +36,9 @@ const Login = (props) => {
         }
         else           
           props.setUser(data) 
-          props.history.push('/beers')
+          if(props.beers){
+            props.history.push('/beers')
+          }
     })
   }
 

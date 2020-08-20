@@ -49,12 +49,12 @@ const HomeContainer = () => {
   return(
     <div>
         <NavBar currentUser={currentUser} logout={logout}/>
-        <BeerContainer currentUser={currentUser} />
+        <BeerContainer setUser={setUser} currentUser={currentUser} />
         <Router>
           <Route exact path="/" component={HomePage} />
           <Route exact path="/profile" render={(routerProps) => <Profile currentUser={currentUser} {...routerProps} />} />
-          <Route exact path="/login" render={(routerProps) => <Login setUser={setUser} currentUser={currentUser} {...routerProps} />} />
-          <Route exact path="/signup" render={(routerProps) => <Signup setUser={setUser} {...routerProps} />} />
+          {/* <Route exact path="/login" render={(routerProps) => <Login setUser={setUser} currentUser={currentUser} {...routerProps} />} />
+          <Route exact path="/signup" render={(routerProps) => <Signup setUser={setUser} {...routerProps} />} /> */}
           <Route exact path="/breweries" render={(routerProps) => <MapContainer currentUser={currentUser} {...routerProps} />} />
           <Route exact path="/users/" render={(routerProps) => <PeopleCards currentUser={currentUser} {...routerProps} />} />
           <Route exact path="/users/:id" render={(routerProps) => <PeoplePage currentUser={currentUser} {...routerProps} />} />
