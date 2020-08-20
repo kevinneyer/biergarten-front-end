@@ -6,9 +6,7 @@ import { Comment, Header, Rating, Segment } from 'semantic-ui-react'
 
 const Review = (props) => {
   
-  //const [reviewContent, setReviewContent] = useState('')
   const [reviews, setReviews] = useState([])
-  const [loggedIn, setLoggedIn] = useState(null)
 
   useEffect(() => {
     setReviews(props.beer.reviews)
@@ -56,12 +54,6 @@ const Review = (props) => {
        setReviews(newReviews)
     })
   }
-
-  useEffect(() => {
-    if(props.currentUser){
-      setLoggedIn(true)
-    }
-  })
 
   return(
     <>

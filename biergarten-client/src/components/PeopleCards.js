@@ -36,7 +36,7 @@ const PeopleCards = (props) => {
                     <p><Icon name='user' />
                       Following {user.followeds.length} 
                     </p>
-                    <Button color='blue' onClick={() => props.history.push(`${props.match.path}${user.id}`)}>{`See ${user.username}\'s profile`}</Button>
+                    <Button color='black' onClick={() => props.history.push(`${props.match.path}${user.id}`)}>{`See ${user.username}\'s profile`}</Button>
                     </Card.Content>
                {/* <h3>Username: {user.username}</h3> 
                <p>Followers: {user.followers.length} </p>
