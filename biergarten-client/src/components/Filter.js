@@ -161,53 +161,45 @@ const Filter = (props) =>{
        
   return(
     <>
-        {/* <label>Search by Recommended Drinking</label>
-        <input onChange={props.searchHandler} value={props.search} type="text" placeholder="Search" /> */}
-       
-        <Header as='h4'>
-          <Header.Content inline>
-            Filter beers{' '}
-            <Dropdown
-              inline
-              onChange={props.filterChange}
-             
-              header='Select Style Option'
-              options={filterOptions}
-              defaultValue=''
-            />
-          </Header.Content>
-        </Header>
-    
-        <Header as='h4'>
-            <Header.Content inline>
-              Sort beers by {' '}
-              <Dropdown
-                inline
-                onChange={props.sortHandler}
-                
-                header='Select Sort Option'
-                options={sortOptions}
-                defaultValue=''
-              />
-            </Header.Content>
-          </Header>
-        
-          <Header as='h4'>
-            <Header.Content >
-              View beers by recommended drinking {' '}
-              <Dropdown
-                inline
-                onChange={props.searchHandler}
-                value={props.search}
-                
-                header='Select category'
-                options={recommendedDrinking}
-                defaultValue=''
-              />
-            </Header.Content>
-          </Header>
-      </>
-    )
+      <Header as='h4'>
+        <Header.Content inline>
+          Filter beers{' '}
+          <Dropdown
+            inline
+            onChange={props.filterChange}
+            header='Select Style Option'
+            options={filterOptions}
+            defaultValue=''
+          />
+        </Header.Content>
+      </Header>
+      <Header as='h4'>
+        <Header.Content inline>
+          Sort beers by {' '}
+          <Dropdown
+            inline
+            onChange={props.sortHandler}
+            header='Select Sort Option'
+            options={sortOptions}
+            defaultValue=''
+          />
+        </Header.Content>
+      </Header>
+      <Header as='h4'>
+        <Header.Content >
+          View beers by recommended drinking {' '}
+          <Dropdown
+            inline
+            onChange={props.searchHandler}
+            value={props.search}
+            header='Select category'
+            options={recommendedDrinking}
+            defaultValue=''
+          />
+        </Header.Content>
+      </Header>
+    </>
+  )
 }
 
 export default Filter 

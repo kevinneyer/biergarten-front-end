@@ -88,22 +88,21 @@ class MapContainer extends React.Component {
       </Segment>
       )
     }
-     console.log(this.state)
+
     return (
       <>
-      <Map 
-      style={style} 
-      google={google}
-      zoom={14}
-      initialCenter={userLocation}
-      onReady={this.fetchPlaces}
-      
-      >
-      <Marker
-      name={'Your location'}
-      position={{ lat: userLocation.lat, lng: userLocation.lng} } />
-      </Map>
-
+        <Map 
+        style={style} 
+        google={google}
+        zoom={14}
+        initialCenter={userLocation}
+        onReady={this.fetchPlaces}
+        
+        >
+        <Marker
+        name={'Your location'}
+        position={{ lat: userLocation.lat, lng: userLocation.lng} } />
+        </Map>
       </>
     )
   }
