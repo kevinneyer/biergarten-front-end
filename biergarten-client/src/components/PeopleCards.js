@@ -26,7 +26,7 @@ const PeopleCards = (props) => {
                <Card.Content>
                  <Card.Header>{user.username}</Card.Header>
                  <Card.Description>
-                   Has {user.favorites.length} favorites
+                   Has {user.favorites.length} desired beers.
                 </Card.Description>
                 </Card.Content>
                 <Card.Content textAlign='center' extra>

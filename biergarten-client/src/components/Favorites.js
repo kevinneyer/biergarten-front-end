@@ -53,7 +53,7 @@ class Favorites extends React.Component{
                     </Card.Content>
                     <Card.Content extra>
                         <span><Button color='black' href={`/beers/${favorite.beer_id}`}>See More Info</Button></span>
-                        <span><Button color='red' onClick={() => this.removeHandler(favorite.favorite_id)}>Remove from Favorites</Button></span>
+                        <span><Button color='red' onClick={() => this.removeHandler(favorite.favorite_id)}>Remove from Desired Beer</Button></span>
                         </Card.Content>
                 
                 {/* <img className='card-image' src={favorite.image} alt={favorite.beer}/> */}

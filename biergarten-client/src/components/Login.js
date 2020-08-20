@@ -40,7 +40,7 @@ const Login = (props) => {
             // setUsername('')
             
             props.setUser(data) 
-            props.history.push('/profile')
+            props.history.push('/beers')
           
       })
     }
