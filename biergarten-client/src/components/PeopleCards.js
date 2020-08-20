@@ -40,12 +40,12 @@ const PeopleCards = (props) => {
           </Card>
           )
           :
-          <Segment>
+          (<Segment>
             <Dimmer active inverted>
               <Loader inverted content='Loading' />
             </Dimmer>
             <Image src='https://react.semantic-ui.com/images/wireframe/short-paragraph.png' />
-          </Segment>
+          </Segment>)
           }
         </Card.Group>
     </>
