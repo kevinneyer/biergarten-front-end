@@ -1,6 +1,6 @@
 import React from 'react'
 import PeopleFavorites from './PeopleFavorites'
-import { Divider,Card, Icon, Grid, Comment, Header, Segment, Button, Image, Feed } from 'semantic-ui-react'
+import { Divider,Card, Icon, Grid, Comment, Header, Segment, Button, Image, Feed, Rating } from 'semantic-ui-react'
 import { useState, useEffect } from 'react'
 import Relationships from './Relationship'
 
@@ -140,7 +140,7 @@ const PeoplePage = (props) => {
               <Comment key={key}>
                 <Comment.Content>
                   <Image src={review.beer_img} size='mini'/>  
-                  <Comment.Author href={`/beers/${review.beer_id}`}>{review.beer}</Comment.Author>
+                  <Comment.Author href={`/beers/${review.beer_id}`}>{review.beer} <Rating defaultRating={review.rating} maxRating={review.rating} disabled /></Comment.Author>
                   <Comment.Text>{review.content}</Comment.Text>
                 </Comment.Content>
               </Comment>)

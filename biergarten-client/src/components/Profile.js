@@ -1,6 +1,6 @@
 import React from 'react'
 import Favorites from './Favorites'
-import {  Grid, Comment, Header, Segment, Image, Card, Feed , Icon} from 'semantic-ui-react'
+import {  Grid, Comment, Header, Segment, Image, Card, Feed , Rating, Icon} from 'semantic-ui-react'
 
 class Profile extends React.Component{
   render(){
@@ -37,7 +37,7 @@ class Profile extends React.Component{
                     <Comment key={key}>
                       <Comment.Content>
                         <Image src={review.beer_img} size='mini'/>
-                        <Comment.Author href={`/beers/${review.beer_id}`}>{review.beer}</Comment.Author>
+                        <Comment.Author href={`/beers/${review.beer_id}`}>{review.beer} <Rating defaultRating={review.rating} maxRating={review.rating} disabled /></Comment.Author>
                         <Comment.Text>{review.content}</Comment.Text>
                       </Comment.Content>
                   </Comment>
