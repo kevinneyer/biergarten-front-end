@@ -1,7 +1,7 @@
 import React from 'react'
 import Filter from './Filter'
 import BlockHeader from '../BlockHeader'
-import { Button, Image, Card, Divider} from 'semantic-ui-react'
+import { Button, Image, Card, Divider, Segment, Header} from 'semantic-ui-react'
 
 const BeerCards = (props) =>{
     
@@ -29,13 +29,14 @@ const BeerCards = (props) =>{
       />
       <br/>
       <Divider section={true} />
-        <Card.Group itemsPerRow={4}>
+      
+        <Card.Group  textAlign='center' itemsPerRow={4}>
         {props.beers ? 
           props.beers.map( (beer, key) =>
-            <Card key={key} className='index-card' raised>
+            <Card key={key} raised>
               <Image src={beer.img_url} centered size='small' />
               <Card.Content >
-                <Card.Header >{beer.name}</Card.Header><br />
+                <Card.Header>{beer.name}</Card.Header><br />
                 <Card.Meta textAlign="center">
                   <span>
                     <h3>Brewer: {beer.brewery}</h3> 
