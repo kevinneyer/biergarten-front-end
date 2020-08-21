@@ -1,7 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-import { Header, Button, Divider, Form, Grid, Segment } from 'semantic-ui-react'
-
+import { Header, Button, Form, Segment } from 'semantic-ui-react'
 
 const Signup = (props) => {
 
@@ -61,7 +60,9 @@ const Signup = (props) => {
         }
         else
           props.setUser(data)
+          if(props.beers){
           props.history.push('/beers')
+          }
       })
     }
     else
@@ -75,8 +76,8 @@ const Signup = (props) => {
       <Segment raised textAlign='center'>
       <Form onSubmit={handleSignup}>
         <Form.Input
-        centered
-         className='signup-input'
+          centered
+          className='signup-input'
           icon='user'
           iconPosition='left'
           label='Username'
@@ -85,7 +86,7 @@ const Signup = (props) => {
           value={username}
         />
         <Form.Input
-        className='signup-input'
+          className='signup-input'
           icon='mail'
           iconPosition='left'
           label='email'
@@ -94,7 +95,7 @@ const Signup = (props) => {
           value={email}
         />
         <Form.Input
-        className='signup-input'
+          className='signup-input'
           icon='lock'
           iconPosition='left'
           label='Password'
@@ -104,7 +105,7 @@ const Signup = (props) => {
           value={password}
         />
         <Form.Input
-        className='signup-input'
+          className='signup-input'
           icon='lock'
           iconPosition='left'
           label='Confirm Password'
@@ -131,20 +132,10 @@ const Signup = (props) => {
           onChange={handleImage} 
           value={image} 
         />
-
         <Button content='Signup' primary />
         </Form>
 
-        </Segment>
-      {/* <form onSubmit={handleSignup}>
-        <input onChange={handleUsername} value={username} type="text" placeholder="username"/><br></br>
-        <input onChange={handleEmail} value={email} type="text" placeholder="email"/><br></br>
-        <input onChange={handlePassword} value={password} type="password" placeholder="password"/><br></br>
-        <input onChange={handleConfirmPassword} value={confirmPassword} type="password" placeholder= "confirm password"/><br></br>
-        <input onChange={handleZipcode} value={zipcode} type="text" placeholder="zipcode" /><br></br>
-        <button>Signup</button>
-      </form> */}
-     
+      </Segment>     
     </div>
   )
 }

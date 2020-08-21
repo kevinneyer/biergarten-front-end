@@ -11,31 +11,18 @@ const BeerPage = (props) => {
   const [showBeer, setShowBeer] = useState([])
   const [open, setOpen] = useState(false)
   const [favorite, setFavorite] = useState(null)
-
-  // USE THIS WHEN TIME TO RUN
   
-  // const fetchBeer = () => {
-  //   fetch(`http://localhost:3001/api/v1/beers/${beerId}`)
-  //   .then(res => res.json())
-  //   .then(data =>{
-  //     setShowBeer(data)
-  //   }) 
-  // }
+  const fetchBeer = () => {
+    fetch(`http://localhost:3001/api/v1/beers/${beerId}`)
+    .then(res => res.json())
+    .then(data =>{
+      setShowBeer(data)
+    }) 
+  }
 
-  // useEffect(() => {
-  //   fetchBeer() 
-  // }, [fetchBeer]) 
-
-  useEffect (() => {
-    const fetchBeer = () => {
-      fetch(`http://localhost:3001/api/v1/beers/${beerId}`)
-      .then(res => res.json())
-      .then(data =>{
-        setShowBeer(data)
-      }) 
-    } 
-    fetchBeer()
-  }, [])
+  useEffect(() => {
+    fetchBeer() 
+  }, [fetchBeer])
 
   const ratings = (beerArray) => {
     let average = beerArray.map( beer => beer.rating)
@@ -51,18 +38,18 @@ const BeerPage = (props) => {
 
   const likeHandler = () => {
     if(props.currentUser){
-    fetch(`http://localhost:3001/api/v1/beers/${beerId}`, {
-      method: 'PATCH',
-      headers: {
-        'content-type': 'application/json',
-        accept: 'application/json'
-      },
-      body: JSON.stringify({ likes: showBeer.likes += 1 })
-      })
-      .then(res => res.json())
-      .then(data => {
-        setShowBeer(data)
-      })
+      fetch(`http://localhost:3001/api/v1/beers/${beerId}`, {
+        method: 'PATCH',
+        headers: {
+          'content-type': 'application/json',
+          accept: 'application/json'
+        },
+        body: JSON.stringify({ likes: showBeer.likes += 1 })
+        })
+        .then(res => res.json())
+        .then(data => {
+          setShowBeer(data)
+        })
     }
     else 
       alert('You need to be logged in!')
@@ -113,7 +100,6 @@ const BeerPage = (props) => {
               <h1>{showBeer.name}</h1>
               <h3>by {showBeer.brewery}</h3>
               <img className='show-image' src={showBeer.img_url} alt={showBeer.name} />
-              {/* <p>Likes {showBeer.likes} <button onClick={() => likeHandler()}>like</button></p> */}
               <Button
                 onClick={() => likeHandler()}
                 color='red'
@@ -121,35 +107,33 @@ const BeerPage = (props) => {
                 icon='heart'
                 label={{ basic: true, color: 'red', pointing: 'left', content: showBeer.likes }}
               /> 
-              {favorite ? (<Button disabled>Already Bookmarked!</Button>)
-              :(
-              <Modal
-                size='large'
+              {favorite ? 
+                (<Button disabled>Already Bookmarked!</Button>)
+              :
+              ( <Modal
+                size='small'
                 onClose={() => setOpen(false)}
                 onOpen={() => setOpen(true)}
                 open={open}
                 trigger={<Button color='blue'>Bookmark this Beer</Button>}
-              >
-                <Modal.Header as='h3' content='Select as desired Beer?' />
-                <Modal.Content image>
-                  <Image size='medium' src={showBeer.img_url}  />
-                  <Modal.Description>
-                    <p> You've selected {showBeer.name}</p>
-                    <p>Do you want to add to desired beers?</p>
-                  </Modal.Description>
-                </Modal.Content>
-                <Modal.Actions>
-                  <Button color='black' onClick={() => setOpen(false)}>Nope</Button>
-                  <Button
-                    content="Yep!"
-                    labelPosition='right'
-                    icon='checkmark'
-                    // onClick={favoriteHandler}
-                    onClick={favoriteHandler}
-                    positive
-                  />
-                </Modal.Actions>
-                {/* <Button onClick={favoriteHandler} content='Add as a Favorite!' primary /> */}
+                >
+                  <Modal.Content image>
+                    <Image size='medium' src={showBeer.img_url}  />
+                    <Modal.Description>
+                      <h3> You've selected {showBeer.name}</h3>
+                      <h3>Do you want to add to desired beers?</h3>
+                    </Modal.Description>
+                  </Modal.Content>
+                  <Modal.Actions>
+                    <Button color='black' onClick={() => setOpen(false)}>Nope</Button>
+                    <Button
+                      content="Yep!"
+                      labelPosition='right'
+                      icon='checkmark'
+                      onClick={favoriteHandler}
+                      positive
+                    />
+                  </Modal.Actions>
               </Modal>
               
               )}
@@ -160,14 +144,14 @@ const BeerPage = (props) => {
               {showBeer.reviews ? <p>Average Rating: {ratings(showBeer.reviews)}</p> : null}
               <p> See More from <a href={showBeer.url}>{showBeer.brewery}</a></p>
           </Grid.Column>
-          <Divider vertical/>
           <Grid.Column width={6}>
-              {showBeer ? <Review beer={showBeer} currentUser={props.currentUser} /> : null }
+              {showBeer ? 
+              <Review beer={showBeer} currentUser={props.currentUser} /> : null }
           </Grid.Column>
         </Grid>
-       
+        <Divider vertical/>
       </Segment>
-     </div>
+    </div>
   )
 }
 

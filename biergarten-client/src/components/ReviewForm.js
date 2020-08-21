@@ -1,7 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-import { Rating } from 'semantic-ui-react'
-import { Button, Comment, Form, Header } from 'semantic-ui-react'
+import { Button, Form, Rating, Header} from 'semantic-ui-react'
 
 const ReviewForm = (props) => {
 
@@ -9,26 +8,23 @@ const ReviewForm = (props) => {
   const [rating, setRating] = useState(0)
 
   const changeHandler = (e) => {
-      setReview(e.target.value)
+    setReview(e.target.value)
   }
 
   const submitHandler = (e, content, rating) => {
-      // console.log(content)
-      e.preventDefault();
-      setReview('')
-      props.handleContent(content, rating)
+    e.preventDefault();
+    setReview('')
+    props.handleContent(content, rating)
   }
 
   const handleRate = (e) =>{
     setRating(e.target.value)
   }
-  console.log(rating)
+
   return(
-      <div> 
-        <div>
-              Rate this beer! 
-              <br/>
-        <div>
+    <> 
+      <div>
+        <Header as='h4' content={'Rate this beer!'} />
         <div>Rating: {rating}</div>
         <input
           type='range'
@@ -39,18 +35,14 @@ const ReviewForm = (props) => {
         />
         <br />
         <Rating rating={rating} maxRating={5} />
-        </div>
       </div>
-        <label>Leave a review of {props.beer.name}</label>
-        <Form reply onSubmit={(e) => submitHandler(e, review, rating)} className='review-form'>
+      <br />
+      <label>Leave a review of {props.beer.name}</label>
+      <Form reply onSubmit={(e) => submitHandler(e, review, rating)} className='review-form'>
         <Form.TextArea type='text' onChange={changeHandler} value={review} placeholder='leave a review'/>
         <Button content='Submit Review' labelPosition='left' icon='edit' primary />
-        </Form>
-        {/* <form onSubmit={(e) => submitHandler(e, review, rating)} className='review-form'>
-          <textarea type='text' onChange ={changeHandler} value={review} placeholder='leave a review'></textarea><br></br>
-          <button>Submit Review</button>
-        </form> */}
-      </div>
+      </Form>
+    </>
   )
 }
 

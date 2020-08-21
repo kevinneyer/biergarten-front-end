@@ -1,7 +1,6 @@
 import React from 'react'
 import {Map, GoogleApiWrapper, Marker, Listing, InfoWindow} from 'google-maps-react'
 import { Loader, Dimmer, Segment, Image } from 'semantic-ui-react'
-import { geocodeByPlaceId } from 'react-google-places-autocomplete';
 
 class MapContainer extends React.Component {
 
@@ -88,22 +87,21 @@ class MapContainer extends React.Component {
       </Segment>
       )
     }
-     console.log(this.state)
+
     return (
       <>
-      <Map 
-      style={style} 
-      google={google}
-      zoom={14}
-      initialCenter={userLocation}
-      onReady={this.fetchPlaces}
-      
-      >
-      <Marker
-      name={'Your location'}
-      position={{ lat: userLocation.lat, lng: userLocation.lng} } />
-      </Map>
-
+        <Map 
+        style={style} 
+        google={google}
+        zoom={14}
+        initialCenter={userLocation}
+        onReady={this.fetchPlaces}
+        
+        >
+        <Marker
+        name={'Your location'}
+        position={{ lat: userLocation.lat, lng: userLocation.lng} } />
+        </Map>
       </>
     )
   }
