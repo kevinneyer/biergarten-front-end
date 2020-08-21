@@ -5,10 +5,8 @@ import HomePage from '../components/HomePage'
 import Profile from '../components/Profile'
 import PeoplePage from '../components/PeoplePage'
 import PeopleCards from '../components/PeopleCards'
-import Login from '../components/Login'
-import Signup from '../components/Signup'
-import {BrowserRouter as Router, Route} from 'react-router-dom'
 import MapContainer from './MapContainer'
+import {BrowserRouter as Router, Route} from 'react-router-dom'
 import { useState, useEffect } from 'react'
 
 
@@ -53,8 +51,6 @@ const HomeContainer = () => {
         <Router>
           <Route exact path="/" component={HomePage} />
           <Route exact path="/profile" render={(routerProps) => <Profile currentUser={currentUser} {...routerProps} />} />
-          {/* <Route exact path="/login" render={(routerProps) => <Login setUser={setUser} currentUser={currentUser} {...routerProps} />} />
-          <Route exact path="/signup" render={(routerProps) => <Signup setUser={setUser} {...routerProps} />} /> */}
           <Route exact path="/breweries" render={(routerProps) => <MapContainer currentUser={currentUser} {...routerProps} />} />
           <Route exact path="/users/" render={(routerProps) => <PeopleCards currentUser={currentUser} {...routerProps} />} />
           <Route exact path="/users/:id" render={(routerProps) => <PeoplePage currentUser={currentUser} {...routerProps} />} />

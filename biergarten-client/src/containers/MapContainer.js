@@ -1,7 +1,6 @@
 import React from 'react'
 import {Map, GoogleApiWrapper, Marker, Listing, InfoWindow} from 'google-maps-react'
 import { Loader, Dimmer, Segment, Image } from 'semantic-ui-react'
-import { geocodeByPlaceId } from 'react-google-places-autocomplete';
 
 class MapContainer extends React.Component {
 
