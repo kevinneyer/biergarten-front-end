@@ -8,7 +8,6 @@ const Signup = (props) => {
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [email, setEmail] = useState('')
-  const [zipcode, setZipcode] = useState('')
   const [image, setImage] = useState('')
 
   const handleUsername = (e) => {
@@ -25,10 +24,6 @@ const Signup = (props) => {
   
   const handleConfirmPassword = (e) => {
     setConfirmPassword(e.target.value)
-  }
-
-  const handleZipcode = (e) => {
-    setZipcode(e.target.value)
   }
   
   const handleImage = (e) => {
@@ -48,7 +43,6 @@ const Signup = (props) => {
           username: username,
           email: email,
           password: password,
-          zipcode: zipcode,
           image: image
         })
       })
@@ -113,15 +107,6 @@ const Signup = (props) => {
           type='password'
           onChange={handleConfirmPassword} 
           value={confirmPassword}
-        />
-        <Form.Input
-          className='signup-input'
-          icon='home'
-          iconPosition='left'
-          label='Zipcode'
-          placeholder='zipcode'
-          onChange={handleZipcode} 
-          value={zipcode} 
         />
         <Form.Input
           className='signup-input'

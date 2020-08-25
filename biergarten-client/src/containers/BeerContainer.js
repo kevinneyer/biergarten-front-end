@@ -34,8 +34,9 @@ const BeerContainer = (props) => {
     setSearch(e.target.innerText)
   }
       
+
   let filteredBeers = [...beers]
-    
+
   if(sort === 'ABV Ascending'){
     filteredBeers.sort((a,b) => (a.abv > b.abv ? 1 : -1) )
   }

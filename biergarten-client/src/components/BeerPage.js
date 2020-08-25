@@ -22,7 +22,7 @@ const BeerPage = (props) => {
 
   useEffect(() => {
     fetchBeer() 
-  }, [fetchBeer])
+  }, [fetchBeer]) //add fetchBeer back
 
   const ratings = (beerArray) => {
     let average = beerArray.map( beer => beer.rating)
@@ -73,7 +73,7 @@ const BeerPage = (props) => {
     .then(res => res.json())
     .then(data => {
       setFavorite(false)
-      alert(`${data.user.user_name}. You\'ve successfully added ${data.beer.beer_name} to your favorites`)
+      alert(`${data.user.user_name}. You've successfully added ${data.beer.beer_name} to your favorites`)
       setOpen(false)
     
     })
@@ -90,8 +90,8 @@ const BeerPage = (props) => {
 
   useEffect(() => {
     isFavorite()
-  },[showBeer.favorites])
- 
+  },[isFavorite]) //isFavorite?
+   console.log(showBeer)
   return (
     <div>
       <Segment raised>

@@ -21,7 +21,7 @@ const PeoplePage = (props) => {
 
   useEffect(() => {
     fetchPerson() 
-  }, [fetchPerson]) 
+  }, [fetchPerson]) //add fetchPerson back
 
   useEffect(() => {
     if(showPerson){
@@ -38,7 +38,7 @@ const PeoplePage = (props) => {
           accept: 'application/json',
           "Authorization": localStorage.token
         },
-        body: JSON.stringify({ followed_id: id})
+        body: JSON.stringify({ followed_id: id, follower_id: props.currentUser.id})
       })
       .then(res => res.json())
       .then(data => {
@@ -80,7 +80,7 @@ const PeoplePage = (props) => {
   useEffect(() => {
     isFollowing()
   }, [showPerson.passive_relationships])
-  
+
   return(
     <>
       <h1 className='profile-header'>{showPerson ? showPerson.username + '\'s ' + 'Profile Page' : 'Profile Page'}</h1>
@@ -89,7 +89,7 @@ const PeoplePage = (props) => {
           <Grid.Column width={6}>
             <Segment raised>
               <Card centered>
-                { showPerson ? <Image src={showPerson.image}/> : 'User Not found!' }
+                { showPerson ? <Image src={showPerson.image} size='medium'/> : 'User Not found!' }
                 <Card.Content >
                   {showPerson ? <Card.Header >{showPerson.username}</Card.Header> : 'User Not Found!'  }
                 </Card.Content>
