@@ -13,7 +13,7 @@ class Profile extends React.Component{
               <Grid.Column width={6}>
               <Segment raised>
                 <Card centered>
-                  {this.props.currentUser ?  <Image src={this.props.currentUser.image}/> : "No User. Please Login" }
+                  {this.props.currentUser ?  <Image src={this.props.currentUser.image} size='medium'/> : "No User. Please Login" }
                     <Card.Content >
                       {this.props.currentUser ? <Card.Header >{this.props.currentUser.username}</Card.Header> : "No User. Please Login"  }
                     </Card.Content>
