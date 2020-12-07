@@ -21,6 +21,12 @@ const NavBar = (props) => {
             >
             All Users
             </Menu.Item>
+            <Menu.Item
+            name='Breweries'
+            href="/breweries"
+            >
+            Breweries
+            </Menu.Item>
             <Menu.Menu position='right'>
               {props.currentUser ? 
                 <Menu.Item

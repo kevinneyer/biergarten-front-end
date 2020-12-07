@@ -7,31 +7,31 @@ const BeerCards = (props) =>{
     
   const ratings = (beerArray) => {
     let average = beerArray.map( beer => beer.rating)
-    let sum = average.reduce(function(a, b){
-      return a + b;
-    }, 0);
+    let sum = average.reduce((a, b) => (a + b), 0)
     if(beerArray.length === 0){
       return '0'
     }
     else
-      return sum / beerArray.length
+      return Math.floor(sum / beerArray.length)
   }
-    
+
+  const { search, searchHandler, filterChange, sortHandler, beers } = props
+  
   return(
     <>
       <Divider />
-      <BlockHeader />
+        <BlockHeader />
       <Divider />
-      <Filter search={props.search} 
-      searchHandler={props.searchHandler} 
-      filterChange={props.filterChange} 
-      sortHandler={props.sortHandler} 
+      <Filter search={search} 
+      searchHandler={searchHandler} 
+      filterChange={filterChange} 
+      sortHandler={sortHandler} 
       />
       <br/>
       <Divider section={true} />
       <Card.Group  textAlign='center' itemsPerRow={4}>
-        {props.beers ? 
-          props.beers.map((beer, key) =>
+        {beers ? 
+          beers.map((beer, key) =>
             <Card key={key} raised>
               <Image src={beer.img_url} centered size='small' />
               <Card.Content >

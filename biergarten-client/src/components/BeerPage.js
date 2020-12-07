@@ -1,7 +1,7 @@
 import React from 'react'
 import Review from './Review'
 import { useState, useEffect } from 'react'
-import {Button, Divider, Grid, Segment, Modal, Image } from 'semantic-ui-react'
+import { Button, Divider, Grid, Segment, Modal, Image } from 'semantic-ui-react'
 
 
 const BeerPage = (props) => {
@@ -26,14 +26,12 @@ const BeerPage = (props) => {
 
   const ratings = (beerArray) => {
     let average = beerArray.map( beer => beer.rating)
-    let sum = average.reduce(function(a, b){
-      return a + b;
-    }, 0);
+    let sum = average.reduce((a, b) => (a + b), 0)
     if(beerArray.length === 0){
-      return '0. No Reviews or just really bad? You be the judge!'
+      return '0. No reviews yet. Be the first!'
     }
     else
-      return sum / beerArray.length
+      return Math.floor(sum / beerArray.length)
   }
 
   const likeHandler = () => {

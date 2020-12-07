@@ -158,6 +158,8 @@ const Filter = (props) =>{
       label: { color: 'black', empty: true, circular: true },
     }
   ]
+
+  const { filterChange, sortHandler, searchHandler, search} = props
        
   return(
     <>
@@ -166,7 +168,7 @@ const Filter = (props) =>{
           Filter beers{' '}
           <Dropdown
             inline
-            onChange={props.filterChange}
+            onChange={filterChange}
             header='Select Style Option'
             options={filterOptions}
             defaultValue=''
@@ -178,7 +180,7 @@ const Filter = (props) =>{
           Sort beers by {' '}
           <Dropdown
             inline
-            onChange={props.sortHandler}
+            onChange={sortHandler}
             header='Select Sort Option'
             options={sortOptions}
             defaultValue=''
@@ -190,8 +192,8 @@ const Filter = (props) =>{
           View beers by recommended drinking {' '}
           <Dropdown
             inline
-            onChange={props.searchHandler}
-            value={props.search}
+            onChange={searchHandler}
+            value={search}
             header='Select category'
             options={recommendedDrinking}
             defaultValue=''
