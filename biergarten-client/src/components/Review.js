@@ -39,7 +39,6 @@ const Review = (props) => {
   }
 
   const removeHandler = (id) =>{
-    console.log(id)
     fetch(`http://localhost:3001/api/v1/reviews/${id}`, {
       method: 'DELETE',
       headers:{

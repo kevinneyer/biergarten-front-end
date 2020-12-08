@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import Review from './Review'
 import { useState, useEffect } from 'react'
 import { Button, Divider, Grid, Segment, Modal, Image } from 'semantic-ui-react'
@@ -11,18 +11,22 @@ const BeerPage = (props) => {
   const [showBeer, setShowBeer] = useState([])
   const [open, setOpen] = useState(false)
   const [favorite, setFavorite] = useState(null)
+ 
   
-  const fetchBeer = () => {
+  const fetchBeer = useCallback(() => {
     fetch(`http://localhost:3001/api/v1/beers/${beerId}`)
     .then(res => res.json())
     .then(data =>{
       setShowBeer(data)
     }) 
-  }
+  }, [])
+  
 
   useEffect(() => {
     fetchBeer() 
-  }, [fetchBeer]) //add fetchBeer back
+  }, [favorite]) //add fetchBeer back
+ 
+
 
   const ratings = (beerArray) => {
     let average = beerArray.map( beer => beer.rating)
