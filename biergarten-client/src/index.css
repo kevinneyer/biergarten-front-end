@@ -20,7 +20,9 @@ code {
   margin-top: 1em;
   text-align: center;
 } */
-
+.site-theme {
+    padding: 30px !important;
+}
 .beer-contain{
   display: flex;
   flex-direction: row;

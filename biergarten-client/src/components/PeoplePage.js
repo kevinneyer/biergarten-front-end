@@ -11,23 +11,39 @@ const PeoplePage = (props) => {
   const [followers, setFollowers] = useState([])
   const [following, setFollowing] = useState(false)
 
-  const fetchPerson = () => {
+//   const fetchPerson = () => {
+//     fetch(`http://localhost:3001/api/v1/users/${peopleId}`)
+//     .then(res => res.json())
+//     .then(data =>{
+//       setShowPerson(data)
+//     }) 
+//   } 
+
+  useEffect(() => {
     fetch(`http://localhost:3001/api/v1/users/${peopleId}`)
     .then(res => res.json())
     .then(data =>{
       setShowPerson(data)
-    }) 
-  } 
+    })
 
-  useEffect(() => {
-    fetchPerson() 
-  }, [fetchPerson]) //add fetchPerson back
-
-  useEffect(() => {
     if(showPerson){
-    setFollowers(showPerson.followers)
+        setFollowers(showPerson.followers)
     }
-  }, [showPerson.followers])
+
+    if(showPerson.passive_relationships && props.currentUser){
+      let relat = showPerson.passive_relationships.find( relat => relat.follower.follower_id === props.currentUser.id)
+       if(relat){
+         setFollowing(true)
+       }
+    }
+    // fetchPerson() 
+  }, [peopleId, showPerson, props.currentUser]) //add fetchPerson back
+
+//   useEffect(() => {
+//     if(showPerson){
+//     setFollowers(showPerson.followers)
+//     }
+//   }, [showPerson.followers])
 
   const followHandler = (id) => {
     if(props.currentUser){
@@ -68,18 +84,18 @@ const PeoplePage = (props) => {
     })
    }
 
-  const isFollowing = () => {   
-    if(showPerson.passive_relationships && props.currentUser){
-      let relat = showPerson.passive_relationships.find( relat => relat.follower.follower_id === props.currentUser.id)
-       if(relat){
-         setFollowing(true)
-       }
-    }
-  }
+//   const isFollowing = () => {   
+//     if(showPerson.passive_relationships && props.currentUser){
+//       let relat = showPerson.passive_relationships.find( relat => relat.follower.follower_id === props.currentUser.id)
+//        if(relat){
+//          setFollowing(true)
+//        }
+//     }
+//   }
   
-  useEffect(() => {
-    isFollowing()
-  }, [showPerson.passive_relationships])
+//   useEffect(() => {
+//     isFollowing()
+//   }, [showPerson.passive_relationships])
 
   return(
     <>

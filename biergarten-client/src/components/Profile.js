@@ -4,10 +4,9 @@ import {  Grid, Comment, Header, Segment, Image, Card, Feed , Rating, Icon} from
 
 class Profile extends React.Component{
   render(){
-    console.log(this.props.currentUser)
     return(
       <>
-        <h1 className='profile-header'>{this.props.currentUser ? this.props.currentUser.username + '\'s ' + 'Profile Page' : 'Profile Page'}</h1>
+        <h1 className='profile-header'>{this.props.currentUser ? this.props.currentUser.username + '\'s Profile Page' : 'Profile Page'}</h1>
           <Segment>
             <Grid columns={3} relaxed='very'>
               <Grid.Column width={6}>

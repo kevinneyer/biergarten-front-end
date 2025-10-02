@@ -17,9 +17,9 @@ const BeerContainer = (props) => {
     fetch('http://localhost:3001/api/v1/beers')
     .then(res => res.json())
     .then(beers => {
-        setBeers( beers )
+        setBeers(beers)
     })
-  }, [])
+  }, []);
 
   const filterChange = (e) => {
     setFilter(e.target.innerText)
@@ -30,11 +30,11 @@ const BeerContainer = (props) => {
   }
 
   const searchHandler = (e) =>{
-    console.log(e.target.innerText)
     setSearch(e.target.innerText)
   }
       
 
+  // This logic could be also be done by sending query params and having the filtering done API side.
   let filteredBeers = [...beers]
 
   if(sort === 'ABV Ascending'){
@@ -104,7 +104,7 @@ const BeerContainer = (props) => {
     <>
       <Router>
         <Route exact path="/beers" render={(routerProps) => <BeerCards beers={filteredBeers} search={search} searchHandler={searchHandler} filterChange={filterChange} sortHandler={sortHandler} {...routerProps} />} />
-        <Route exact path="/beers/:id" render={(routerProps) => <BeerPage beers={filteredBeers} currentUser={props.currentUser} {...routerProps} />} />
+        <Route exact path="/beers/:id" render={(routerProps) => <BeerPage currentUser={props.currentUser} {...routerProps} />} />
         <Route exact path="/login" render={(routerProps) => <Login beers={filteredBeers} setUser={props.setUser} currentUser={props.currentUser} {...routerProps} />} />
         <Route exact path="/signup" render={(routerProps) => <Signup beers={filteredBeers} setUser={props.setUser} {...routerProps} />} />
       </Router>
