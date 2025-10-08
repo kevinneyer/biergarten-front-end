@@ -6,7 +6,7 @@ import Profile from '../components/Profile';
 import PeoplePage from '../components/PeoplePage';
 import PeopleCards from '../components/PeopleCards';
 import MapContainer from './MapContainer';
-import {BrowserRouter as Router, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 

@@ -3,7 +3,7 @@ import BeerCards from '../components/BeerCards'
 import BeerPage from '../components/BeerPage'
 import Login from '../components/Login'
 import Signup from '../components/Signup'
-import {BrowserRouter as Router, Route} from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 
 const BeerContainer = (props) => {

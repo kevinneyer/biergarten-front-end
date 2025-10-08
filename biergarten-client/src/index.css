@@ -112,7 +112,8 @@ border: dotted;
 }
 
 .header{
-  width: 100vw;
+
+  width: 100%;
 }
 
 .home-screen{
