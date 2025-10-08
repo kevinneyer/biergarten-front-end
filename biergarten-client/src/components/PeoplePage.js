@@ -5,48 +5,45 @@ import { useState, useEffect } from 'react'
 
 const PeoplePage = (props) => {
   
-  let peopleId = props.match.params.id 
+  let peopleId = props.match.params.id ;
 
-  const [showPerson, setShowPerson] = useState([])
-  const [followers, setFollowers] = useState([])
-  const [following, setFollowing] = useState(false)
+  const [showPerson, setShowPerson] = useState([]);
+  const [followers, setFollowers] = useState([]);
+  const [following, setFollowing] = useState(false);
 
-//   const fetchPerson = () => {
-//     fetch(`http://localhost:3001/api/v1/users/${peopleId}`)
-//     .then(res => res.json())
-//     .then(data =>{
-//       setShowPerson(data)
-//     }) 
-//   } 
-
-  useEffect(() => {
+  const getProfileInfo = () => {
     fetch(`http://localhost:3001/api/v1/users/${peopleId}`)
     .then(res => res.json())
     .then(data =>{
       setShowPerson(data)
-    })
+    }) 
+  }
+  useEffect(() => {
+    // fetch(`http://localhost:3001/api/v1/users/${peopleId}`)
+    // .then(res => res.json())
+    // .then(data =>{
+    //   setShowPerson(data)
+    // })
+    getProfileInfo();
 
-    if(showPerson){
-        setFollowers(showPerson.followers)
+  }, []);
+
+  useEffect(() => {
+    if (showPerson) {
+        setFollowers(showPerson.followers);
     }
 
-    if(showPerson.passive_relationships && props.currentUser){
-      let relat = showPerson.passive_relationships.find( relat => relat.follower.follower_id === props.currentUser.id)
+    if (showPerson.passive_relationships && props.currentUser) {
+      let relat = showPerson.passive_relationships.find(relat => relat.follower.follower_id === props.currentUser.id)
        if(relat){
          setFollowing(true)
        }
     }
-    // fetchPerson() 
-  }, [peopleId, showPerson, props.currentUser]) //add fetchPerson back
-
-//   useEffect(() => {
-//     if(showPerson){
-//     setFollowers(showPerson.followers)
-//     }
-//   }, [showPerson.followers])
+    
+  }, [showPerson, props.currentUser]);
 
   const followHandler = (id) => {
-    if(props.currentUser){
+    if (props.currentUser) {
       fetch('http://localhost:3001/api/v1/relationships', {
         method: 'POST',
         headers:{
@@ -58,8 +55,10 @@ const PeoplePage = (props) => {
       })
       .then(res => res.json())
       .then(data => {
-        setFollowers([...followers, data])
-        setFollowing(true)
+        // console.log(data)
+        // setFollowers([...followers, data])
+        // setFollowing(true)
+        getProfileInfo();
       })
    }
    else 
@@ -78,24 +77,21 @@ const PeoplePage = (props) => {
       }
     })
     .then(() => {
-      let newFollowers = followers.filter(follower => follower.id !== id)
-      setFollowers(newFollowers)
-      setFollowing(false)
+    //   let newFollowers = followers.filter(follower => follower.id !== id)
+    //   setFollowers(newFollowers)
+    //   setFollowing(false)
+    getProfileInfo();
     })
    }
 
-//   const isFollowing = () => {   
-//     if(showPerson.passive_relationships && props.currentUser){
-//       let relat = showPerson.passive_relationships.find( relat => relat.follower.follower_id === props.currentUser.id)
-//        if(relat){
-//          setFollowing(true)
-//        }
-//     }
-//   }
-  
-//   useEffect(() => {
-//     isFollowing()
-//   }, [showPerson.passive_relationships])
+  useEffect(() => {
+        if(showPerson.passive_relationships && props.currentUser){
+      let relat = showPerson.passive_relationships.find( relat => relat.follower.follower_id === props.currentUser.id)
+       if(relat){
+         setFollowing(true)
+       }
+    }
+  }, [showPerson, props.currentUser])
 
   return(
     <>
@@ -110,10 +106,10 @@ const PeoplePage = (props) => {
                   {showPerson ? <Card.Header >{showPerson.username}</Card.Header> : 'User Not Found!'  }
                 </Card.Content>
                 <Card.Content extra>
-                  {showPerson.followers ? 
+                  {followers ? 
                   <>
                     <Icon name='user' />
-                    <span>{showPerson.followers.length} followers</span>
+                    <span>{followers.length} followers</span>
                   </>
                   :
                   null
@@ -171,8 +167,8 @@ const PeoplePage = (props) => {
             </Feed>
             <Header as='h3'>Followers</Header>
             <Feed>
-              {showPerson.followers ? 
-                showPerson.followers.map(follower =>
+              {followers ? 
+                followers.map(follower =>
                   <Feed.Event>
                     <Feed.Label>
                       <Image src={follower.image} size='mini'/>
