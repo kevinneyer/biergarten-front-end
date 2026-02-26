@@ -16,8 +16,8 @@ const BeerContainer = (props) => {
   useEffect(() => {
     fetch('http://localhost:3001/api/v1/beers')
     .then(res => res.json())
-    .then(beers => {
-        setBeers(beers)
+    .then(data => {
+        setBeers(data.beers)
     })
   }, []);
 
@@ -38,22 +38,22 @@ const BeerContainer = (props) => {
   let filteredBeers = [...beers]
 
   if(sort === 'ABV Ascending'){
-    filteredBeers.sort((a,b) => (a.abv > b.abv ? 1 : -1) )
+    filteredBeers.sort((a,b) => (a.abv > b.abv ? 1 : -1))
   }
   else if(sort === 'ABV Descending'){
-    filteredBeers.sort((a,b) => (a.abv < b.abv ? 1 : -1) )
+    filteredBeers.sort((a,b) => (a.abv < b.abv ? 1 : -1))
   }
   else if(sort === 'Reviews Ascending'){
-    filteredBeers.sort((a,b) => (a.reviews.length > b.reviews.length ? 1 : -1) )
+    filteredBeers.sort((a,b) => (a.reviews.length > b.reviews.length ? 1 : -1))
   }
   else if(sort === 'Reviews Descending'){
-    filteredBeers.sort((a,b) => (a.reviews.length < b.reviews.length ? 1 : -1) )
+    filteredBeers.sort((a,b) => (a.reviews.length < b.reviews.length ? 1 : -1))
   }
   else if(sort === 'Likes Ascending'){
-    filteredBeers.sort((a,b) => (a.likes > b.likes ? 1 : -1) )
+    filteredBeers.sort((a,b) => (a.likes_count > b.likes_count ? 1 : -1))
   }
   else if(sort === 'Likes Descending'){
-    filteredBeers.sort((a,b) => (a.likes < b.likes ? 1 : -1) )
+    filteredBeers.sort((a,b) => (a.likes_count < b.likes_count ? 1 : -1))
   }
 
   if(filter === "Lager"){

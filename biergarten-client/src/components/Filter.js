@@ -159,7 +159,7 @@ const Filter = (props) =>{
     }
   ]
 
-  const { filterChange, sortHandler, searchHandler, search} = props
+  const { filterChange, sortHandler, searchHandler, search } = props
        
   return(
     <>
