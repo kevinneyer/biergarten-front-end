@@ -74,7 +74,8 @@ const BeerPage = (props) => {
     fetch(`http://localhost:3001/api/v1/beers/${beerId}`)
       .then((res) => res.json())
       .then((data) => {
-        setShowBeer(data);
+        console.log(data)
+        setShowBeer(data.beer);
       });
   }, [beerId]);
 

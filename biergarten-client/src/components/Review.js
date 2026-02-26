@@ -30,8 +30,16 @@ const Review = (props) => {
         })
       })  
       .then(res => res.json())
-      .then( data => {
-        setReviews([...reviews, data.content])
+      .then(data => {
+        const newReview = {
+            review_id: data.id,
+            content: data.content,
+            user: data.user.user_name,
+            rating: data.rating,
+            user_image: data.user.user_image,
+            user_id: data.user.user_id
+        };
+        setReviews([...reviews, newReview]);
       })
     }
     else
@@ -46,8 +54,8 @@ const Review = (props) => {
       }
     })
     .then(() => {
-      let newReviews = reviews.filter(review => review.id !== id)
-      setReviews(newReviews)
+      let newReviews = reviews.filter(review => review.review_id !== id);
+      setReviews(newReviews);
     })
   }
  

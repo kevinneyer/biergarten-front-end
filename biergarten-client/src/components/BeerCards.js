@@ -44,7 +44,7 @@ const BeerCards = (props) =>{
                 <Card.Description textAlign="center">
                   <p>Style: {beer.style}</p>
                   <p>ABV: {beer.abv}% </p>
-                  <p>Total Likes: {beer.likes} </p>
+                  {/* <p>Total Likes: {beer.likes} </p> */}
                   <p>Total Reviews: {beer.reviews.length} </p>
                   <p>Average Rating: {ratings(beer.reviews)}</p>
                 </Card.Description>

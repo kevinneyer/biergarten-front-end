@@ -13,7 +13,8 @@ const ReviewForm = (props) => {
 
   const submitHandler = (e, content, rating) => {
     e.preventDefault();
-    setReview('')
+    setReview('');
+    setRating(0);
     props.handleContent(content, rating)
   }
 
